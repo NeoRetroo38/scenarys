@@ -18,12 +18,25 @@ export function PillLink({
   arrow = false,
   className = '',
 }: {
-  href: string;
+  /** Sin href (destino aún no definido) se pinta como pendiente y no navega. */
+  href: string | undefined;
   children: ReactNode;
   variant?: PillVariant;
   arrow?: boolean;
   className?: string;
 }) {
+  if (!href) {
+    return (
+      <span
+        aria-disabled="true"
+        title="Disponible pronto"
+        className={`${pillBase} cursor-not-allowed border border-dashed border-ink-muted text-ink-muted ${className}`}
+      >
+        {children}
+        <span className="text-sm">· pronto</span>
+      </span>
+    );
+  }
   return (
     <a href={href} className={`${pillBase} ${pillVariants[variant]} ${className}`}>
       {children}

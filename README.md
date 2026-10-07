@@ -19,7 +19,7 @@ Copia `.env.example` a `.env` y rellena las variables:
 
 | Variable | Uso | Por defecto |
 | --- | --- | --- |
-| `VITE_CHOISYS_URL` | Destino de todos los enlaces a choisys | `/choisys` |
+| `VITE_CHOISYS_URL` | URL absoluta de choisys, que es una web separada | botones como pendientes |
 | `VITE_CONTACT_EMAIL` | Email de contacto de la sección final | se muestra como pendiente |
 
 Son valores públicos que se incrustan en el build. No pongas secretos en variables `VITE_*`.
@@ -47,6 +47,6 @@ Este repositorio es público. Puede describir el Cubo de Neo, pero no contiene n
 
 ## Pendiente antes de publicar
 
-- Definir la URL real de choisys (`VITE_CHOISYS_URL`).
+- Definir la URL real de choisys (`VITE_CHOISYS_URL`) y publicar choisys como web.
 - Definir el email de contacto (`VITE_CONTACT_EMAIL`).
 - Redactar aviso legal, política de privacidad y de cookies, con CIF y domicilio social. El pie enlaza a anclas provisionales.
