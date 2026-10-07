@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+/* Lenguaje visual de Scenarys/choisys: fondo blanco, negro, sin decoración. */
+@theme {
+  --color-paper: #fdfdfd;
+  --color-ink: #000000;
+  --color-ink-soft: #222222;
+  --color-ink-muted: #555555;
+  --color-line: #e6e6e6;
+  --font-sans: Aptos, "Segoe UI Variable Text", "Segoe UI", "Helvetica Neue", Helvetica, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
