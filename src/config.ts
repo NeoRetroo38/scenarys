@@ -21,7 +21,7 @@ function readAbsoluteUrl(value: string | undefined): string | undefined {
 }
 
 /** Destino de todos los enlaces a choisys (web separada). Sin definir, los botones se muestran como pendientes. */
-export const CHOISYS_URL = readAbsoluteUrl(import.meta.env.VITE_CHOISYS_URL);
+export const CHOISYS_URL = readAbsoluteUrl(import.meta.env.VITE_CHOISYS_URL) ?? '/choisys';
 
 /** Email público de contacto. Sin definir, la sección de contacto lo indica como pendiente. */
 export const CONTACT_EMAIL = readEnv(import.meta.env.VITE_CONTACT_EMAIL);
