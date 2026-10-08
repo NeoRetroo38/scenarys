@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>scenarys — boceto de la landing</title>
+<style>
+:root{--bg:#f6f6f4;--fg:#111;--mut:#666;--line:#d9d9d4;--card:#fff;--tag:#eee}
+@media (prefers-color-scheme:dark){:root{--bg:#121212;--fg:#eee;--mut:#9a9a9a;--line:#333;--card:#1b1b1b;--tag:#262626}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,system-ui,Segoe UI,sans-serif;padding:24px 16px 64px;max-width:1100px;margin-inline:auto}
+h1{font-size:26px;font-weight:500;margin:0 0 4px}
+h2{font-size:19px;font-weight:500;margin:40px 0 4px}
+p.lead{color:var(--mut);margin:0 0 16px}
+code{font-size:13px}
+.row{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
+.tag{display:inline-block;font-size:12px;border-radius:6px;padding:1px 8px;background:var(--tag);color:var(--mut);margin-right:6px}
+.tag.ok{background:#d8f5d0;color:#1d5a12}
+.tag.pend{background:#fdeacb;color:#7a4a00}
+.tag.no{background:#fbd6d6;color:#8a1f1f}
+.note{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px 16px;margin:12px 0;font-size:14px}
+.cap{font-size:13px;color:var(--mut);margin:8px 0 0;max-width:520px}
+.cap b{color:var(--fg);font-weight:500;display:block}
+
+/* Maquetas: siempre en blanco y negro, como el producto */
+.desk{width:min(100%,560px);background:#fdfdfd;color:#000;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.phone{width:200px;background:#fdfdfd;color:#000;border:1px solid var(--line);border-radius:26px;overflow:hidden;padding-bottom:8px}
+.sec{padding:14px 16px;border-top:1px solid #e6e6e6;position:relative}
+.sec:first-child{border-top:0}
+.sec.k{background:#000;color:#fff}
+.num{position:absolute;right:8px;top:8px;font:10px ui-monospace,Menlo,monospace;color:#999}
+.nav{display:flex;flex-wrap:wrap;gap:4px;justify-content:space-between;align-items:center;font-size:11px}
+.nav span{margin-left:8px}
+.pill{display:inline-block;border-radius:99px;font-size:10px;padding:3px 10px;background:#000;color:#fff}
+.pill.o{background:transparent;color:#000;border:1px solid #000}
+.pill.i{background:#fff;color:#000}
+.eb{font:9px ui-monospace,Menlo,monospace;letter-spacing:.1em;color:#777;text-transform:uppercase}
+.big{font-size:24px;line-height:1;letter-spacing:-.04em;margin:6px 0}
+.mid{font-size:16px;letter-spacing:-.03em;margin:4px 0}
+.tx{font-size:10px;color:#444;line-height:1.4;margin:4px 0}
+.k .tx{color:#ccc}
+.grid{display:grid;grid-template-columns:repeat(3,18px);gap:6px}
+.dot{width:18px;height:18px;border-radius:50%;background:#000}
+.dot.sel{transform:scale(1.14)}
+.split{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center}
+.list div{border-top:1px solid #000;font-size:11px;padding:3px 0;display:flex;justify-content:space-between}
+.list i{font:9px ui-monospace,Menlo,monospace;color:#777;font-style:normal}
+
+.tree{font:13px/1.7 ui-monospace,Menlo,monospace;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;overflow-x:auto;white-space:pre;margin:12px 0}
+table{border-collapse:collapse;width:100%;table-layout:fixed;word-wrap:break-word;font-size:14px;margin:12px 0}
+th,td{text-align:left;border-bottom:1px solid var(--line);padding:6px 8px;vertical-align:top}
+th{font-weight:500;color:var(--mut)}
+th:first-child,td:first-child{width:36px}
+th:nth-child(3),td:nth-child(3){width:110px}
+</style>
+</head>
+<body>
+
+<h1>scenarys — boceto de la landing</h1>
+<p class="lead">La web de la compañía: presenta Scenarys y lleva a choisys. Dibujos sacados del código real del repo <code>~/Desktop/scenarys/repo</code>. Actualizado el 8 oct 2026.</p>
+
+<div class="note">
+<span class="tag ok">Hecho</span> está en el código y con commit.
+<span class="tag pend">Pendiente</span> falta un dato o una decisión del dueño.
+<span class="tag no">Bloqueado</span> no se puede avanzar desde aquí.
+</div>
+
+<h2>1. La página, de arriba abajo</h2>
+<p class="lead">Una sola página. Blanco y negro, tipografía ligera, botones en píldora. Mismo lenguaje visual que choisys.</p>
+
+<div class="row">
+
+<div class="desk">
+  <div class="sec"><span class="num">0</span>
+    <div class="nav"><b style="font-weight:400">scenarys</b><div><span>choisys</span><span>Estudio</span><span>Contacto</span><span class="pill">Abrir choisys</span></div></div>
+  </div>
+  <div class="sec"><span class="num">1</span>
+    <div class="eb">Scenarys S.L. — Estudio de tecnología</div>
+    <div class="big">Construimos sistemas para pensar, decidir y crear.</div>
+    <div class="split"><div class="tx" style="max-width:260px">Compañía multidisciplinar… primer producto: choisys.</div><div><span class="pill">Probar choisys →</span> <span class="pill o">Hablar con nosotros</span></div></div>
+  </div>
+  <div class="sec"><span class="num">2</span>
+    <div class="split"><div><div class="eb">01 — Producto · Beta</div><div class="big">choisys</div><div class="tx" style="max-width:240px">Tres fases, una cuadrícula, un toque por fase.</div><span class="pill">Entrar en choisys →</span></div>
+    <div><div class="tx">1. fase one.</div><div class="grid"><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot sel"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div></div></div>
+  </div>
+  <div class="sec"><span class="num">3</span>
+    <div class="mid">Cómo funciona</div>
+    <div class="split tx"><span>01 Fases</span><span>02 Decisiones binarias</span><span>03 Ejecuciones</span><span>04 Matriz resultante</span></div>
+  </div>
+  <div class="sec k"><span class="num">4</span>
+    <div class="eb">02 — Tecnología propia</div><div class="mid">El Cubo de Neo</div>
+    <div class="tx">Propietario · local · C++ · no se distribuye en el cliente.</div>
+  </div>
+  <div class="sec"><span class="num">5</span>
+    <div class="mid">Una compañía pensada para crecer en varias disciplinas.</div>
+    <div class="list"><div>Software <i>choisys · en beta</i></div><div>Sistemas interactivos <i>próximamente</i></div><div>Hardware · Videojuegos · Música · Cine <i>próximamente</i></div></div>
+  </div>
+  <div class="sec"><span class="num">6</span>
+    <div class="split"><div><div class="mid">Hablemos.</div><div class="tx">Inversión, alianzas, prensa o licencias.</div></div><div><span class="pill o" style="border-style:dashed;color:#777;border-color:#777">email pendiente</span></div></div>
+  </div>
+  <div class="sec"><span class="num">7</span><div class="tx">© 2026 Scenarys S.L. · Aviso legal · Privacidad · Cookies</div></div>
+</div>
+
+<div class="phone">
+  <div class="sec"><div class="nav"><b style="font-weight:400">scenarys</b><span class="pill">Abrir choisys</span></div></div>
+  <div class="sec"><div class="big" style="font-size:20px">Construimos sistemas para pensar, decidir y crear.</div><span class="pill">Probar choisys →</span><br><span class="pill o" style="margin-top:4px">Hablar con nosotros</span></div>
+  <div class="sec"><div class="big" style="font-size:20px">choisys</div><div class="grid" style="margin:8px 0"><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot sel"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div></div>
+  <div class="sec"><div class="tx">Cómo funciona: los 4 pasos en columna</div></div>
+  <div class="sec k"><div class="mid">El Cubo de Neo</div></div>
+  <div class="sec"><div class="tx">Estudio · Contacto · Pie</div></div>
+</div>
+
+</div>
+<p class="cap"><b>Escritorio y móvil</b> En móvil el menú deja solo «Abrir choisys» y todo pasa a una columna. Probado a 1440 px y a 390 px sin scroll horizontal.</p>
+
+<h2>2. Estado de cada parte</h2>
+<table>
+<tr><th>#</th><th>Sección</th><th>Estado</th><th>Nota</th></tr>
+<tr><td>0</td><td>Cabecera</td><td><span class="tag ok">Hecho</span></td><td>«Abrir choisys» siempre visible.</td></tr>
+<tr><td>1</td><td>Hero</td><td><span class="tag ok">Hecho</span></td><td>Dos llamadas: probar choisys y contactar.</td></tr>
+<tr><td>2</td><td>choisys + demo</td><td><span class="tag ok">Hecho</span></td><td>La demo copia la app: un toque elige y pasa de fase, el círculo crece sin rellenarse, fundido entre fases, final «3 fases completadas». Solo interfaz: no envía ni calcula nada.</td></tr>
+<tr><td>3</td><td>Cómo funciona</td><td><span class="tag ok">Hecho</span></td><td>Fases, decisiones binarias, ejecuciones, matriz resultante.</td></tr>
+<tr><td>4</td><td>Cubo de Neo</td><td><span class="tag ok">Hecho</span></td><td>Solo lo que es público: propietario, local, C++. Nada del modelo.</td></tr>
+<tr><td>5</td><td>Estudio</td><td><span class="tag ok">Hecho</span></td><td>Wibarium no aparece: aún no está definido.</td></tr>
+<tr><td>6</td><td>Contacto</td><td><span class="tag pend">Pendiente</span></td><td>Falta el email (<code>VITE_CONTACT_EMAIL</code>).</td></tr>
+<tr><td>—</td><td>Enlace a choisys</td><td><span class="tag pend">Pendiente</span></td><td>No hay URL pública de choisys. Hoy apunta a <code>/choisys</code>; se cambia con <code>VITE_CHOISYS_URL</code>.</td></tr>
+<tr><td>7</td><td>Legal</td><td><span class="tag pend">Pendiente</span></td><td>Aviso legal, privacidad y cookies, con CIF y domicilio social.</td></tr>
+<tr><td>—</td><td>Subir a GitHub</td><td><span class="tag no">Bloqueado</span></td><td>Hay que crear el repo vacío <code>NeoRetroo38/scenarys</code>; la sesión no puede crear repos. Luego: <code>git push -u origin main</code>.</td></tr>
+</table>
+
+<h2>3. Dónde vive cada cosa</h2>
+<p class="lead">Cada proyecto tiene su carpeta; el código, en su subcarpeta <code>repo</code>. El material de apoyo (bocetos, boards, referencias), aquí en iCloud.</p>
+<div class="tree">~/Desktop/scenarys/
+├── repo/               landing de Scenarys (este boceto)
+├── choisys/repo/       NeoRetroo38/choisys
+├── cubo-de-neo/repo/   Cubo de Neo — privado, solo local, nunca público
+├── escenaries/repo/    NeoRetroo38/escenaries
+└── u/repo/             NeoRetroo38/u (vacío en GitHub)
+
+iCloud Drive/scenarys/
+├── landing/            este boceto
+├── choisys/            bocetos, boards y referencias de la app
+└── wibarium/</div>
+<p class="cap"><b>Por qué la subcarpeta repo</b> El Cubo de Neo queda fuera de cualquier repo público: <code>cubo-de-neo/</code> es hermano de <code>repo/</code>, no está dentro.</p>
+
+<h2>4. Siguiente</h2>
+<p class="lead">1) Crear el repo en GitHub y subir. 2) Decidir dominio y URL de choisys. 3) Email y textos legales. 4) Desplegar (Vercel, Netlify o GitHub Pages: es una web estática).</p>
+
+</body>
+</html>

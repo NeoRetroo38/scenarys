@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>choisys — bocetos de interfaz</title>
+<style>
+:root{--bg:#f6f6f4;--fg:#111;--mut:#666;--line:#d9d9d4;--card:#fff;--tag:#eee}
+@media (prefers-color-scheme:dark){:root{--bg:#121212;--fg:#eee;--mut:#9a9a9a;--line:#333;--card:#1b1b1b;--tag:#262626}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,system-ui,Segoe UI,sans-serif;padding:24px 16px 64px;max-width:1100px;margin-inline:auto}
+h1{font-size:26px;font-weight:500;margin:0 0 4px}
+h2{font-size:19px;font-weight:500;margin:40px 0 4px}
+p.lead{color:var(--mut);margin:0 0 16px}
+.row{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start}
+.col{width:200px}
+.phone{width:200px;height:356px;border-radius:28px;border:1px solid var(--line);padding:16px 12px;display:flex;flex-direction:column;align-items:center;justify-content:space-between}
+.w{background:#fff;color:#111}
+.k{background:#000;color:#eee}
+.small{font-size:11px;letter-spacing:.08em;color:#777}
+.brand{font-size:30px;font-weight:300;letter-spacing:.02em}
+.field{width:100%;border-bottom:1px solid #111;font-size:12px;color:#777;padding:3px 0;margin:5px 0}
+.btn{border:1px solid #111;border-radius:99px;font-size:12px;padding:6px 18px}
+.btn.f{background:#111;color:#fff}
+.cap{font-size:13px;color:var(--mut);margin:8px 0 0}
+.cap b{color:var(--fg);font-weight:500;display:block}
+.tag{display:inline-block;font-size:12px;border-radius:6px;padding:1px 8px;background:var(--tag);color:var(--mut);margin-right:6px}
+.tag.ok{background:#d8f5d0;color:#1d5a12}
+.tag.pend{background:#fdeacb;color:#7a4a00}
+.tag.no{background:#fbd6d6;color:#8a1f1f}
+.note{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px 16px;margin:12px 0;font-size:14px}
+</style>
+</head>
+<body>
+
+<h1>choisys — bocetos de interfaz</h1>
+<p class="lead">Cómo funciona hoy la app y hacia dónde puede crecer. Dibujos orientativos, sacados de las pantallas reales de <code>apps/mobile</code>. Actualizado el 7 oct 2026.</p>
+
+<div class="note">
+<span class="tag ok">Implementado</span> existe en la app y está fusionado en <code>main</code>.
+<span class="tag pend">Propuesta</span> idea con decisión pendiente del dueño.
+<span class="tag no">Choca</span> contradice una regla cerrada hasta que el dueño la reabra.
+</div>
+
+<h2>1. Hoy: lo que ya funciona</h2>
+<p class="lead">Reglas de diseño fijadas: blanco y negro, tipografía ligera, un toque elige y envía (no hay botón Confirmar), la selección no rellena de blanco, transiciones con fade.</p>
+
+<div class="row">
+
+<div class="col">
+<div class="phone w">
+<div class="brand">choisys</div>
+<div style="width:100%">
+<div style="font-size:15px;margin-bottom:6px">Entrar</div>
+<div class="field">Correo electrónico</div>
+<div class="field">Contraseña</div>
+<div style="text-align:center;margin-top:12px"><span class="btn f">Entrar</span></div>
+</div>
+<div class="small">¿No tienes cuenta? Regístrate</div>
+</div>
+<p class="cap"><b>A. Entrar / Crear cuenta <span class="tag ok">Implementado</span></b>Una sola pantalla con dos modos. Al cambiar de modo se vacían los campos; "Crear cuenta" añade Nombre. Los errores aparecen como aviso accesible.</p>
+</div>
+
+<div class="col">
+<div class="phone w">
+<div class="small">&nbsp;</div>
+<div class="brand" style="font-size:40px">choisys</div>
+<div class="btn f">Comenzar las tres fases</div>
+<div class="small">Cerrar sesión</div>
+</div>
+<p class="cap"><b>B. Inicio <span class="tag ok">Implementado</span></b>Un único botón. Si ya hay Runs guardados aparece "Ver mi cubo". Cerrar sesión es un texto discreto.</p>
+</div>
+
+<div class="col">
+<div class="phone w">
+<div style="font-size:13px;color:#555;align-self:flex-start;margin:16px 0 0 18px">1. fase one.</div>
+<svg viewBox="0 0 150 150" width="150" height="150" role="img" aria-label="Cuadrícula 3 por 3">
+<g fill="none" stroke="#111" stroke-width="1">
+<circle cx="25" cy="25" r="15"/><circle cx="75" cy="25" r="15"/><circle cx="125" cy="25" r="15"/>
+<circle cx="25" cy="75" r="15"/><circle cx="75" cy="75" r="15"/><circle cx="125" cy="75" r="15"/>
+<circle cx="25" cy="125" r="15"/><circle cx="75" cy="125" r="15"/><circle cx="125" cy="125" r="15"/></g>
+<circle cx="125" cy="75" r="21" fill="none" stroke="#111" stroke-dasharray="2 3"/>
+</svg>
+<div class="small">Volver al inicio</div>
+</div>
+<p class="cap"><b>C. Fase (1, 2 y 3) <span class="tag ok">Implementado</span></b>Cuadrícula 3×3 de círculos. Un toque elige y envía a la API; el círculo hace pop y se expande, y la siguiente fase entra con fade. Si falla el envío aparece "Reintentar" con el mismo círculo.</p>
+</div>
+
+<div class="col">
+<div class="phone w">
+<div class="small">&nbsp;</div>
+<div style="text-align:center">
+<div style="font-size:15px;font-weight:500">3 fases completadas.</div>
+<div style="font-size:13px;color:#666;margin-top:4px">Cada elección cuenta.</div>
+</div>
+<div style="text-align:center"><div class="btn f" style="margin-bottom:10px">Volver a empezar</div><div class="small">Volver al inicio</div></div>
+</div>
+<p class="cap"><b>D. Resultado <span class="tag ok">Implementado</span></b>Sin porcentajes ni interpretación. La app solo guarda las tres coordenadas (fase, fila, columna) en el dispositivo.</p>
+</div>
+
+<div class="col">
+<div class="phone k">
+<div class="small" style="color:#aaa">TU CUBO</div>
+<svg viewBox="0 0 150 150" width="168" height="168" role="img" aria-label="Cubo con aristas y Runs">
+<g fill="none" stroke="#39ff14" stroke-width="1">
+<path d="M30 55 L90 55 L90 115 L30 115 Z"/><path d="M55 30 L115 30 L115 90 L55 90 Z"/>
+<path d="M30 55 L55 30"/><path d="M90 55 L115 30"/><path d="M90 115 L115 90"/><path d="M30 115 L55 90"/></g>
+<g fill="none" stroke="#ff2a2a" stroke-width="1" opacity=".45"><path d="M40 105 L72 75 L100 45"/></g>
+<g fill="none" stroke="#fff" stroke-width="1.6"><path d="M38 70 L70 98 L98 60"/></g>
+<g fill="#fff"><circle cx="38" cy="70" r="3"/><circle cx="70" cy="98" r="3"/><circle cx="98" cy="60" r="3"/></g>
+</svg>
+<div style="font-size:11px;color:#aaa;text-align:center">last 2 runs<br>drag to rotate · tap to reset · phase 1 → 3</div>
+<div class="small" style="color:#aaa">volver</div>
+</div>
+<p class="cap"><b>E. Ver mi cubo <span class="tag ok">Implementado</span></b>Cubo exterior de 12 aristas y rejilla de decisiones separada, solo aristas. Ejes verde neón <code>#39ff14</code>, último Run en blanco brillante, Runs anteriores en rojo <code>#ff2a2a</code> al 45 %. Se gira arrastrando y se restablece con un toque. La app solo dibuja; no calcula nada.</p>
+</div>
+
+</div>
+
+<h2>2. Siguiente: crecimiento natural de la interfaz</h2>
+<p class="lead">Cosas que ya tienen issue abierta y encajan con las reglas actuales.</p>
+
+<div class="row">
+
+<div class="col">
+<div class="phone w">
+<div class="small">AJUSTES</div>
+<div style="width:100%;font-size:13px">
+<div style="display:flex;justify-content:space-between;border-bottom:1px solid #ddd;padding:8px 0"><span>Sonido</span><span>Silenciado</span></div>
+<div style="display:flex;justify-content:space-between;border-bottom:1px solid #ddd;padding:8px 0"><span>Descripción en voz</span><span>Activa</span></div>
+<div style="display:flex;justify-content:space-between;padding:8px 0"><span>Mis datos</span><span>Exportar</span></div>
+</div>
+<div class="small">Eliminar mi cuenta</div>
+</div>
+<p class="cap"><b>F. Ajustes <span class="tag pend">Propuesta</span></b>Interruptor de sonido y accesibilidad no visual (issue #14), exportar mis datos y borrar cuenta (issue #4, requisito de Apple y RGPD). Mismo estilo blanco y negro.</p>
+</div>
+
+<div class="col">
+<div class="phone w">
+<div class="small">HISTORIAL</div>
+<div style="width:100%;font-size:13px">
+<div style="border-bottom:1px solid #ddd;padding:8px 0">7 oct · Run 3 <span style="float:right;color:#777">3 fases</span></div>
+<div style="border-bottom:1px solid #ddd;padding:8px 0">6 oct · Run 2 <span style="float:right;color:#777">3 fases</span></div>
+<div style="padding:8px 0">6 oct · Run 1 <span style="float:right;color:#777">3 fases</span></div>
+</div>
+<div class="small">Ver en el cubo</div>
+</div>
+<p class="cap"><b>G. Historial en el servidor <span class="tag pend">Propuesta</span></b>Hoy el historial vive solo en el dispositivo. Con la issue #4 se guardaría por cuenta y se podría ver desde otro dispositivo.</p>
+</div>
+
+<div class="col">
+<div class="phone w">
+<div class="small">INSTALAR</div>
+<div style="text-align:center">
+<div class="brand" style="font-size:34px">choisys</div>
+<div style="font-size:12px;color:#777;margin-top:6px">Añadir a la pantalla de inicio</div>
+</div>
+<div class="btn f">Abrir</div>
+</div>
+<p class="cap"><b>H. Web instalable (PWA) <span class="tag pend">Propuesta</span></b>Export web de Expo para el primer drop (issue #11) y build nativa con TestFlight (issue #10). La interfaz es la misma; cambia dónde se abre.</p>
+</div>
+
+</div>
+
+<h2>3. Visión B2B de selección (referencia)</h2>
+<p class="lead">Esquema aportado por el ingeniero aeroespacial. Está registrado como decisión 0002 y no se implementa hasta que el dueño decida. Imagen en <code>referencias/</code>.</p>
+
+<div class="row">
+
+<div class="col">
+<div class="phone w">
+<div class="small">3 / 10 · 00:45</div>
+<div style="font-size:12px;text-align:center;padding:0 6px">Un cliente quiere lanzar un proyecto de energía renovable, pero el presupuesto es limitado. ¿Qué haces?</div>
+<div style="width:100%;font-size:11px">
+<div style="border:1px solid #bbb;border-radius:8px;padding:5px 8px;margin:3px 0">A · Priorizar los mercados</div>
+<div style="border:1px solid #bbb;border-radius:8px;padding:5px 8px;margin:3px 0">B · Solución conservadora</div>
+<div style="border:1px solid #bbb;border-radius:8px;padding:5px 8px;margin:3px 0">C · Alternativa intermedia</div>
+</div>
+</div>
+<p class="cap"><b>I. Situación con opciones A, B y C <span class="tag no">Choca</span></b>Texto y botones en lugar de la cuadrícula 3×3 y con fase de lectura. Contradice la interfaz fijada.</p>
+</div>
+
+<div class="col">
+<div class="phone w">
+<div class="small">RESULTADO DEL CANDIDATO</div>
+<svg viewBox="0 0 150 150" width="150" height="150" role="img" aria-label="Radar de seis dimensiones">
+<g fill="none" stroke="#999" stroke-width="1"><polygon points="75,15 127,45 127,105 75,135 23,105 23,45"/><polygon points="75,45 101,60 101,90 75,105 49,90 49,60"/></g>
+<polygon points="75,28 118,52 110,98 75,120 38,95 40,52" fill="rgba(0,120,255,.2)" stroke="#06f"/>
+</svg>
+<div style="font-size:11px;color:#777">Autonomía · Riesgo · Resultados<br>Adaptabilidad · Personas · Análisis</div>
+</div>
+<p class="cap"><b>J. Perfil en radar <span class="tag no">Choca</span></b>Requiere fórmulas y una especificación matemática que no existe (neos-cube #8). La matemática solo puede vivir en el motor C++.</p>
+</div>
+
+<div class="col">
+<div class="phone w">
+<div class="small">RANKING</div>
+<div style="width:100%;font-size:12px">
+<div style="padding:6px 0;border-bottom:1px solid #ddd">1 · Candidato A <span style="float:right">86 %</span></div>
+<div style="padding:6px 0;border-bottom:1px solid #ddd">2 · Candidato B <span style="float:right">78 %</span></div>
+<div style="padding:6px 0">3 · Candidato C <span style="float:right">65 %</span></div>
+</div>
+<div style="display:flex;gap:8px"><span class="btn" style="font-size:11px">Avanza</span><span class="btn" style="font-size:11px">Descartar</span></div>
+</div>
+<p class="cap"><b>K. Ranking y descarte <span class="tag no">Choca</span></b>Decisión automatizada sobre personas: RGPD (art. 22) y reglamento de IA. Necesita revisión legal (issue #13) antes de mostrarse.</p>
+</div>
+
+</div>
+
+<h2>4. Cómo se amplía la interfaz sin romperla</h2>
+<div class="note">
+<b>Principios</b><br>
+1. Una acción por pantalla. Si una pantalla necesita dos, se divide en dos.<br>
+2. Blanco, negro y fade; el color solo aparece en la vista del cubo (verde neón y rojo).<br>
+3. La app dibuja lo que el servidor le entrega; nunca calcula resultados del Cubo.<br>
+4. Toda pantalla nueva lleva etiquetas accesibles y funciona sin sonido.<br>
+5. Una pantalla nueva se propone aquí como boceto, se decide en un PR de <code>docs/decisions</code> y solo entonces se implementa.
+</div>
+
+</body>
+</html>

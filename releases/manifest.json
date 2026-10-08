@@ -1,6 +1,163 @@
 {
   "schemaVersion": 1,
   "site": "https://neowebdevsolutions.com",
-  "sourceCommit": "abe6f268423d2f0e4781c55a7b986c55d9864bee",
-  "artifacts": []
+  "sourceCommit": "9c08b5e214c40d184ae007494e1a4f82d750ab7d",
+  "artifacts": [],
+  "documents": [
+    {
+      "path": "/docs/files/boceto-web.html",
+      "size": 10738,
+      "sha256": "ec6254ed1b58ccd3a640d8d631f1c9ec0860040939d24750e366c7a7908d18bc"
+    },
+    {
+      "path": "/docs/files/boceto-web.pdf",
+      "size": 267191,
+      "sha256": "9ee922bcac4b4e0fdc7f7927a7f38d2d3ea479ff2576dd9c71f5b14db3eda38c"
+    },
+    {
+      "path": "/docs/files/bocetos-choisys.html",
+      "size": 12356,
+      "sha256": "29165d262c823238c6d3596bf2e2b72c5d6be9f26c313a62daf795a56e547774"
+    },
+    {
+      "path": "/docs/files/bocetos-choisys.pdf",
+      "size": 298782,
+      "sha256": "c2d9f6c1b915f94440d0c8e3fe629f4b9782472880204972be0cdd31167ddec0"
+    },
+    {
+      "path": "/docs/files/choisys.html",
+      "size": 3608,
+      "sha256": "25990522deacae6c72e5128942e41557c69f0d7e31524b7fb64b7b5547746b69"
+    },
+    {
+      "path": "/docs/files/choisys.pdf",
+      "size": 138459,
+      "sha256": "4a62f2b80e3a9791e2e402c73b9526374ae3c601afda78ae08b820e460b1c753"
+    },
+    {
+      "path": "/docs/files/cubo.html",
+      "size": 2735,
+      "sha256": "224ee01c88ba9523ff0bf4b0020939b62baffff0734522be4e96796f3b98c03a"
+    },
+    {
+      "path": "/docs/files/cubo.pdf",
+      "size": 115424,
+      "sha256": "f7482be47ef71b59a9444e9ffe1402025a8ae9e036a3028068152c51dd7f8254"
+    },
+    {
+      "path": "/docs/files/demo-remota.html",
+      "size": 4563,
+      "sha256": "109d92b281511a21718bbd84b7e7ebeb55f837d64215f1844282c7a4ef980d75"
+    },
+    {
+      "path": "/docs/files/demo-remota.pdf",
+      "size": 166921,
+      "sha256": "75f0a3baba909c25ad969343a22a09393a0e99eff2822a6ff5f73f24423f66a0"
+    },
+    {
+      "path": "/docs/files/demo-tailscale.html",
+      "size": 4334,
+      "sha256": "c21090d6154f71495cfd9659ef8816ae136418eff29482969497bcf7534d9a08"
+    },
+    {
+      "path": "/docs/files/demo-tailscale.pdf",
+      "size": 135331,
+      "sha256": "80c6d4ec0e02f494f36a0b36fccb9d96ea7d65b6f23b1d947f2a6b7735518675"
+    },
+    {
+      "path": "/docs/files/ecosistema.html",
+      "size": 8816,
+      "sha256": "baae647416889ebe28fb02286db9202c1727d905d3034c1016fc787e5bd37d0c"
+    },
+    {
+      "path": "/docs/files/ecosistema.pdf",
+      "size": 166754,
+      "sha256": "c1b2ee79e39425f4e900ffbf9abf9cbec1682256180f5a616ac020befcdc02bd"
+    },
+    {
+      "path": "/docs/files/estado-demo.pdf",
+      "size": 51916,
+      "sha256": "7e35ea635d9eac4dd87d5f99145bca80d44eed8164f85660bb9ae399ac0cbc48"
+    },
+    {
+      "path": "/docs/files/estado-demo.xlsx",
+      "size": 11152,
+      "sha256": "cea423fa1979707d110fbb3c89f61a931815b7b2bb81efa3cfecf8bd47dfcc2b"
+    },
+    {
+      "path": "/docs/files/flujo-choisys.html",
+      "size": 18083,
+      "sha256": "f2ed466090c4cb9cd660cb3636271482d96043a5cfb91976a6820e2ccce0e487"
+    },
+    {
+      "path": "/docs/files/flujo-choisys.pdf",
+      "size": 305615,
+      "sha256": "a664756d9f2a74e0b549be9a83a39214258b41648cc7430a0c7a93478f7395ca"
+    },
+    {
+      "path": "/docs/files/fusiones-choisys.html",
+      "size": 2625,
+      "sha256": "00702d5fbf791e2dcd403483c45cf9ee11b32a0a5040b79b4506c7ed3266e0e1"
+    },
+    {
+      "path": "/docs/files/fusiones-choisys.pdf",
+      "size": 91892,
+      "sha256": "732b5a2dd711875bbe1205a43f4ea589e25d1d492b6f7c046b156bdde40aa176"
+    },
+    {
+      "path": "/docs/files/futuro-choisys.html",
+      "size": 20465,
+      "sha256": "2df7283d6f7c53cb395d6f4fb0ff1abf039aa426ed7fc658674afee158911d81"
+    },
+    {
+      "path": "/docs/files/futuro-choisys.pdf",
+      "size": 323067,
+      "sha256": "4137b7a63b4074325f705bc5602a7aa1bb7cfa94136324ef58672aa191edef7b"
+    },
+    {
+      "path": "/docs/files/landing-y2k.html",
+      "size": 10655,
+      "sha256": "37acf489ed0bca9640a11cc3bf05d87fb63aa14884f95291e193c8c251d954be"
+    },
+    {
+      "path": "/docs/files/lanzamiento.html",
+      "size": 3285,
+      "sha256": "ec1c5206f9d5a3369bf44f7f0d93f03e5daff9db4353228a4e53c05243062b61"
+    },
+    {
+      "path": "/docs/files/lanzamiento.pdf",
+      "size": 112093,
+      "sha256": "901c930af6f6df9715e6efc24e1f1f085533b2955190e24d53249d991e43d21e"
+    },
+    {
+      "path": "/docs/files/motor.html",
+      "size": 12067,
+      "sha256": "2faad7473b3ea1c69a3d0364bf6cc2a1b97b7c244a46813ab6d2f39ac8f9fba4"
+    },
+    {
+      "path": "/docs/files/motor.pdf",
+      "size": 316251,
+      "sha256": "c8f6c4f4ec1d38302b6b5a55fa30efad1fb358edfa1c0a556321e545d7282a7c"
+    },
+    {
+      "path": "/docs/files/presentacion-demo.pdf",
+      "size": 75100,
+      "sha256": "66a437da3ed196ea23ae1d64dbf4aba61b7b3ddee5a37c33c4f8b9d17a15bdd3"
+    },
+    {
+      "path": "/docs/files/presentacion-demo.pptx",
+      "size": 35059,
+      "sha256": "985035d4e67577bd236ae1135020d85fde50e6433fe4d2e138a79fbaf719d71c"
+    },
+    {
+      "path": "/docs/files/tablero.html",
+      "size": 6176,
+      "sha256": "9de626def94cdb7c4c7fa57f95dbb8e3e6cc32682770c57c9123f27ba71d4a27"
+    },
+    {
+      "path": "/docs/files/tablero.pdf",
+      "size": 198253,
+      "sha256": "6b10891601a80760ed023e89e596ef56447535bb18b3dc26bac706f24e2c7f42"
+    }
+  ]
 }

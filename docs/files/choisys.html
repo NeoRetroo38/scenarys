@@ -1,0 +1,69 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>choisys: guía de la app — scenarys</title><style>body{margin:0;background:#fdfdfd;color:#000;font:16px/1.6 Aptos,'Segoe UI',-apple-system,Helvetica,Arial,sans-serif}
+main{max-width:760px;margin:0 auto;padding:56px 28px 72px}h1{font-weight:400;font-size:40px;letter-spacing:-.03em;line-height:1.1;margin:0 0 28px}
+h2{font-weight:400;font-size:24px;margin:40px 0 12px}h3{font-weight:500;font-size:18px;margin:28px 0 8px}p,li{color:#222}
+code,pre{font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;font-size:13px}pre{background:#f2f2f2;padding:16px;overflow:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border-bottom:1px solid #e6e6e6;padding:8px 6px;text-align:left;vertical-align:top}
+a{color:#000}footer{margin-top:56px;padding-top:16px;border-top:1px solid #e6e6e6;color:#555;font-size:13px}</style></head><body><main><h1>choisys — carpeta de la app</h1>
+<p>Aplicación de producto de scenarys S.L. Repositorio público: https://github.com/NeoRetroo38/choisys
+(el código vive en Git, no aquí; esta carpeta es material de apoyo).</p>
+<h2>Qué hay aquí</h2>
+<ul>
+<li><code>ui-sketches.html</code> — bocetos de cada pantalla, cómo funciona y cómo puede crecer. Ábrelo en Safari o Chrome.</li>
+<li><code>merges-importantes.md</code> — los PR fusionados que más cambian la app.</li>
+<li><code>referencias/</code> — imágenes que han pasado otras personas (visión B2B y hoja de ruta). Son referencia, no decisión.</li>
+</ul>
+<h2>Cómo funciona la interfaz (resumen)</h2>
+<ol>
+<li><strong>Entrar / Crear cuenta</strong> — una pantalla con dos modos.</li>
+<li><strong>Inicio</strong> — un botón: "Comenzar las tres fases".</li>
+<li><strong>Fase 1, 2 y 3</strong> — cuadrícula 3×3 de círculos. Un toque elige y envía; no hay botón Confirmar.</li>
+<li><strong>Resultado</strong> — "3 fases completadas". Sin porcentajes.</li>
+<li><strong>Ver mi cubo</strong> — cubo exterior y rejilla de decisiones; el último Run en blanco y los anteriores en rojo.</li>
+</ol>
+<p>Reglas fijadas: blanco y negro, tipografía ligera, la selección no rellena de blanco, transiciones con fade,
+ejes del cubo en verde neón <code>#39ff14</code>, Runs anteriores en rojo <code>#ff2a2a</code> al 45 %. No se cambia la paleta sin preguntar.</p>
+<h2>Futuras implementaciones de interfaz</h2>
+<table>
+<thead>
+<tr>
+<th>Idea</th>
+<th>Issue o decisión</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ajustes: sonido, accesibilidad no visual</td>
+<td>choisys #14</td>
+<td>Abierta</td>
+</tr>
+<tr>
+<td>Historial, exportar y borrar cuenta</td>
+<td>choisys #4</td>
+<td>En preparación</td>
+</tr>
+<tr>
+<td>Web instalable (PWA)</td>
+<td>choisys #11</td>
+<td>Abierta</td>
+</tr>
+<tr>
+<td>Build nativa y TestFlight</td>
+<td>choisys #10</td>
+<td>Abierta</td>
+</tr>
+<tr>
+<td>Visión B2B (ranking, radar, descarte)</td>
+<td><code>docs/decisions/0002</code></td>
+<td>Pendiente del dueño; choca con reglas cerradas</td>
+</tr>
+<tr>
+<td>Hoja de ruta B2B de 5 fases</td>
+<td><code>docs/decisions/0003</code></td>
+<td>Pendiente del dueño</td>
+</tr>
+</tbody>
+</table>
+<h2>Cómo coordinarse (agentes)</h2>
+<p>Una pantalla nueva se dibuja primero como boceto en <code>ui-sketches.html</code>, se decide en un PR de <code>docs/decisions</code>
+y solo después se implementa. Los PR empiezan con <code>## Para el dueño</code>. Nadie fusiona su propio PR.</p><footer>scenarys · documentación pública · teléfono +34 633 693 369</footer></main></body></html>

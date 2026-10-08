@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>choisys · flujo actual</title>
+<style>
+:root{
+  --bg:#f4f4f4; --card:#ffffff; --ink:#000000; --mute:#666666; --line:#e2e2e2; --soft:#f0f0f0;
+  --tag-app-bg:#000; --tag-app-fg:#fff; --tag-api-bg:#fff; --tag-api-fg:#000; --tag-api-line:#000;
+  --band-bg:#000; --band-fg:#fff; --band-mute:#bdbdbd;
+  --phone:#000; --screen:#fdfdfd; --screen-ink:#000; --screen-mute:#707070; --screen-line:#bdbdbd;
+  --green:#39ff14; --red:#ff2a2a;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#000000; --card:#0f0f0f; --ink:#f5f5f5; --mute:#a0a0a0; --line:#262626; --soft:#1a1a1a;
+    --tag-app-bg:#fff; --tag-app-fg:#000; --tag-api-bg:#000; --tag-api-fg:#fff; --tag-api-line:#fff;
+    --band-bg:#f5f5f5; --band-fg:#000; --band-mute:#444;
+    --phone:#3a3a3a;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Segoe UI",Roboto,Arial,sans-serif;
+  font-weight:300;line-height:1.45;
+  padding:max(20px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(28px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+.wrap{max-width:1240px;margin:0 auto}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 32px;padding:8px 4px 24px}
+.brand{font-size:clamp(40px,8vw,64px);font-weight:300;letter-spacing:-.04em;line-height:1}
+.hd-text{max-width:520px}
+.hd-text h1{margin:0 0 4px;font-size:clamp(20px,3.4vw,26px);font-weight:300;letter-spacing:-.02em}
+.hd-text p{margin:0;color:var(--mute);font-size:15px}
+
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:28px 30px;grid-template-columns:1fr}
+.step{position:relative;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px 16px 18px;display:flex;flex-direction:column;gap:12px}
+.step::after{content:"";position:absolute;background:var(--mute);opacity:.55;
+  -webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat;
+  --arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12h13M13 6l6 6-6 6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  width:22px;height:22px;left:50%;bottom:-26px;transform:translateX(-50%) rotate(90deg)}
+.step:last-child::after{display:none}
+.head{display:flex;gap:12px;align-items:flex-start}
+.num{flex:none;width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-size:16px;font-weight:400}
+.head h2{margin:0;font-size:17px;font-weight:400;letter-spacing:-.01em;line-height:1.25}
+.head p{margin:2px 0 0;color:var(--mute);font-size:13px;line-height:1.35}
+.stage{display:flex;justify-content:center;background:var(--soft);border-radius:16px;padding:16px 8px}
+.phone{width:150px;aspect-ratio:9/18;background:var(--phone);border-radius:24px;padding:5px;box-shadow:0 1px 0 rgba(255,255,255,.04)}
+.phone svg{display:block;width:100%;height:100%;border-radius:19px}
+.how{font-size:13.5px;color:var(--ink)}
+.how b{display:block;font-weight:400;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:2px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.tag{font-size:11.5px;font-weight:400;padding:4px 10px;border-radius:99px;line-height:1.3}
+.tag.app{background:var(--tag-app-bg);color:var(--tag-app-fg)}
+.tag.api{background:var(--tag-api-bg);color:var(--tag-api-fg);border:1px solid var(--tag-api-line)}
+.tag.col{background:transparent;color:var(--mute);border:1px dashed var(--mute)}
+
+@media (min-width:640px){
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .step::after{left:auto;right:-27px;bottom:auto;top:50%;transform:translateY(-50%)}
+  .step:nth-child(2n)::after{display:none}
+}
+@media (min-width:1000px){
+  .steps{grid-template-columns:repeat(4,1fr)}
+  .step:nth-child(2n)::after{display:block}
+  .step:nth-child(4n)::after,.step:last-child::after{display:none}
+  .step:nth-child(4){}
+}
+
+.rules{margin-top:34px;background:var(--band-bg);color:var(--band-fg);border-radius:22px;padding:22px 20px 24px}
+.rules h3{margin:0 0 14px;font-size:18px;font-weight:300;letter-spacing:-.01em}
+.rules ul{list-style:none;margin:0;padding:0;display:grid;gap:12px;grid-template-columns:1fr}
+.rules li{display:flex;gap:12px;font-size:14px;line-height:1.4;align-items:flex-start}
+.rules li i{flex:none;width:22px;height:22px;border-radius:50%;border:1px solid currentColor;display:grid;place-items:center;font-style:normal;font-size:12px;font-weight:400}
+.rules li span{color:inherit}
+.rules li em{display:block;font-style:normal;color:var(--band-mute);font-size:12.5px}
+@media (min-width:700px){.rules ul{grid-template-columns:repeat(2,1fr);gap:16px 32px}}
+@media (min-width:1000px){.rules ul{grid-template-columns:repeat(4,1fr)}}
+footer{margin-top:16px;color:var(--mute);font-size:12px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand">choisys</div>
+  <div class="hd-text">
+    <h1>Así funciona hoy: de entrar a ver tu cubo.</h1>
+    <p>Siete pasos del flujo ya implementado en la app móvil. Tres fases, un toque por fase.</p>
+  </div>
+</header>
+
+<ol class="steps">
+
+<!-- 1 -->
+<li class="step">
+  <div class="head"><div class="num">1</div><div><h2>Entrar / Crear cuenta</h2><p>Tu espacio para elegir.</p></div></div>
+  <div class="stage"><div class="phone">
+    <svg viewBox="0 0 150 300" role="img" aria-label="Pantalla de acceso con correo, contraseña y botón Entrar">
+      <rect width="150" height="300" fill="var(--screen)"/>
+      <text x="16" y="38" font-size="15" letter-spacing="-.6" fill="var(--screen-ink)">choisys</text>
+      <text x="16" y="86" font-size="14" letter-spacing="-.4" fill="var(--screen-ink)">iniciar sesión.</text>
+      <text x="16" y="102" font-size="6.5" fill="var(--screen-mute)">Continúa donde empieza tu elección.</text>
+      <text x="16" y="128" font-size="6.5" fill="#333">Correo electrónico</text>
+      <text x="16" y="144" font-size="7" fill="#777">tu@correo.com</text>
+      <line x1="16" x2="134" y1="150" y2="150" stroke="var(--screen-line)"/>
+      <text x="16" y="172" font-size="6.5" fill="#333">Contraseña</text>
+      <text x="16" y="188" font-size="7" fill="#777">Tu contraseña</text>
+      <line x1="16" x2="134" y1="194" y2="194" stroke="var(--screen-line)"/>
+      <rect x="16" y="212" width="118" height="26" rx="13" fill="#000"/>
+      <text x="75" y="228.5" font-size="8" text-anchor="middle" fill="#fff">Entrar</text>
+      <text x="75" y="258" font-size="6.5" text-anchor="middle" fill="var(--screen-mute)">¿Es tu primera vez? <tspan fill="#000" text-decoration="underline">Regístrate</tspan></text>
+    </svg>
+  </div></div>
+  <div class="how"><b>Cómo funciona</b>Correo y contraseña. Al registrarte se añade Nombre y el botón pasa a «Crear cuenta». Si falta algo, avisa antes de enviar.</div>
+  <div class="tags"><span class="tag app">App: recoge y valida campos</span><span class="tag api">API: autentica la cuenta</span></div>
+</li>
+
+<!-- 2 -->
+<li class="step">
+  <div class="head"><div class="num">2</div><div><h2>Inicio</h2><p>Un solo gesto para empezar.</p></div></div>
+  <div class="stage"><div class="phone">
+    <svg viewBox="0 0 150 300" role="img" aria-label="Inicio con círculo negro de tres puntos para comenzar">
+      <rect width="150" height="300" fill="var(--screen)"/>
+      <text x="75" y="92" font-size="19" letter-spacing="-.8" text-anchor="middle" fill="#000">choisys</text>
+      <circle cx="75" cy="152" r="26" fill="#000"/>
+      <circle cx="75" cy="141" r="2.6" fill="#fff"/><circle cx="75" cy="152" r="2.6" fill="#fff"/><circle cx="75" cy="163" r="2.6" fill="#fff"/>
+      <text x="75" y="204" font-size="7.5" text-anchor="middle" fill="var(--screen-mute)">Ver mi cubo</text>
+      <text x="75" y="282" font-size="6.5" text-anchor="middle" fill="var(--screen-mute)">Cerrar sesión</text>
+    </svg>
+  </div></div>
+  <div class="how"><b>Cómo funciona</b>El botón «Comenzar las tres fases» es el círculo negro. «Ver mi cubo» aparece solo si ya hay Runs guardados.</div>
+  <div class="tags"><span class="tag app">App: muestra el inicio y guarda los Runs</span><span class="tag api">API: abre la sesión</span></div>
+</li>
+
+<!-- 3,4,5 phases -->
+<li class="step">
+  <div class="head"><div class="num">3</div><div><h2>Fase 1</h2><p>Elige un círculo.</p></div></div>
+  <div class="stage"><div class="phone">
+    <svg class="ph" data-phase="1" data-sel="5" viewBox="0 0 150 300" role="img" aria-label="Fase 1 con cuadrícula de nueve círculos"></svg>
+  </div></div>
+  <div class="how"><b>Cómo funciona</b>Cuadrícula 3×3 de círculos. Un toque elige y envía a la vez: no hay botón Confirmar. Si falla, aparece «Reintentar» y tu elección sigue guardada.</div>
+  <div class="tags"><span class="tag app">App: dibuja y envía el toque</span><span class="tag api">API: valida y responde</span></div>
+</li>
+
+<li class="step">
+  <div class="head"><div class="num">4</div><div><h2>Fase 2</h2><p>Mismo gesto, nueva fase.</p></div></div>
+  <div class="stage"><div class="phone">
+    <svg class="ph" data-phase="2" data-sel="3" viewBox="0 0 150 300" role="img" aria-label="Fase 2 con cuadrícula de nueve círculos"></svg>
+  </div></div>
+  <div class="how"><b>Cómo funciona</b>El círculo elegido hace un pop de expansión; la selección no se rellena de blanco. Luego la pantalla se desvanece hacia la fase siguiente.</div>
+  <div class="tags"><span class="tag app">App: animación pop y fade</span><span class="tag api">API: acepta la fase</span></div>
+</li>
+
+<li class="step">
+  <div class="head"><div class="num">5</div><div><h2>Fase 3</h2><p>Última elección.</p></div></div>
+  <div class="stage"><div class="phone">
+    <svg class="ph" data-phase="3" data-sel="7" viewBox="0 0 150 300" role="img" aria-label="Fase 3 con cuadrícula de nueve círculos"></svg>
+  </div></div>
+  <div class="how"><b>Cómo funciona</b>Al elegir en la fase 3 se completa el Run. Mientras se envía hay un indicador de espera; los errores se muestran con texto, sin depender del sonido.</div>
+  <div class="tags"><span class="tag app">App: envía y espera</span><span class="tag api">API: cierra el Run y devuelve la medición</span></div>
+</li>
+
+<!-- 6 -->
+<li class="step">
+  <div class="head"><div class="num">6</div><div><h2>Resultado</h2><p>Sin cifras, sin porcentajes.</p></div></div>
+  <div class="stage"><div class="phone">
+    <svg viewBox="0 0 150 300" role="img" aria-label="Resultado: 3 fases completadas. Cada elección cuenta.">
+      <rect width="150" height="300" fill="var(--screen)"/>
+      <text x="75" y="62" font-size="13" letter-spacing="-.5" text-anchor="middle" fill="#000">choisys</text>
+      <circle cx="58" cy="102" r="5" fill="#000"/><circle cx="75" cy="102" r="5" fill="#000"/><circle cx="92" cy="102" r="5" fill="#000"/>
+      <text x="75" y="136" font-size="12" letter-spacing="-.4" text-anchor="middle" fill="#000">3 fases completadas.</text>
+      <text x="75" y="152" font-size="7.5" text-anchor="middle" fill="var(--screen-mute)">Cada elección cuenta.</text>
+      <rect x="40" y="170" width="70" height="22" rx="11" fill="#000"/>
+      <text x="75" y="184.5" font-size="7.5" text-anchor="middle" fill="#fff">Volver a empezar</text>
+      <text x="75" y="212" font-size="7" text-anchor="middle" fill="var(--screen-mute)">Ver mi cubo</text>
+      <text x="75" y="230" font-size="7" text-anchor="middle" fill="var(--screen-mute)">Volver al inicio</text>
+      <text x="75" y="282" font-size="6.5" text-anchor="middle" fill="var(--screen-mute)">Cerrar sesión</text>
+    </svg>
+  </div></div>
+  <div class="how"><b>Cómo funciona</b>Tres puntos y un mensaje corto. Desde aquí puedes volver a empezar, ver tu cubo o volver al inicio.</div>
+  <div class="tags"><span class="tag app">App: muestra el cierre</span><span class="tag api">API: ya cerró el Run</span></div>
+</li>
+
+<!-- 7 -->
+<li class="step">
+  <div class="head"><div class="num">7</div><div><h2>Ver mi cubo</h2><p>El único lugar con color.</p></div></div>
+  <div class="stage"><div class="phone">
+    <svg id="cube" viewBox="0 0 150 300" role="img" aria-label="Cubo exterior de 12 aristas, rejilla de decisiones separada, ejes verdes y Runs"></svg>
+  </div></div>
+  <div class="how"><b>Cómo funciona</b>Cubo exterior de 12 aristas y, dentro, la rejilla de decisiones por separado. Arrastra para girar; toca para restablecer. Último Run en blanco, anteriores en rojo suave. Dibujo ilustrativo.</div>
+  <div class="tags"><span class="tag app">App: solo dibuja los datos recibidos</span><span class="tag api">API: entrega fase, fila y columna</span></div>
+</li>
+
+</ol>
+
+<section class="rules" aria-labelledby="rt">
+  <h3 id="rt">Reglas de diseño que no se rompen</h3>
+  <ul>
+    <li><i>1</i><span>Blanco y negro, tipografía ligera.<em>El color vive solo en la vista del cubo.</em></span></li>
+    <li><i>2</i><span>Un toque elige y envía.<em>No hay botón Confirmar.</em></span></li>
+    <li><i>3</i><span>La app solo dibuja y nunca calcula el Cubo.<em>Todo cálculo queda fuera del móvil.</em></span></li>
+    <li><i>4</i><span>Accesible y sin depender del sonido.<em>Etiquetas, textos de error y estados visibles.</em></span></li>
+  </ul>
+</section>
+<footer>choisys · flujo actual de apps/mobile · pantallas esquemáticas</footer>
+</div>
+
+<script>
+(function(){
+  var NS="http://www.w3.org/2000/svg";
+  function el(n,a,p){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;}
+  function txt(p,s,a){var t=el("text",a,p);t.textContent=s;return t;}
+
+  /* Fases 1-3: cuadricula 3x3 */
+  var titles={1:"1. fase one.",2:"2. fase two.",3:"3. fase three."};
+  document.querySelectorAll("svg.ph").forEach(function(svg){
+    var ph=svg.getAttribute("data-phase"), sel=+svg.getAttribute("data-sel");
+    el("rect",{width:150,height:300,fill:"var(--screen)"},svg);
+    txt(svg,titles[ph],{x:20,y:50,"font-size":14,"letter-spacing":"-.5",fill:"#000"});
+    var r=13,gap=14,x0=75-(3*r*2+2*gap)/2+r,y0=105;
+    for(var i=0;i<9;i++){
+      var cx=x0+(i%3)*(2*r+gap), cy=y0+Math.floor(i/3)*(2*r+gap);
+      if(i+1===sel){
+        el("circle",{cx:cx,cy:cy,r:r+6,fill:"none",stroke:"#000","stroke-opacity":.35,"stroke-width":1},svg);
+        el("circle",{cx:cx,cy:cy,r:r+2,fill:"#000"},svg);
+        el("circle",{cx:cx,cy:cy,r:3,fill:"var(--screen)"},svg);
+      } else el("circle",{cx:cx,cy:cy,r:r,fill:"#000"},svg);
+    }
+    txt(svg,"Volver al inicio",{x:75,y:270,"font-size":6.5,"text-anchor":"middle",fill:"var(--screen-mute)"});
+    if(ph==="1"){ /* estado de error ilustrativo: Reintentar */
+      /* no se dibuja; el texto del paso lo explica */
+    }
+  });
+
+  /* Vista del cubo (misma proyeccion que CubeView: solo dibujo) */
+  var svg=document.getElementById("cube");
+  el("rect",{width:150,height:300,fill:"#000"},svg);
+  var yaw=Math.PI/6,pitch=Math.PI/9,S=19,C=75,CY=118;
+  function P(v){var cy=Math.cos(yaw),sy=Math.sin(yaw),cp=Math.cos(pitch),sp=Math.sin(pitch);
+    var rx=v[0]*cy-v[2]*sy,rz=v[0]*sy+v[2]*cy,ry=v[1]*cp-rz*sp;return [C+rx*S,CY+ry*S];}
+  function line(a,b,stroke,op,w){var p=P(a),q=P(b);el("line",{x1:p[0],y1:p[1],x2:q[0],y2:q[1],stroke:stroke,"stroke-opacity":op,"stroke-width":w,"stroke-linecap":"round"},svg);}
+  var o=[-2,2],g=1.5,lv=[-g,0,g],i,j;
+  for(i=0;i<2;i++)for(j=0;j<2;j++){var a=o[i],b=o[j];
+    line([-2,a,b],[2,a,b],"#fff",.4,1);line([a,-2,b],[a,2,b],"#fff",.4,1);line([a,b,-2],[a,b,2],"#fff",.4,1);}
+  for(i=0;i<3;i++)for(j=0;j<3;j++){var a2=lv[i],b2=lv[j];
+    line([-g,a2,b2],[g,a2,b2],"#fff",.55,.6);line([a2,-g,b2],[a2,g,b2],"#fff",.55,.6);line([a2,b2,-g],[a2,b2,g],"#fff",.55,.6);}
+  var ax=[[[1,0,0],"x col"],[[0,1,0],"y row"],[[0,0,1],"z phase"]],reach=2.5;
+  ax.forEach(function(A){var d=A[0];
+    line([-d[0]*reach*.6,-d[1]*reach*.6,-d[2]*reach*.6],[d[0]*reach,d[1]*reach,d[2]*reach],"#39ff14",1,1.2);
+    var l=P([d[0]*(reach+.35),d[1]*(reach+.35),d[2]*(reach+.35)]);
+    txt(svg,A[1],{x:l[0],y:l[1],"font-size":6.5,"font-family":"Menlo,Consolas,monospace","text-anchor":"middle",fill:"#39ff14"});});
+  el("circle",{cx:C,cy:CY,r:2,fill:"#39ff14"},svg);
+  /* Runs ilustrativos: [fase,fila,columna] -> posicion */
+  function pt(f,r,c){return P([(c-2)*g,(r-2)*g,(f-2)*g]);}
+  function run(data,latest){
+    var pts=data.map(function(d){return pt(d[0],d[1],d[2]);});
+    var path=pts.map(function(p){return p[0]+","+p[1];}).join(" ");
+    var col=latest?"#fff":"#ff2a2a",op=latest?1:.45;
+    if(latest)el("polyline",{points:path,fill:"none",stroke:"#fff","stroke-opacity":.22,"stroke-width":5,"stroke-linejoin":"round"},svg);
+    el("polyline",{points:path,fill:"none",stroke:col,"stroke-opacity":op,"stroke-width":latest?1.6:1,"stroke-linejoin":"round"},svg);
+    pts.forEach(function(p,k){
+      if(latest)el("circle",{cx:p[0],cy:p[1],r:6,fill:"#fff","fill-opacity":.22},svg);
+      el("circle",{cx:p[0],cy:p[1],r:latest?3.2:2.6,fill:col,"fill-opacity":op},svg);
+      if(latest)txt(svg,String(k+1),{x:p[0]+5,y:p[1]+9,"font-size":6.5,"font-family":"Menlo,Consolas,monospace",fill:"#fff"});});
+  }
+  run([[1,1,3],[2,3,2],[3,2,1]],false);
+  run([[1,2,1],[2,1,1],[3,3,3]],false);
+  run([[1,2,2],[2,3,1],[3,1,3]],true);
+  txt(svg,"last 3 runs",{x:75,y:236,"font-size":8,"font-family":"Menlo,Consolas,monospace","text-anchor":"middle",fill:"#39ff14"});
+  txt(svg,"drag to rotate · tap to reset",{x:75,y:250,"font-size":5.8,"font-family":"Menlo,Consolas,monospace","text-anchor":"middle",fill:"#8a8a8a"});
+  txt(svg,"phase 1 → 3",{x:75,y:261,"font-size":5.8,"font-family":"Menlo,Consolas,monospace","text-anchor":"middle",fill:"#8a8a8a"});
+  txt(svg,"volver",{x:75,y:284,"font-size":7,"font-family":"Menlo,Consolas,monospace","text-anchor":"middle",fill:"#39ff14"});
+})();
+</script>
+</body>
+</html>

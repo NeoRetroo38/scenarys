@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>choisys · Futuras implementaciones de interfaz</title>
+<style>
+:root{
+  --bg:#fafafa; --card:#fff; --ink:#0a0a0a; --mute:#6b6b6b; --line:#e4e4e4; --soft:#f2f2f2;
+  --green:#39ff14; --red:#ff2a2a; --greenInk:#0c7a00; --redInk:#c20f0f;
+  --phone:#0a0a0a; --screen:#fff;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#000; --card:#0d0d0d; --ink:#f5f5f5; --mute:#9a9a9a; --line:#262626; --soft:#161616;
+    --greenInk:#39ff14; --redInk:#ff5a5a; --phone:#3a3a3a; --screen:#050505; }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font:300 16px/1.45 -apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif;
+  padding:max(20px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(32px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+.wrap{max-width:1180px;margin:0 auto}
+h1,h2,h3{font-weight:300;letter-spacing:-.01em}
+/* header */
+header{display:grid;grid-template-columns:auto 1fr;gap:20px 32px;align-items:center;padding:8px 0 28px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:14px}
+.brand svg{width:46px;height:46px;color:var(--ink)}
+.brand b{font-weight:200;font-size:40px;letter-spacing:-.03em}
+.sub{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute)}
+header h1{font-size:clamp(22px,3.2vw,32px);margin-top:2px}
+header p{color:var(--mute);margin-top:4px}
+.benefits{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.ben{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;font-size:14px;padding:10px 6px}
+.ben svg{width:30px;height:30px;stroke:var(--ink);fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+/* block */
+section.block{margin-top:36px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px}
+.bh{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-bottom:6px}
+.bh h2{font-size:clamp(20px,2.6vw,26px)}
+.letter{width:34px;height:34px;border-radius:50%;border:1px solid var(--ink);display:grid;place-items:center;font-size:16px}
+.tag{font-size:12px;font-weight:500;padding:5px 12px;border-radius:99px;border:1px solid;line-height:1.3}
+.tag.ok{color:var(--greenInk);border-color:var(--green);background:color-mix(in srgb,var(--green) 12%,transparent)}
+.tag.no{color:var(--redInk);border-color:var(--red);background:color-mix(in srgb,var(--red) 10%,transparent)}
+.lead{color:var(--mute);font-size:14px;margin-bottom:18px}
+.why{margin-top:20px;border-left:3px solid var(--red);background:var(--soft);padding:12px 16px;border-radius:0 12px 12px 0;font-size:14px}
+.why b{font-weight:600}
+.why ul{margin:6px 0 0 18px}
+.why li{margin:3px 0}
+/* steps */
+.steps{display:grid;gap:18px}
+.c3{grid-template-columns:repeat(3,1fr)}
+.c4{grid-template-columns:repeat(4,1fr)}
+.c5{grid-template-columns:repeat(5,1fr)}
+.step{display:flex;flex-direction:column;gap:12px;min-width:0}
+.sh{display:flex;gap:10px;align-items:flex-start}
+.n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-size:14px;font-weight:500}
+.sh h3{font-size:16px;font-weight:500;line-height:1.25}
+.sh p{font-size:13px;color:var(--mute);line-height:1.35;margin-top:2px}
+.clash{font-size:12px;color:var(--redInk);border-top:1px dashed var(--line);padding-top:8px}
+.clash b{font-weight:600}
+/* phone */
+.phone{width:100%;max-width:210px;margin:0 auto;aspect-ratio:9/16;background:var(--screen);border:6px solid var(--phone);border-radius:26px;position:relative;overflow:hidden;display:flex;flex-direction:column;padding:22px 11px 10px;gap:8px;font-size:11px}
+.phone::before{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:44px;height:8px;border-radius:6px;background:var(--phone)}
+.pt{display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:500}
+.pt small{color:var(--mute);font-weight:300}
+.row{display:flex;justify-content:space-between;align-items:center;gap:6px;border:1px solid var(--line);border-radius:10px;padding:8px 9px;line-height:1.25}
+.row span.m{color:var(--mute);font-size:10px;display:block}
+.sw{flex:none;width:30px;height:18px;border-radius:12px;background:var(--ink);position:relative}
+.sw::after{content:"";position:absolute;top:2px;right:2px;width:14px;height:14px;border-radius:50%;background:var(--bg)}
+.sw.off{background:var(--line)}.sw.off::after{right:auto;left:2px;background:var(--card)}
+.btn{border:1px solid var(--ink);border-radius:99px;padding:7px;text-align:center;font-size:11px}
+.btn.fill{background:var(--ink);color:var(--bg)}
+.btn.red{border-color:var(--red);color:var(--redInk)}
+.btn.grn{border-color:var(--green);color:var(--greenInk)}
+.btn.dim{border-style:dashed;color:var(--mute);border-color:var(--line)}
+.sp{flex:1}
+.cubebox{display:grid;place-items:center;flex:1}
+.cubebox svg{width:64px;height:64px}
+.opt{display:flex;gap:7px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:7px;line-height:1.2}
+.opt i{flex:none;font-style:normal;width:20px;height:20px;border-radius:6px;background:var(--soft);display:grid;place-items:center;font-size:10px;font-weight:500}
+.opt.sel{border-color:var(--ink)}.opt.sel i{background:var(--ink);color:var(--bg)}
+.ln{height:6px;border-radius:4px;background:var(--line)}
+.leg{font-size:9.5px;color:var(--mute);text-align:center;line-height:1.25}
+.bar{height:7px;border-radius:5px;background:var(--line);flex:1;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink)}
+.rk{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:9px;padding:6px 7px}
+.rk b{font-weight:500;width:10px}
+.rk span{flex:none;font-size:10px}
+.tick{width:8px;height:8px;border-radius:2px;flex:none}
+.web{width:100%;max-width:240px;margin:0 auto;aspect-ratio:4/3;border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;background:var(--screen)}
+.web .bar0{height:16px;background:var(--soft);display:flex;gap:3px;align-items:center;padding:0 7px}
+.web .bar0 i{width:5px;height:5px;border-radius:50%;background:var(--line)}
+.web .bd{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:8px;font-size:10px}
+.web .bd .btn{width:100%;padding:3px}
+.doc{width:100%;max-width:150px;margin:0 auto;aspect-ratio:3/4;border:1px solid var(--line);border-radius:6px;padding:10px;display:flex;flex-direction:column;gap:6px;background:var(--screen);font-size:10px}
+.pay{width:100%;max-width:210px;margin:0 auto;aspect-ratio:9/16;border:1px dashed var(--red);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--mute);font-size:11px;text-align:center;padding:12px}
+.pay svg{width:40px;height:40px;stroke:var(--redInk);fill:none;stroke-width:1.2}
+.ph{display:flex;flex-direction:column;justify-content:center;min-height:100px}
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative}
+.fs{border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px;position:relative;background:var(--card)}
+.fs:not(:last-child)::after{content:"";position:absolute;right:-14px;top:50%;width:10px;height:10px;border-top:1.5px solid var(--mute);border-right:1.5px solid var(--mute);transform:translateY(-50%) rotate(45deg)}
+.fs svg{width:46px;height:46px;stroke:var(--ink);fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.fs code{font:400 12px ui-monospace,Menlo,Consolas,monospace;background:var(--soft);padding:2px 6px;border-radius:6px}
+footer{margin-top:28px;text-align:center;font-size:12px;color:var(--mute)}
+.ex{font-size:12px;color:var(--mute);margin-top:14px;text-align:center}
+@media (max-width:980px){
+  .c5{grid-template-columns:repeat(3,1fr)}
+  .c4{grid-template-columns:repeat(2,1fr)}
+  .flow{grid-template-columns:repeat(2,1fr)}
+  .fs:nth-child(2)::after{display:none}
+}
+@media (max-width:700px){
+  header{grid-template-columns:1fr}
+  .benefits{grid-template-columns:repeat(2,1fr)}
+  .c3,.c4,.c5{grid-template-columns:1fr}
+  section.block{padding:16px;border-radius:18px}
+  .flow{grid-template-columns:1fr}
+  .fs:not(:last-child)::after{right:50%;top:auto;bottom:-14px;transform:translateX(50%) rotate(135deg)}
+  .step{padding-bottom:14px;border-bottom:1px solid var(--line)}
+  .step:last-child{border-bottom:0}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="cube" viewBox="0 0 64 64">
+      <polygon points="32,6 56,19 32,32 8,19" fill="currentColor" opacity=".55"/>
+      <polygon points="8,19 32,32 32,59 8,46" fill="currentColor" opacity=".9"/>
+      <polygon points="56,19 32,32 32,59 56,46" fill="currentColor" opacity=".3"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+<header>
+  <div class="brand">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><use href="#cube"/></svg>
+    <div><b>choisys</b><div class="sub">board · futuro de la UI</div></div>
+  </div>
+  <div>
+    <h1>Futuras implementaciones de interfaz</h1>
+    <p>Cómo funcionaría cada pantalla y cómo crece la UI, según encaje con las reglas.</p>
+  </div>
+  <div class="benefits">
+    <div class="ben"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Encaja con las reglas</div>
+    <div class="ben"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>Una idea por pantalla</div>
+    <div class="ben"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.2"/><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="9" r="2.2"/><path d="M6 8.2v7.6M18 11.2c0 4-6 2.5-10.5 5.5"/></svg>Todo cambio, por PR</div>
+    <div class="ben"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21c1-4.5 4-6.5 7.5-6.5s6.5 2 7.5 6.5"/></svg>El dueño decide</div>
+  </div>
+</header>
+
+<!-- A -->
+<section class="block" aria-labelledby="ta">
+  <div class="bh"><span class="letter">A</span><h2 id="ta">Lo que encaja con las reglas</h2><span class="tag ok">Propuesta</span></div>
+  <p class="lead">Mejoras pequeñas, sin matemática nueva ni cambios de la UI fijada.</p>
+  <div class="steps c3">
+    <div class="step">
+      <div class="sh"><span class="n">1</span><div><h3>Ajustes</h3><p>Sonido y descripción en voz (issue #14).</p></div></div>
+      <div class="phone">
+        <div class="pt">Ajustes<small>choisys</small></div>
+        <div class="row"><div>Sonido<span class="m">Efectos del cubo</span></div><div class="sw"></div></div>
+        <div class="row"><div>Descripción en voz<span class="m">Lee la pantalla en alto</span></div><div class="sw off"></div></div>
+        <div class="sp"></div>
+        <div class="cubebox"><svg viewBox="0 0 64 64" style="color:var(--ink)"><use href="#cube"/></svg></div>
+        <div class="btn">Volver</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sh"><span class="n">2</span><div><h3>Mis datos</h3><p>Historial en servidor, exportar y eliminar cuenta (issue #4; RGPD y requisito de Apple).</p></div></div>
+      <div class="phone">
+        <div class="pt">Mis datos<small>cuenta</small></div>
+        <div class="row"><div>Historial<span class="m">Guardado en el servidor</span></div><span>›</span></div>
+        <div class="row"><div>Exportar mis datos<span class="m">Archivo descargable</span></div><span>↓</span></div>
+        <div class="sp"></div>
+        <div class="leg">Eliminar la cuenta borra todo. Se pide confirmación.</div>
+        <div class="btn red">Eliminar mi cuenta</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sh"><span class="n">3</span><div><h3>Instalable y TestFlight</h3><p>Web PWA y beta en iPhone (issues #11 y #10).</p></div></div>
+      <div class="phone">
+        <div class="pt">choisys<small>PWA</small></div>
+        <div class="cubebox"><svg viewBox="0 0 64 64" style="color:var(--green)"><use href="#cube"/></svg></div>
+        <div class="leg">Compartir › Añadir a pantalla de inicio</div>
+        <div class="btn fill">Instalar</div>
+        <div class="row" style="justify-content:center"><span>TestFlight · beta</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- B -->
+<section class="block" aria-labelledby="tb">
+  <div class="bh"><span class="letter">B</span><h2 id="tb">Visión B2B</h2><span class="tag no">Choca con reglas cerradas — pendiente de decisión 0002</span></div>
+  <p class="lead">El mismo cubo, pero para que una empresa compare candidatos (ver imagen de referencia).</p>
+  <div class="steps c4">
+    <div class="step">
+      <div class="sh"><span class="n">1</span><div><h3>Situación</h3><p>Opciones A, B o C.</p></div></div>
+      <div class="phone">
+        <div class="pt">Situación<small>3 / 10</small></div>
+        <div class="ln" style="width:90%"></div><div class="ln" style="width:70%"></div>
+        <div class="opt sel"><i>A</i>Opción A</div>
+        <div class="opt"><i>B</i>Opción B</div>
+        <div class="opt"><i>C</i>Opción C</div>
+        <div class="sp"></div>
+        <div class="btn fill">Siguiente</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sh"><span class="n">2</span><div><h3>Radar de 6 dimensiones</h3><p>Perfil del candidato.</p></div></div>
+      <div class="phone">
+        <div class="pt">Resultado<small>ejemplo</small></div>
+        <svg viewBox="0 0 120 120" style="width:100%;flex:1;min-height:0" aria-label="Radar de ejemplo con seis ejes">
+          <g fill="none" stroke="var(--line)" stroke-width="1">
+            <polygon points="60,10 103,35 103,85 60,110 17,85 17,35"/>
+            <polygon points="60,35 81,47.5 81,72.5 60,85 39,72.5 39,47.5"/>
+            <path d="M60 60V10M60 60L103 35M60 60L103 85M60 60V110M60 60L17 85M60 60L17 35"/>
+          </g>
+          <polygon points="60,24 92,41 86,78 60,96 32,76 30,42" fill="var(--ink)" fill-opacity=".12" stroke="var(--ink)" stroke-width="1.5"/>
+          <g font-size="7" fill="var(--mute)" text-anchor="middle"><text x="60" y="7">D1</text><text x="108" y="35">D2</text><text x="108" y="92">D3</text><text x="60" y="119">D4</text><text x="12" y="92">D5</text><text x="12" y="35">D6</text></g>
+        </svg>
+        <div class="leg">ejemplo ilustrativo, no es un cálculo</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sh"><span class="n">3</span><div><h3>Ranking de candidatos</h3><p>Orden y comparación.</p></div></div>
+      <div class="phone">
+        <div class="pt">Ranking<small>ejemplo</small></div>
+        <div class="rk"><b>1</b><span>Candidato A</span><div class="bar"><i style="width:86%"></i></div></div>
+        <div class="rk"><b>2</b><span>Candidato B</span><div class="bar"><i style="width:68%"></i></div></div>
+        <div class="rk"><b>3</b><span>Candidato C</span><div class="bar"><i style="width:52%"></i></div></div>
+        <div class="rk"><b>4</b><span>Candidato D</span><div class="bar"><i style="width:36%"></i></div></div>
+        <div class="sp"></div>
+        <div class="leg">ejemplo ilustrativo, no es un cálculo</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sh"><span class="n">4</span><div><h3>Avanza / Descartar</h3><p>La empresa decide.</p></div></div>
+      <div class="phone">
+        <div class="pt">Candidato A<small>ejemplo</small></div>
+        <div class="cubebox"><svg viewBox="0 0 64 64" style="color:var(--green)"><use href="#cube"/></svg></div>
+        <div class="btn grn">Avanza</div>
+        <div class="btn red">Descartar</div>
+        <div class="leg">ejemplo ilustrativo</div>
+      </div>
+    </div>
+  </div>
+  <div class="why">
+    <b>Por qué choca</b>
+    <ul>
+      <li>La matemática (radar, % de similitud) no tiene especificación aprobada y solo puede vivir en el motor C++.</li>
+      <li>El descarte automático de personas entra en el art. 22 del RGPD y en el reglamento de IA.</li>
+      <li>Los botones y colores contradicen la UI fijada: blanco y negro, color solo en el cubo.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- C -->
+<section class="block" aria-labelledby="tc">
+  <div class="bh"><span class="letter">C</span><h2 id="tc">Hoja de ruta B2B en 5 fases</h2><span class="tag no">Pendiente — decisión 0003</span></div>
+  <p class="lead">Cómo crecería el producto hacia empresas, y qué choca en cada paso.</p>
+  <div class="steps c5">
+    <div class="step">
+      <div class="sh"><span class="n">1</span><div><h3>Wasm</h3><p>El motor corre en el navegador.</p></div></div>
+      <div class="ph"><div class="web"><div class="bar0"><i></i><i></i><i></i></div><div class="bd"><svg viewBox="0 0 64 64" width="34" height="34" style="color:var(--ink)"><use href="#cube"/></svg><span>motor.wasm</span></div></div></div>
+      <div class="clash"><b>Choca:</b> Wasm entrega el motor privado.</div>
+    </div>
+    <div class="step">
+      <div class="sh"><span class="n">2</span><div><h3>7-10 fases</h3><p>Evaluación más larga.</p></div></div>
+      <div class="ph"><div class="phone" style="max-width:120px;aspect-ratio:auto;height:150px;border-width:4px;padding-top:16px"><div class="pt">Fase 7 / 10</div><div class="bar"><i style="width:70%"></i></div><div class="sp"></div><div class="btn fill">Siguiente</div></div></div>
+      <div class="clash"><b>Choca:</b> rompe el modelo de 3 fases.</div>
+    </div>
+    <div class="step">
+      <div class="sh"><span class="n">3</span><div><h3>Web ligera</h3><p>Solo 3 botones.</p></div></div>
+      <div class="ph"><div class="web"><div class="bar0"><i></i><i></i><i></i></div><div class="bd"><div class="btn">1</div><div class="btn">2</div><div class="btn">3</div></div></div></div>
+      <div class="clash"><b>Encaja</b> con el modelo de 3, pendiente de 0003.</div>
+    </div>
+    <div class="step">
+      <div class="sh"><span class="n">4</span><div><h3>Informe PDF</h3><p>Resumen descargable.</p></div></div>
+      <div class="ph"><div class="doc"><div class="pt">Informe</div><div class="ln"></div><div class="ln" style="width:75%"></div><div class="sp"></div><div class="leg">ejemplo ilustrativo</div></div></div>
+      <div class="clash"><b>Choca:</b> el informe necesita cálculo sin especificar.</div>
+    </div>
+    <div class="step">
+      <div class="sh"><span class="n">5</span><div><h3>Stripe</h3><p>Cobro a empresas.</p></div></div>
+      <div class="ph"><div class="pay"><svg viewBox="0 0 40 40"><rect x="4" y="9" width="32" height="22" rx="4"/><path d="M4 16h32M9 25h8"/></svg>Fuera de alcance</div></div>
+      <div class="clash"><b>Choca:</b> falta entidad empresa y textos legales.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Flujo -->
+<section class="block" aria-labelledby="tf">
+  <div class="bh"><h2 id="tf">Cómo se decide una pantalla nueva</h2></div>
+  <p class="lead">Nada se implementa sin pasar por aquí.</p>
+  <div class="flow">
+    <div class="fs"><svg viewBox="0 0 48 48"><path d="M10 38l4-12L34 6l8 8L22 34z"/><path d="M30 10l8 8"/></svg><div class="sh"><span class="n">1</span><div><h3>Boceto</h3><p>Una pantalla, en blanco y negro.</p></div></div></div>
+    <div class="fs"><svg viewBox="0 0 48 48"><circle cx="12" cy="10" r="4"/><circle cx="12" cy="38" r="4"/><circle cx="36" cy="16" r="4"/><path d="M12 14v20M36 20c0 10-24 4-24 14"/></svg><div class="sh"><span class="n">2</span><div><h3>PR en <code>docs/decisions</code></h3><p>Con la pregunta y las opciones.</p></div></div></div>
+    <div class="fs"><svg viewBox="0 0 48 48"><circle cx="24" cy="16" r="8"/><path d="M8 42c2-10 8-14 16-14s14 4 16 14"/></svg><div class="sh"><span class="n">3</span><div><h3>Decisión del dueño</h3><p>Responde con una reacción.</p></div></div></div>
+    <div class="fs"><svg viewBox="0 0 64 64" style="stroke:none;fill:var(--green)"><use href="#cube" style="color:var(--green)"/></svg><div class="sh"><span class="n">4</span><div><h3>Implementación</h3><p>Solo lo aprobado.</p></div></div></div>
+  </div>
+  <p class="ex">Todos los datos de radar, ranking y barras son de ejemplo ilustrativo, no es un cálculo.</p>
+</section>
+
+<footer>choisys · board de diseño · borrador para decisión</footer>
+</div>
+</body>
+</html>

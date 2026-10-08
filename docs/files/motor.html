@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Cómo se conecta el motor (neo-cube)</title>
+<style>
+:root{
+  --bg:#ffffff; --bg2:#f5f6f5; --card:#ffffff; --ink:#0a0a0a; --mute:#5b605b;
+  --line:#e2e5e2; --neon:#39ff14; --neon-ink:#0a0a0a; --neon-soft:rgba(57,255,20,.14);
+  --warn-bg:#0a0a0a; --warn-ink:#ffffff; --shadow:0 1px 2px rgba(0,0,0,.05),0 6px 18px rgba(0,0,0,.05);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0a0a0a; --bg2:#121412; --card:#151715; --ink:#f4f6f4; --mute:#9aa09a;
+    --line:#2a2e2a; --neon-soft:rgba(57,255,20,.12); --warn-bg:#f4f6f4; --warn-ink:#0a0a0a;
+    --shadow:none;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  padding:max(20px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(28px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+.wrap{max-width:1180px;margin:0 auto}
+header{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+h1{margin:0;font-size:clamp(26px,5vw,42px);line-height:1.05;letter-spacing:-.02em}
+h1 span{background:linear-gradient(transparent 62%,var(--neon) 62%);padding:0 2px}
+.sub{margin:6px 0 0;color:var(--mute);max-width:46ch}
+.tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+
+/* pasos */
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin:0 0 22px;padding:0;list-style:none}
+.step{position:relative;display:flex;flex-direction:column;gap:10px;padding:0 24px 0 0}
+.head{display:flex;gap:10px;align-items:flex-start}
+.num{flex:none;width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--bg);
+  display:grid;place-items:center;font-weight:700;font-size:15px}
+.step:last-child .num{background:var(--neon);color:var(--neon-ink)}
+.head h2{margin:0;font-size:16px;line-height:1.2}
+.head p{margin:2px 0 0;font-size:13px;color:var(--mute);line-height:1.3}
+.arrow{position:absolute;right:2px;top:5px;color:var(--mute)}
+.arrow svg{width:20px;height:24px;display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:var(--shadow);flex:1}
+.card svg.ico{width:100%;height:72px;display:block;margin-bottom:10px}
+.card ul{margin:0;padding:0;list-style:none;font-size:13px}
+.card li{padding:5px 0 5px 18px;position:relative;border-top:1px solid var(--line)}
+.card li:first-child{border-top:0}
+.card li::before{content:"";position:absolute;left:2px;top:12px;width:7px;height:7px;border-radius:50%;background:var(--neon);box-shadow:0 0 0 1px var(--ink)}
+@media (prefers-color-scheme:dark){.card li::before{box-shadow:none}}
+code{font:12.5px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:1px 5px;word-break:break-word}
+
+/* franjas */
+.band{border:1px solid var(--line);border-radius:18px;background:var(--bg2);padding:16px 18px;margin-bottom:14px}
+.band h3{margin:0 0 10px;font-size:15px;display:flex;align-items:center;gap:8px}
+.band h3 i{width:10px;height:10px;border-radius:50%;background:var(--neon);display:inline-block}
+.never{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.never h3 i{background:var(--neon)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.chips li{padding:7px 12px;border-radius:999px;font-size:14px;border:1px solid currentColor;display:flex;gap:6px;align-items:center}
+.chips li::before{content:"✕";color:var(--neon);font-weight:700;font-size:12px}
+.never .chips li{border-color:rgba(255,255,255,.28)}
+@media (prefers-color-scheme:dark){.never .chips li{border-color:rgba(0,0,0,.28)} .never h3 i{box-shadow:0 0 0 1px #0a0a0a}}
+.never .note{margin:10px 0 0;font-size:13px;opacity:.75}
+
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.cols .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.cols h4{margin:0 0 6px;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}
+.cols p{margin:4px 0;font-size:14px}
+.alert{margin-top:12px;display:flex;gap:10px;align-items:center;background:var(--neon-soft);border:1px solid var(--neon);border-radius:12px;padding:10px 14px;font-size:14px;font-weight:600}
+.alert svg{flex:none;width:20px;height:20px}
+
+.next{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0;padding:0;list-style:none}
+.next li{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:14px;display:flex;flex-direction:column;gap:6px}
+.issue{align-self:flex-start;font:700 12px ui-monospace,Menlo,Consolas,monospace;background:var(--neon);color:#0a0a0a;border-radius:999px;padding:2px 9px}
+
+.private{margin-top:6px;text-align:center;border:2px dashed var(--ink);border-radius:16px;padding:14px 16px;font-weight:700;display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+.private svg{width:22px;height:22px;flex:none}
+
+@media (max-width:980px){
+  .steps{grid-template-columns:1fr;gap:6px}
+  .step{padding:0 0 22px 0}
+  .arrow{position:static;align-self:center;transform:rotate(90deg);order:3;margin:-4px 0 -8px}
+  .step:last-child{padding-bottom:0}
+  .step:last-child .arrow{display:none}
+  .cols{grid-template-columns:1fr}
+  .next{grid-template-columns:1fr 1fr}
+}
+@media (max-width:480px){
+  .next{grid-template-columns:1fr}
+  .band{padding:14px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div>
+    <div class="tag">neo-cube · visión general</div>
+    <h1>Cómo se conecta <span>el motor</span></h1>
+    <p class="sub">Del toque en la app al resultado: cinco pasos, sin abrir la caja del Cubo.</p>
+  </div>
+</header>
+
+<ol class="steps">
+  <li class="step">
+    <div class="head"><div class="num">1</div><div><h2>La app</h2><p>Móvil o web.</p></div></div>
+    <div class="card">
+      <svg class="ico" viewBox="0 0 120 72" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <rect x="14" y="8" width="30" height="56" rx="6"/><line x1="24" y1="57" x2="34" y2="57"/>
+        <rect x="56" y="14" width="52" height="38" rx="4"/><line x1="48" y1="62" x2="116" y2="62"/>
+        <circle cx="29" cy="30" r="5" fill="#39ff14" stroke="none"/>
+      </svg>
+      <ul><li>La persona responde</li><li>Envía a la API</li></ul>
+    </div>
+    <div class="arrow"><svg viewBox="0 0 20 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l8 8-8 8"/></svg></div>
+  </li>
+
+  <li class="step">
+    <div class="head"><div class="num">2</div><div><h2>La API</h2><p>Express.</p></div></div>
+    <div class="card">
+      <svg class="ico" viewBox="0 0 120 72" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <rect x="18" y="10" width="84" height="52" rx="8"/><path d="M36 28h16M36 38h30M36 48h22"/>
+        <path d="M80 30l8 8 14-16" stroke="#39ff14" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <ul><li>Valida entradas</li><li>Cuentas y sesiones</li><li>DTO seguros</li></ul>
+    </div>
+    <div class="arrow"><svg viewBox="0 0 20 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l8 8-8 8"/></svg></div>
+  </li>
+
+  <li class="step">
+    <div class="head"><div class="num">3</div><div><h2>Servicio local C++</h2><p>Solo en la misma máquina.</p></div></div>
+    <div class="card">
+      <svg class="ico" viewBox="0 0 120 72" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <rect x="22" y="10" width="76" height="22" rx="5"/><rect x="22" y="40" width="76" height="22" rx="5"/>
+        <circle cx="34" cy="21" r="3.5" fill="#39ff14" stroke="none"/><circle cx="34" cy="51" r="3.5" fill="#39ff14" stroke="none"/>
+      </svg>
+      <ul>
+        <li><code>localhost:8765</code></li>
+        <li>Solo loopback IPv4</li>
+        <li>Token Bearer</li>
+        <li>Peticiones acotadas</li>
+        <li>Logs mínimos, sin cuerpos</li>
+      </ul>
+    </div>
+    <div class="arrow"><svg viewBox="0 0 20 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l8 8-8 8"/></svg></div>
+  </li>
+
+  <li class="step">
+    <div class="head"><div class="num">4</div><div><h2>El Cubo de Neo</h2><p>El cálculo.</p></div></div>
+    <div class="card">
+      <svg class="ico" viewBox="0 0 120 72" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true">
+        <path d="M60 6l30 15v30L60 66 30 51V21z"/><path d="M30 21l30 15 30-15M60 36v30"/>
+        <path d="M60 36l30-15v30L60 66z" fill="#39ff14" fill-opacity=".35"/>
+      </svg>
+      <ul><li>3 fases</li><li>Cubo 3×3×3</li><li>Resultado determinista</li></ul>
+    </div>
+    <div class="arrow"><svg viewBox="0 0 20 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l8 8-8 8"/></svg></div>
+  </li>
+
+  <li class="step">
+    <div class="head"><div class="num">5</div><div><h2>Respuesta pública</h2><p>Solo lo necesario.</p></div></div>
+    <div class="card">
+      <svg class="ico" viewBox="0 0 120 72" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <rect x="30" y="8" width="60" height="56" rx="6"/>
+        <g stroke="none" fill="currentColor" opacity=".25"><rect x="40" y="18" width="12" height="12"/><rect x="54" y="18" width="12" height="12"/><rect x="68" y="18" width="12" height="12"/><rect x="40" y="32" width="12" height="12"/><rect x="68" y="32" width="12" height="12"/><rect x="40" y="46" width="12" height="12"/><rect x="54" y="46" width="12" height="12"/><rect x="68" y="46" width="12" height="12"/></g>
+        <rect x="54" y="32" width="12" height="12" fill="#39ff14" stroke="none"/>
+      </svg>
+      <ul><li>Solo <code>measurements</code></li><li><code>[{phase,row,column}]</code></li><li>Posiciones base 1</li></ul>
+    </div>
+  </li>
+</ol>
+
+<section class="band never">
+  <h3><i></i>Qué NO sale nunca del motor</h3>
+  <ul class="chips">
+    <li>Matrices</li><li>Pesos</li><li>Fórmulas</li><li>Estados intermedios</li><li>Trazas</li>
+  </ul>
+  <p class="note">Lo que entra al Cubo se queda dentro. Afuera solo viaja la respuesta del paso 5.</p>
+</section>
+
+<section class="band">
+  <h3><i></i>Cómo correrlo</h3>
+  <div class="cols">
+    <div class="box"><h4>Windows</h4><p><code>build.ps1</code></p><p><code>run.ps1</code></p></div>
+    <div class="box"><h4>macOS / Linux</h4><p><code>make test</code></p><p><code>make smoke</code></p><p><code>./run.sh</code></p></div>
+    <div class="box"><h4>Banco de pruebas</h4><p>Consola</p><p>GUI Win32</p></div>
+  </div>
+  <div class="alert" role="note">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18v.01"/></svg>
+    Token fuera del repo y nunca en pantalla.
+  </div>
+</section>
+
+<section class="band">
+  <h3><i></i>Siguiente</h3>
+  <ul class="next">
+    <li><span class="issue">#2</span>Servicio concurrente y rotación de logs</li>
+    <li><span class="issue">#8</span>Especificación matemática</li>
+    <li><span class="issue">#6</span>Probar el port POSIX en el Mac</li>
+    <li><span class="issue">#5</span>Dónde corre en producción</li>
+  </ul>
+</section>
+
+<div class="private">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
+  Repositorio privado: este board no contiene código del motor.
+</div>
+
+</div>
+</body>
+</html>
