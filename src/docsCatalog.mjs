@@ -1,6 +1,6 @@
 // Documentación pública de scenarys (copia revisada de la carpeta de iCloud).
 // Se retiran IPs y nombres de equipos de la red privada, rutas locales y notas internas.
-export const DOC_GROUPS = {"scenarys": "scenarys", "choisys": "choisys", "cubo": "El Cubo de Neo", "demo": "Demo remota"};
+export const DOC_GROUPS = {"scenarys": "scenarys", "choisys": "choisys", "cubo": "El Cubo de Neo", "demo": "Demo remota", "backend": "Backend y producto"};
 
 export const documents = [
   { group: "scenarys", slug: "lanzamiento", title: "Lanzamiento", description: "Qué hay en la web, cómo se publica y qué falta.", files: ["lanzamiento.pdf", "lanzamiento.html"] },
