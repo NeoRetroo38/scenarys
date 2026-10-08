@@ -18,9 +18,14 @@ export function ChoisysSection() {
             por fase; la API puede conservar los recorridos completos cuando la persistencia está disponible.
             La matriz de esta página es solo una demostración visual.
           </p>
-          <PillLink href={CHOISYS_URL} arrow className="mt-10">
-            Conocer choisys
-          </PillLink>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <PillLink href={CHOISYS_URL} arrow>
+              Abrir choisys
+            </PillLink>
+            <PillLink href="/downloads" variant="outline">
+              Descargar
+            </PillLink>
+          </div>
         </div>
         <DecisionMatrix />
       </Container>

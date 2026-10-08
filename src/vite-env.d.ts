@@ -2,7 +2,6 @@
 
 interface ImportMetaEnv {
   readonly VITE_CHOISYS_URL?: string;
-  readonly VITE_CONTACT_EMAIL?: string;
 }
 
 interface ImportMeta {

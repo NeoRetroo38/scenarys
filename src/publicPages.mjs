@@ -29,7 +29,7 @@ export const publicPages = [
       'Cada artefacto publicado deberá indicar plataforma, arquitectura, tamaño, SHA-256, fecha, versión y commit de origen.',
       'No ofrecemos archivos .app descargables para iPhone. Su distribución requiere un canal compatible con iOS.',
     ],
-    next: 'El catálogo se actualizará después de probar y autorizar cada release.',
+    next: 'Android va primero: la app se publicará aquí como APK con su SHA-256. Mientras, choisys se abre en el navegador.',
     manifest: true,
   },
   {
@@ -70,7 +70,7 @@ export const publicPages = [
       'Esta versión no incorpora formularios de registro, pagos ni analítica añadida por Scenarys. La demostración de la portada mantiene su estado solo en memoria.',
       'Las fuentes se sirven con el sitio o mediante las tipografías del sistema. No se solicitan fuentes a Google.',
       'El proveedor de alojamiento puede procesar datos técnicos de las solicitudes. Esta nota no sustituye un aviso legal o una política de privacidad revisados.',
-      'La información jurídica de la entidad y el contacto oficial están pendientes de confirmación. No se inventan identificadores, domicilios ni condiciones contractuales.',
+      'El único canal de contacto por ahora es el teléfono de empresa: +34 633 693 369. La información jurídica de la entidad está pendiente de confirmación. No se inventan identificadores, domicilios ni condiciones contractuales.',
     ],
     next: 'La documentación jurídica completa debe revisarse antes de incorporar cuentas, formularios, pagos o analítica.',
   },

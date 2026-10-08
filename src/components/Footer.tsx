@@ -1,3 +1,4 @@
+import { CopyPhone } from './CopyPhone';
 import { Container } from './ui';
 
 const legalLinks = [
@@ -10,7 +11,9 @@ export function Footer() {
   return (
     <footer className="border-t border-line">
       <Container className="flex flex-wrap items-center justify-between gap-x-8 gap-y-4 py-8 text-sm text-[#444444]">
-        <span>© {new Date().getFullYear()} Scenarys S.L.</span>
+        <span>
+          © {new Date().getFullYear()} Scenarys S.L. · <CopyPhone variant="inline" />
+        </span>
         <div className="flex flex-wrap gap-6">
           {legalLinks.map((link) => (
             <a key={link.href} href={link.href} className="hover:text-ink">

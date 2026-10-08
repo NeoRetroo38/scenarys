@@ -23,5 +23,5 @@ function readAbsoluteUrl(value: string | undefined): string | undefined {
 /** Destino de todos los enlaces a choisys (web separada). Sin definir, los botones se muestran como pendientes. */
 export const CHOISYS_URL = readAbsoluteUrl(import.meta.env.VITE_CHOISYS_URL) ?? '/choisys';
 
-/** Email público de contacto. Sin definir, la sección de contacto lo indica como pendiente. */
-export const CONTACT_EMAIL = readEnv(import.meta.env.VITE_CONTACT_EMAIL);
+/** Único canal público de contacto por ahora: el teléfono de empresa (decisión del dueño, 8 oct). Se copia, no se llama. */
+export const CONTACT_PHONE = { value: '+34633693369', label: '+34 633 693 369' } as const;

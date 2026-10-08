@@ -25,7 +25,6 @@ Copia `.env.example` a `.env` y rellena las variables:
 | Variable | Uso | Por defecto |
 | --- | --- | --- |
 | `VITE_CHOISYS_URL` | Destino público preparado de choisys | página informativa `/choisys` |
-| `VITE_CONTACT_EMAIL` | Email de contacto de la sección final | se muestra como pendiente |
 
 Son valores públicos que se incrustan en el build. No pongas secretos en variables `VITE_*`.
 
@@ -33,7 +32,7 @@ Son valores públicos que se incrustan en el build. No pongas secretos en variab
 
 ```text
 src/
-  config.ts              URL de choisys y email, leídos del entorno
+  config.ts              URL de choisys (del entorno) y teléfono de contacto
   components/
     Header.tsx           navegación y acceso a choisys
     Hero.tsx             presentación de Scenarys
@@ -78,6 +77,5 @@ El hosting y el DNS se comprueban por separado: compilar no significa estar onli
 ## Pendiente antes de publicar
 
 - La landing puede publicarse sin hacer público choisys; no inventar su URL.
-- Definir el email de contacto (`VITE_CONTACT_EMAIL`).
 - Confirmar la información jurídica y el contacto oficial antes de incorporar funcionalidades que los requieran.
   `/legal` es una nota técnica transparente; no inventa un aviso legal.

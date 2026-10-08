@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, writeFileSync, readFileSync, rmSync, mkdirSync } from 'node:fs';
+import { mkdtempSync, writeFileSync, readFileSync, rmSync, mkdirSync, readdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { publicPages, findPublicPage, PUBLIC_ORIGIN } from '../src/publicPages.mjs';
@@ -74,4 +74,15 @@ test('development metadata cannot be packaged as public assets', () => {
       assert.throws(() => preparePublicSite(directory, 'c'.repeat(40)), /development metadata/);
     } finally { rmSync(directory, { recursive: true, force: true }); }
   }
+});
+
+test('the business phone is the only public contact', () => {
+  const sources = readdirSync(new URL('../src/components/', import.meta.url))
+    .map(name => readFileSync(new URL(`../src/components/${name}`, import.meta.url), 'utf8'))
+    .concat(readFileSync(new URL('../src/config.ts', import.meta.url), 'utf8'), JSON.stringify(publicPages));
+  const all = sources.join('\n');
+  assert.ok(!/mailto:|wa\.me|whatsapp/i.test(all));
+  assert.ok(!/[\w.+-]+@[\w-]+\.[a-z]{2,}/i.test(all));
+  assert.ok(all.includes("value: '+34633693369'"));
+  assert.ok(findPublicPage('/legal').paragraphs.some(p => p.includes('+34 633 693 369')));
 });
