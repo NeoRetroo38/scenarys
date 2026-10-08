@@ -3,6 +3,7 @@ import { mkdirSync, readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PUBLIC_ORIGIN, publicPages } from '../src/publicPages.mjs';
+import { publicHeadersFile } from '../src/publicSecurity.mjs';
 
 export function assertPublicContent(text) {
   if (/postgres(?:ql)?:\/\/|DATABASE_URL\s*=|PRIVATE KEY|\.ts\.net|\/Users\/|https?:\/\/[^\/\s"'<>]+@/i.test(text)) {
@@ -34,12 +35,26 @@ export function preparePublicSite(directory, commit) {
   writeFileSync(join(directory, 'releases', 'manifest.json'), JSON.stringify({
     schemaVersion: 1, site: PUBLIC_ORIGIN, sourceCommit: commit, artifacts: [],
   }, null, 2) + '\n');
-  writeFileSync(join(directory, '404.html'), index);
+  const stylesheet = index.match(/<link\b[^>]*rel="stylesheet"[^>]*>/)?.[0] ?? '';
+  writeFileSync(join(directory, '404.html'), `<!doctype html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex"><title>Página no encontrada — Scenarys</title>${stylesheet}</head>
+<body><main class="mx-auto max-w-2xl px-6 py-24"><p>SCENARYS</p><h1>Página no encontrada</h1>
+<p>Esta dirección no corresponde a una página de la web.</p><a href="/">Volver al inicio</a></main></body></html>\n`);
+  writeFileSync(join(directory, '_headers'), publicHeadersFile());
+  writeFileSync(join(directory, 'robots.txt'), 'User-agent: *\nAllow: /\n');
   function inspect(path) {
     for (const entry of readdirSync(path, { withFileTypes: true })) {
       const file = join(path, entry.name);
+      if (entry.name === 'node_modules' || entry.name === '.git' || entry.name.startsWith('.env')) {
+        throw new Error('Public output contains development metadata or dependencies.');
+      }
+      if (entry.isSymbolicLink()) throw new Error('Public output must not include symbolic links.');
       if (entry.isDirectory()) inspect(file);
-      else if (/\.(html|js|json|css)$/.test(entry.name)) assertPublicContent(readFileSync(file, 'utf8'));
+      else if (/\.(html|js|json|css|txt|map)$/.test(entry.name) || entry.name === '_headers') {
+        if (entry.name.endsWith('.map')) throw new Error('Public output must not include source maps.');
+        assertPublicContent(readFileSync(file, 'utf8'));
+      }
     }
   }
   inspect(directory);
