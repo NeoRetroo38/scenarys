@@ -6,7 +6,9 @@ import { fileURLToPath } from 'node:url';
 import { PUBLIC_ORIGIN, publicPages } from '../src/publicPages.mjs';
 import { publicHeadersFile } from '../src/publicSecurity.mjs';
 
-export function assertPublicContent(text) {
+/** Hosts that are public on purpose (the choisys API). Everything else from a private network is refused. */
+export function assertPublicContent(text, allowedHosts = []) {
+  for (const host of allowedHosts) text = text.split(host).join('public-host');
   if (/postgres(?:ql)?:\/\/|DATABASE_URL\s*=|PRIVATE KEY|\.ts\.net|\/Users\/|https?:\/\/[^\/\s"'<>]+@/i.test(text)) {
     throw new Error('Public output contains a private configuration marker.');
   }

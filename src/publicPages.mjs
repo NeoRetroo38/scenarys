@@ -2,16 +2,6 @@ export const PUBLIC_ORIGIN = 'https://neowebdevsolutions.com';
 
 export const publicPages = [
   {
-    path: '/choisys', title: 'choisys', eyebrow: 'Producto · desarrollo privado',
-    summary: 'Tres fases. Tres elecciones. Un recorrido que puedes observar.',
-    paragraphs: [
-      'choisys es el primer producto de Scenarys. La interfaz recoge elecciones y representa los datos públicos del Cubo de Neo.',
-      'La aplicación sigue en un entorno privado para dispositivos autorizados. Esta landing no permite registrar cuentas ni da acceso a ese entorno.',
-      'La matriz de la portada es una demostración visual local: no se conecta al motor ni guarda un Run.',
-    ],
-    next: 'El acceso público se anunciará aquí cuando exista una versión preparada para ello.',
-  },
-  {
     path: '/daemon', title: 'Daemon', eyebrow: 'Herramienta nativa · en preparación',
     summary: 'Una ventana al estado del ecosistema. Un núcleo compartido.',
     paragraphs: [

@@ -24,7 +24,7 @@ Copia `.env.example` a `.env` y rellena las variables:
 
 | Variable | Uso | Por defecto |
 | --- | --- | --- |
-| `VITE_CHOISYS_URL` | Destino público preparado de choisys | página informativa `/choisys` |
+| `VITE_CHOISYS_URL` | Destino de «Abrir choisys» | `/choisys`, donde se publica la app web |
 
 Son valores públicos que se incrustan en el build. No pongas secretos en variables `VITE_*`.
 
@@ -55,7 +55,8 @@ visual local, no un Run guardado.
 ## Publicación
 
 Dominio canónico: `https://neowebdevsolutions.com`.
-Rutas: `/choisys`, `/daemon`, `/downloads`, `/releases`, `/docs`, `/status` y `/legal`.
+Rutas: `/daemon`, `/downloads`, `/releases`, `/docs`, `/status` y `/legal`. `/choisys` es la app web de choisys
+(export de Expo con `EXPO_BASE_URL=/choisys`), que `scripts/deploy-pages.mjs` publica junto a esta web.
 Los archivos de cada ruta se generan durante `build:public`.
 También se generan `robots.txt`, una página 404 sin JavaScript y `_headers` con la
 política de recursos, permisos mínimos y protección frente a incrustación.
@@ -68,14 +69,13 @@ El build rechaza mapas de fuentes y marcadores privados también en archivos de 
 El manifiesto `/releases/manifest.json` identifica el commit de la web; `artifacts: []`
 declara que aún no hay ejecutables públicos autorizados. No anuncia un release.
 
-No incrustar direcciones privadas ni configurar la landing pública para enlazar al
-entorno interno. Sin destino público preparado, `/choisys` explica que sigue privado.
+No incrustar direcciones privadas. La única excepción es el host público de la API de choisys,
+que el despliegue declara con `CHOISYS_API_URL`.
 El chequeo de marcadores del build es una barrera adicional, no una auditoría completa
 de secretos. La publicación debe partir de un commit fusionado y limpio.
 El hosting y el DNS se comprueban por separado: compilar no significa estar online.
 
 ## Pendiente antes de publicar
 
-- La landing puede publicarse sin hacer público choisys; no inventar su URL.
 - Confirmar la información jurídica y el contacto oficial antes de incorporar funcionalidades que los requieran.
   `/legal` es una nota técnica transparente; no inventa un aviso legal.

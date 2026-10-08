@@ -9,7 +9,9 @@ import { documents, DOCS_BASE } from '../src/docsCatalog.mjs';
 import { PUBLIC_SECURITY_HEADERS, publicHeadersFile } from '../src/publicSecurity.mjs';
 
 test('public routes are unique and resolve with trailing slashes', () => {
-  assert.equal(new Set(publicPages.map(page => page.path)).size, 7);
+  assert.equal(new Set(publicPages.map(page => page.path)).size, 6);
+  // /choisys belongs to the choisys web app, published next to this site.
+  assert.equal(findPublicPage('/choisys'), undefined);
   for (const page of publicPages) assert.equal(findPublicPage(page.path + '/'), page);
   assert.equal(findPublicPage('/internal'), undefined);
 });
