@@ -58,6 +58,14 @@ visual local, no un Run guardado.
 Dominio canónico: `https://neowebdevsolutions.com`.
 Rutas: `/choisys`, `/daemon`, `/downloads`, `/releases`, `/docs`, `/status` y `/legal`.
 Los archivos de cada ruta se generan durante `build:public`.
+También se generan `robots.txt`, una página 404 sin JavaScript y `_headers` con la
+política de recursos, permisos mínimos y protección frente a incrustación.
+`_headers` es la configuración de [Cloudflare Pages/Assets](https://developers.cloudflare.com/pages/configuration/headers/);
+si el proveedor final no la interpreta, debe aplicar la misma política y comprobarse
+en sus respuestas HTTP. El preview de producción aplica las mismas cabeceras mediante
+[Vite preview.headers](https://vite.dev/config/preview-options.html#preview-headers).
+No se activa HSTS/preload para un dominio cuyo HTTPS aún no se ha verificado.
+El build rechaza mapas de fuentes y marcadores privados también en archivos de texto.
 El manifiesto `/releases/manifest.json` identifica el commit de la web; `artifacts: []`
 declara que aún no hay ejecutables públicos autorizados. No anuncia un release.
 
