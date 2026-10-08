@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "build:public": "npm run build && node scripts/prepare-public-site.mjs",
-    "test": "node --test scripts/public-site.test.mjs",
+    "test": "node --test scripts/public-site.test.mjs scripts/cube-interaction.test.mjs",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview",
     "build:sim": "vite build --mode simulation --base ./ --outDir ../simulacion/scenarys-build"
