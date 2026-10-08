@@ -1,3 +1,4 @@
+import { createCubeEdges, createDecisionGrid, createProjector } from '@neoretroo38/neo-cube-web';
 import { Container, Eyebrow } from './ui';
 
 // Copy pública del Cubo de Neo. Describe su naturaleza (propietario, local, en C++)
@@ -7,6 +8,10 @@ const facts = [
   'El cálculo no se distribuye en el cliente.',
   'La interfaz evoluciona sin tocar el modelo, y el modelo sin tocar la interfaz.',
 ];
+
+const project = createProjector({ yaw: Math.PI / 4, pitch: Math.PI / 7, scale: 42, center: [90, 90] });
+const cubeLines = createCubeEdges(2.7).map(([from, to]) => ({ from: project(from), to: project(to) }));
+const decisionPoints = createDecisionGrid(0.85).map(project);
 
 export function NeoCube() {
   return (
@@ -22,13 +27,25 @@ export function NeoCube() {
             ejecutado de forma local en C++.
           </p>
         </div>
-        <ul className="m-0 max-w-[440px] flex-[1_1_320px] list-none p-0 text-base leading-normal">
-          {facts.map((fact) => (
-            <li key={fact} className="border-t border-[#444444] py-[18px] last:border-b">
-              {fact}
-            </li>
-          ))}
-        </ul>
+        <div className="flex max-w-[440px] flex-[1_1_320px] flex-col gap-8">
+          <svg viewBox="0 0 180 180" role="img" aria-label="Representación geométrica pública del Cubo de Neo"
+            className="mx-auto block w-full max-w-[260px]">
+            {cubeLines.map(({ from, to }, index) => (
+              <line key={index} x1={from[0]} y1={from[1]} x2={to[0]} y2={to[1]}
+                stroke="white" strokeOpacity="0.65" strokeWidth="1.2" />
+            ))}
+            {decisionPoints.map(([x, y], index) => (
+              <circle key={index} cx={x} cy={y} r="1.8" fill="#39ff14" />
+            ))}
+          </svg>
+          <ul className="m-0 list-none p-0 text-base leading-normal">
+            {facts.map((fact) => (
+              <li key={fact} className="border-t border-[#444444] py-[18px] last:border-b">
+                {fact}
+              </li>
+            ))}
+          </ul>
+        </div>
       </Container>
     </section>
   );
