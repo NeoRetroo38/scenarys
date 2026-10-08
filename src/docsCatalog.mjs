@@ -1,6 +1,6 @@
 // Documentación pública de scenarys (copia revisada de la carpeta de iCloud).
 // Se retiran IPs y nombres de equipos de la red privada, rutas locales y notas internas.
-export const DOC_GROUPS = {"scenarys": "scenarys", "choisys": "choisys", "cubo": "El Cubo de Neo", "demo": "Demo remota"};
+export const DOC_GROUPS = {"scenarys": "scenarys", "choisys": "choisys", "cubo": "El Cubo de Neo", "demo": "Demo remota", "backend": "Backend y producto"};
 
 export const documents = [
   { group: "scenarys", slug: "lanzamiento", title: "Lanzamiento", description: "Qué hay en la web, cómo se publica y qué falta.", files: ["lanzamiento.pdf", "lanzamiento.html"] },
@@ -19,6 +19,10 @@ export const documents = [
   { group: "demo", slug: "demo-tailscale", title: "Guía técnica de la demo", description: "Montaje en el PC y comprobaciones.", files: ["demo-tailscale.pdf", "demo-tailscale.html"] },
   { group: "demo", slug: "presentacion-demo", title: "Presentación de la demo", description: "Diapositivas para enseñar el montaje.", files: ["presentacion-demo.pdf", "presentacion-demo.pptx"] },
   { group: "demo", slug: "estado-demo", title: "Estado de la demo", description: "Hoja con cada servicio y su estado.", files: ["estado-demo.pdf", "estado-demo.xlsx"] },
+  { group: "backend", slug: "avances-backend", title: "Avances del backend", description: "API, roles, base de datos y motor C++: qué está hecho y qué falta.", files: ["avances-backend.pdf", "avances-backend.pptx", "avances-backend.html"] },
+  { group: "backend", slug: "informe-ejecutivo", title: "Informe ejecutivo", description: "Para equipos no técnicos, con datos de demostración simulados.", files: ["informe-ejecutivo.pdf", "informe-ejecutivo.html"] },
+  { group: "backend", slug: "roles", title: "Roles y capacidades", description: "Qué puede hacer cada tipo de usuario y cómo lo decide la API.", files: ["roles.md"] },
+  { group: "backend", slug: "instalacion", title: "Instalación en un comando", description: "Poner choisys en marcha en Mac, Windows o Linux.", files: ["instalacion.md"] },
 ];
 
 export const DOCS_BASE = '/docs/files/';
