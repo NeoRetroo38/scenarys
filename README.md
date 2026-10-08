@@ -13,6 +13,9 @@ npm run typecheck  # comprobación de tipos
 npm run build      # build de producción en dist/
 ```
 
+Para usar este Mac como consola mientras el PC mantiene choisys en marcha,
+consulta [`docs/MAC-PC-CONSOLE.md`](docs/MAC-PC-CONSOLE.md).
+
 ## Configuración
 
 Copia `.env.example` a `.env` y rellena las variables:
