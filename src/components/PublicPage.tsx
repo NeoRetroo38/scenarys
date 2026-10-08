@@ -1,3 +1,4 @@
+import { DocumentList, DownloadList } from './DocumentList';
 import { Container, Eyebrow, PillLink } from './ui';
 import type { PublicPageData } from '../publicPages.mjs';
 
@@ -19,6 +20,8 @@ export function PublicPage({ page }: { page: PublicPageData | undefined }) {
           {'Interfaz choisys\n       ↓ contratos\nAPI de producto\n       ↓ observaciones\nMotor C++\n\nDatos públicos → neo-cube-web → geometría'}
         </pre>
       )}
+      {page?.catalog === 'docs' && <DocumentList />}
+      {page?.catalog === 'downloads' && <DownloadList />}
       {page && <p className="mt-10 max-w-[700px] border-t border-line pt-6 text-ink-muted">{page.next}</p>}
       <div className="mt-10 flex flex-wrap gap-3">
         {page?.manifest && <PillLink href="/releases/manifest.json" variant="outline">Ver manifiesto</PillLink>}

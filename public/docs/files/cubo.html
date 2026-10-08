@@ -1,0 +1,35 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>El Cubo de Neo — scenarys</title><style>body{margin:0;background:#fdfdfd;color:#000;font:16px/1.6 Aptos,'Segoe UI',-apple-system,Helvetica,Arial,sans-serif}
+main{max-width:760px;margin:0 auto;padding:56px 28px 72px}h1{font-weight:400;font-size:40px;letter-spacing:-.03em;line-height:1.1;margin:0 0 28px}
+h2{font-weight:400;font-size:24px;margin:40px 0 12px}h3{font-weight:500;font-size:18px;margin:28px 0 8px}p,li{color:#222}
+code,pre{font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;font-size:13px}pre{background:#f2f2f2;padding:16px;overflow:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border-bottom:1px solid #e6e6e6;padding:8px 6px;text-align:left;vertical-align:top}
+a{color:#000}footer{margin-top:56px;padding-top:16px;border-top:1px solid #e6e6e6;color:#555;font-size:13px}</style></head><body><main><h1>neo-cube — carpeta del motor (privado)</h1>
+<p>El Cubo de Neo: motor en C++ de scenarys. Repositorio <strong>privado</strong>: https://github.com/NeoRetroo38/neos-cube
+No metas aquí código del motor ni el token. El motor no tiene interfaz de producto; solo hay un banco de pruebas.</p>
+<h2>Cómo encaja (sketch)</h2>
+<pre><code>app móvil / web (choisys)
+   -&gt; API (Express: validación, cuentas, sesiones)
+      -&gt; localhost:8765  neo-cube-service (C++, solo loopback, con token)
+         -&gt; Cubo de Neo (3 fases, cubo 3x3x3)
+</code></pre>
+<p>La app nunca llama al puerto 8765 ni conoce el token. Del motor solo sale <code>measurements: [{ phase, row, column }]</code>.</p>
+<h2>Interfaces que sí existen</h2>
+<ul>
+<li><strong>Consola</strong> (<code>neo-cube.exe</code>, <code>experimental/console.cpp</code>) y <strong>GUI de Windows</strong> (<code>experimental/gui.cpp</code>): banco de pruebas local.</li>
+<li><strong>Servicio HTTP local</strong> (<code>neo-cube-service</code>): lo usa la API. Windows con <code>build.ps1</code> y <code>run.ps1</code>; macOS y Linux con <code>make</code> y <code>run.sh</code>.</li>
+</ul>
+<h2>Futuras implementaciones</h2>
+<p>Servicio concurrente y rotación de logs (issue #2), especificación matemática de la inferencia (issue #8), prueba del
+port POSIX en el Mac (issue #6), decidir dónde corre en producción (issue #5). Ninguna implica interfaz nueva.</p>
+<h2>Fusiones importantes</h2>
+<ul>
+<li>
+<h1>1 Servidor portable para macOS y Linux.</h1>
+</li>
+<li>
+<h1>9 Modelo de amenazas antes del lanzamiento.</h1>
+</li>
+<li>
+<h1>11 Flujo por PR para revisión desde GitHub Mobile.</h1>
+</li>
+</ul><footer>scenarys · documentación pública · teléfono +34 633 693 369</footer></main></body></html>

@@ -23,7 +23,7 @@ export function Header() {
               </a>
             ))}
             <PillLink href={CHOISYS_URL} className="!px-5 !py-3 text-[15px]">
-              Conocer choisys
+              Abrir choisys
             </PillLink>
           </div>
         </nav>

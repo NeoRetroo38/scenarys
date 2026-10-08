@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>scenarys — Estado del ecosistema</title>
+<style>
+:root{--bg:#0f0f0f;--fg:#f2f2f2;--mut:#9a9a9a;--dim:#6f6f6f;--line:#4a4a4a;--ok:#d8d8d8;--warn:#e6c35c;--ask:#e08a6a}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.35;padding:clamp(20px,4vw,56px) max(16px,env(safe-area-inset-right)) calc(32px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+.wrap{max-width:1500px;margin:0 auto}
+h1{font-size:clamp(44px,7vw,84px);letter-spacing:-.03em;margin:0;line-height:1;font-weight:700}
+.t{font-size:clamp(20px,2.6vw,34px);font-weight:700;margin:10px 0 0;letter-spacing:-.01em;text-transform:uppercase}
+.t span{font-weight:400;text-transform:none}
+.s{font-size:clamp(15px,1.8vw,24px);color:var(--mut);margin:6px 0 0}
+.cols{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:28px;margin-top:clamp(28px,4vw,48px)}
+.col{min-width:0}
+.num{display:flex;align-items:center;gap:12px;color:var(--mut);font-size:clamp(18px,1.8vw,26px)}
+.num::after{content:"";flex:1;border-top:2px dotted var(--line)}
+.icons{display:flex;gap:22px;margin:18px 0 16px}
+.icons svg{width:46px;height:46px;stroke:var(--fg);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+h2{margin:0;font-size:clamp(17px,1.6vw,23px);text-transform:uppercase;letter-spacing:.005em;line-height:1.15}
+h2 small{display:block;font-size:.85em;font-weight:400;text-transform:none;color:var(--mut);margin-top:4px}
+ul{margin:12px 0 0;padding:0;list-style:none}
+li{position:relative;padding-left:16px;margin:0 0 9px;font-size:15px;color:#dcdcdc}
+li::before{content:"";position:absolute;left:2px;top:.6em;width:5px;height:5px;border-radius:50%;background:var(--fg)}
+li b{font-weight:600;color:var(--fg)}
+.tag{color:var(--dim);font-size:.9em;white-space:nowrap}
+.st{display:inline-block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:99px;padding:2px 9px;margin-top:10px;color:var(--mut)}
+.st.w{color:var(--warn);border-color:#6b5a22}.st.a{color:var(--ask);border-color:#6b3d2c}
+.apps{margin-top:clamp(28px,4vw,44px)}
+.apps .num{margin-bottom:16px}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.card{border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start}
+.card svg{flex:none;width:36px;height:36px;stroke:var(--fg);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.card h3{margin:0;font-size:19px;letter-spacing:.01em}
+.card p{margin:4px 0 0;color:var(--mut);font-size:15px}
+.card.res{border-style:dashed}
+.phil{margin-top:clamp(28px,4vw,44px);border:1.5px solid #bdbdbd;border-radius:8px;padding:18px 22px;text-align:center;font-size:clamp(15px,1.7vw,24px);line-height:1.6}
+.phil b{color:var(--mut)}
+.phil i{font-style:normal;margin:0 .55em;color:var(--mut)}
+.phil span{white-space:nowrap}
+.foot{margin-top:14px;color:var(--dim);font-size:13px;text-align:right}
+@media(max-width:1100px){.cols{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.cols{grid-template-columns:1fr;gap:34px}.cards{grid-template-columns:1fr}.phil span{white-space:normal}.foot{text-align:left}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="i-db" viewBox="0 0 48 48"><ellipse cx="24" cy="10" rx="15" ry="5"/><path d="M9 10v28c0 3 7 5 15 5s15-2 15-5V10M9 24c0 3 7 5 15 5s15-2 15-5"/></symbol>
+<symbol id="i-api" viewBox="0 0 48 48"><rect x="5" y="8" width="38" height="32" rx="3"/><path d="M5 16h38M20 24l-5 5 5 5M28 24l5 5-5 5"/></symbol>
+<symbol id="i-phone" viewBox="0 0 48 48"><rect x="12" y="4" width="24" height="40" rx="4"/><path d="M21 38h6M18 14h12v8H18z"/></symbol>
+<symbol id="i-cube" viewBox="0 0 48 48"><path d="M24 4l17 9v22l-17 9-17-9V13zM7 13l17 9 17-9M24 22v22"/></symbol>
+<symbol id="i-chip" viewBox="0 0 48 48"><rect x="12" y="12" width="24" height="24" rx="3"/><path d="M19 4v8M29 4v8M19 36v8M29 36v8M4 19h8M4 29h8M36 19h8M36 29h8"/></symbol>
+<symbol id="i-shield" viewBox="0 0 48 48"><path d="M24 4l16 6v12c0 10-7 18-16 22C15 40 8 32 8 22V10z"/><path d="M17 24l5 5 9-10"/></symbol>
+<symbol id="i-branch" viewBox="0 0 48 48"><circle cx="12" cy="10" r="4"/><circle cx="12" cy="38" r="4"/><circle cx="36" cy="16" r="4"/><path d="M12 14v20M36 20c0 8-12 6-24 12"/></symbol>
+<symbol id="i-gear" viewBox="0 0 48 48"><circle cx="24" cy="24" r="7"/><path d="M24 4v6M24 38v6M4 24h6M38 24h6M10 10l4 4M34 34l4 4M38 10l-4 4M14 34l-4 4"/></symbol>
+<symbol id="i-q" viewBox="0 0 48 48"><circle cx="24" cy="24" r="19"/><path d="M18 19c0-4 3-6 6-6s6 2 6 6c0 5-6 5-6 10M24 35v2"/></symbol>
+<symbol id="i-lock" viewBox="0 0 48 48"><rect x="9" y="21" width="30" height="22" rx="4"/><path d="M15 21v-6a9 9 0 0118 0v6M24 29v6"/></symbol>
+<symbol id="i-box" viewBox="0 0 48 48"><rect x="6" y="6" width="36" height="36" rx="6"/><path d="M6 18h36"/></symbol>
+<symbol id="i-dash" viewBox="0 0 48 48"><rect x="6" y="6" width="36" height="36" rx="6" stroke-dasharray="4 5"/><path d="M24 17v14M17 24h14"/></symbol>
+</defs>
+</svg>
+
+<div class="wrap">
+<header>
+  <h1>scenarys</h1>
+  <p class="t">Estado del ecosistema <span>— 7 oct 2026</span></p>
+  <p class="s">Qué está hecho, qué está en curso y qué espera al dueño.</p>
+</header>
+
+<main>
+<section class="cols" aria-label="Estado por columnas">
+
+  <article class="col">
+    <div class="num">[01]</div>
+    <div class="icons"><svg><use href="#i-db"/></svg><svg><use href="#i-api"/></svg></div>
+    <h2>Base<small>(Hecho)</small></h2>
+    <ul>
+      <li>API Express con cuentas, sesiones y límites por usuario <span class="tag">#33</span></li>
+      <li>Esquema PostgreSQL, sin aplicar <span class="tag">#16</span></li>
+      <li>Semilla de permisos <span class="tag">#18</span></li>
+      <li>SUPERDEV <span class="tag">#15</span></li>
+    </ul>
+  </article>
+
+  <article class="col">
+    <div class="num">[02]</div>
+    <div class="icons"><svg><use href="#i-phone"/></svg><svg><use href="#i-cube"/></svg></div>
+    <h2>Experiencia<small>(Hecho)</small></h2>
+    <ul>
+      <li>App Expo con 3 fases 3×3</li>
+      <li>Vista del cubo</li>
+      <li>Cuentas</li>
+      <li>Historial local</li>
+    </ul>
+  </article>
+
+  <article class="col">
+    <div class="num">[03]</div>
+    <div class="icons"><svg><use href="#i-chip"/></svg><svg><use href="#i-shield"/></svg></div>
+    <h2>Motor<small>(Hecho)</small></h2>
+    <ul>
+      <li>neo-cube en C++, privado, en localhost:8765</li>
+      <li>Port macOS/Linux <span class="tag">#1</span></li>
+      <li>Modelo de amenazas <span class="tag">#9</span></li>
+    </ul>
+  </article>
+
+  <article class="col">
+    <div class="num">[04]</div>
+    <div class="icons"><svg><use href="#i-branch"/></svg><svg><use href="#i-gear"/></svg></div>
+    <h2>En curso<small>(Trabajando)</small></h2>
+    <ul>
+      <li>Endpoints USER <span class="tag">#4</span></li>
+      <li>Endpoints SUPERDEV <span class="tag">#5</span></li>
+      <li>Team-readiness: ESLint, Node 24, CI <span class="tag">#8</span></li>
+      <li>Configuración del Mac</li>
+    </ul>
+    <span class="st w">En curso</span>
+  </article>
+
+  <article class="col">
+    <div class="num">[05]</div>
+    <div class="icons"><svg><use href="#i-q"/></svg><svg><use href="#i-lock"/></svg></div>
+    <h2>Decisiones del dueño<small>(Pendientes)</small></h2>
+    <ul>
+      <li>Postgres / Neon <span class="tag">0001</span></li>
+      <li>Visión B2B <span class="tag">0002</span></li>
+      <li>Hoja de ruta B2B <span class="tag">0003</span></li>
+      <li>Repo público scenarys</li>
+      <li>Historial público de packages/core</li>
+      <li>Dónde corre el motor en producción</li>
+    </ul>
+    <span class="st a">Espera al dueño</span>
+  </article>
+
+</section>
+
+<section class="apps" aria-label="Apps">
+  <div class="num">Apps</div>
+  <div class="cards">
+    <div class="card"><svg><use href="#i-box"/></svg><div><h3>choisys</h3><p>Producto</p></div></div>
+    <div class="card"><svg><use href="#i-cube"/></svg><div><h3>neo-cube</h3><p>Motor privado</p></div></div>
+    <div class="card res"><svg><use href="#i-dash"/></svg><div><h3>wibarium</h3><p>Reservado, sin definir</p></div></div>
+  </div>
+</section>
+
+<div class="phil" role="note">
+  <b>FILOSOFÍA:</b>
+  <span>Todo cambio es un PR</span><i>•</i><span>Fusiona solo el dueño</span><i>•</i><span>Sin inferencia sin especificación</span><i>•</i><span>La matemática solo en C++</span><i>•</i><span>Sin secretos</span>
+</div>
+</main>
+</div>
+</body>
+</html>

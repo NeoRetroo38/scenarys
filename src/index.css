@@ -33,8 +33,7 @@
 }
 
 /* The dark cube section needs a visible keyboard outline of its own. */
-.cube-interaction:focus-visible,
-.cube-control:focus-visible {
+.cube-interaction:focus-visible {
   outline: 2px solid #39ff14;
   outline-offset: 5px;
 }

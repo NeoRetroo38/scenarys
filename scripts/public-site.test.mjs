@@ -1,14 +1,17 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, writeFileSync, readFileSync, rmSync, mkdirSync } from 'node:fs';
+import { mkdtempSync, writeFileSync, readFileSync, rmSync, mkdirSync, readdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { publicPages, findPublicPage, PUBLIC_ORIGIN } from '../src/publicPages.mjs';
-import { assertPublicContent, preparePublicSite } from './prepare-public-site.mjs';
+import { assertPublicContent, preparePublicSite, listPublicDocuments } from './prepare-public-site.mjs';
+import { documents, DOCS_BASE } from '../src/docsCatalog.mjs';
 import { PUBLIC_SECURITY_HEADERS, publicHeadersFile } from '../src/publicSecurity.mjs';
 
 test('public routes are unique and resolve with trailing slashes', () => {
-  assert.equal(new Set(publicPages.map(page => page.path)).size, 7);
+  assert.equal(new Set(publicPages.map(page => page.path)).size, 6);
+  // /choisys belongs to the choisys web app, published next to this site.
+  assert.equal(findPublicPage('/choisys'), undefined);
   for (const page of publicPages) assert.equal(findPublicPage(page.path + '/'), page);
   assert.equal(findPublicPage('/internal'), undefined);
 });
@@ -73,5 +76,38 @@ test('development metadata cannot be packaged as public assets', () => {
       mkdirSync(join(directory, name));
       assert.throws(() => preparePublicSite(directory, 'c'.repeat(40)), /development metadata/);
     } finally { rmSync(directory, { recursive: true, force: true }); }
+  }
+});
+
+test('the business phone is the only public contact', () => {
+  const sources = readdirSync(new URL('../src/components/', import.meta.url))
+    .map(name => readFileSync(new URL(`../src/components/${name}`, import.meta.url), 'utf8'))
+    .concat(readFileSync(new URL('../src/config.ts', import.meta.url), 'utf8'), JSON.stringify(publicPages));
+  const all = sources.join('\n');
+  assert.ok(!/mailto:|wa\.me|whatsapp/i.test(all));
+  assert.ok(!/[\w.+-]+@[\w-]+\.[a-z]{2,}/i.test(all));
+  assert.ok(all.includes("value: '+34633693369'"));
+  assert.ok(findPublicPage('/legal').paragraphs.some(p => p.includes('+34 633 693 369')));
+});
+
+test('every public document exists, is clean and gets a size and SHA-256 in the manifest', () => {
+  const folder = new URL('../public/docs/files/', import.meta.url);
+  const shipped = new Set(readdirSync(folder));
+  for (const doc of documents) {
+    assert.ok(doc.files.length > 0, doc.slug);
+    for (const file of doc.files) {
+      assert.ok(shipped.has(file), `missing ${file}`);
+      if (/\.(html|md|txt)$/.test(file)) assert.doesNotThrow(() => assertPublicContent(readFileSync(new URL(file, folder), 'utf8')), file);
+      assert.ok(!/(?:^|\/)\./.test(file) && !/\.(key|numbers|patch|command|url)$/.test(file), file);
+    }
+  }
+  const listed = new Set(documents.flatMap(doc => doc.files));
+  for (const file of shipped) assert.ok(listed.has(file), `unlisted ${file}`);
+  const entries = listPublicDocuments(new URL('../public/', import.meta.url).pathname);
+  assert.equal(entries.length, shipped.size);
+  for (const entry of entries) {
+    assert.ok(entry.path.startsWith(DOCS_BASE));
+    assert.match(entry.sha256, /^[a-f0-9]{64}$/);
+    assert.ok(entry.size > 0);
   }
 });

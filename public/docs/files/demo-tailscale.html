@@ -1,0 +1,49 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Guía técnica de la demo — scenarys</title><style>body{margin:0;background:#fdfdfd;color:#000;font:16px/1.6 Aptos,'Segoe UI',-apple-system,Helvetica,Arial,sans-serif}
+main{max-width:760px;margin:0 auto;padding:56px 28px 72px}h1{font-weight:400;font-size:40px;letter-spacing:-.03em;line-height:1.1;margin:0 0 28px}
+h2{font-weight:400;font-size:24px;margin:40px 0 12px}h3{font-weight:500;font-size:18px;margin:28px 0 8px}p,li{color:#222}
+code,pre{font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;font-size:13px}pre{background:#f2f2f2;padding:16px;overflow:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border-bottom:1px solid #e6e6e6;padding:8px 6px;text-align:left;vertical-align:top}
+a{color:#000}footer{margin-top:56px;padding-top:16px;border-top:1px solid #e6e6e6;color:#555;font-size:13px}</style></head><body><main><h1>Demo remota por Tailscale</h1>
+<p>Objetivo: enseñar choisys (bienvenida de Scenarys → inicio de sesión → Run → cubo) desde Safari en el
+iPhone o el Mac, <strong>en cualquier sitio</strong>, sin abrir nada a internet.</p>
+<pre><code class="language-text">iPhone / Mac (Safari, con Tailscale activo)
+  -&gt; http://&lt;IP-Tailscale-del-PC&gt;:8081   web (Expo) servida por el PC
+  -&gt; http://&lt;IP-Tailscale-del-PC&gt;:3000   API (Express) en el PC
+  -&gt; localhost:8765                      motor C++ (solo dentro del PC)
+</code></pre>
+<p>Todo corre en el PC, que está siempre encendido. El Mac y el iPhone solo abren Safari. El tráfico va
+cifrado por el túnel de Tailscale; solo tus dispositivos de la red de Tailscale pueden entrar.</p>
+<h2>Una vez, en el PC (PowerShell, en el worktree que sirve la LAN)</h2>
+<ol>
+<li>Tailscale abierto y con sesión iniciada (la misma cuenta que en el iPhone y el Mac).</li>
+<li>Cierra las ventanas de motor, API y web que estén abiertas ahora (están ligadas a la IP de la Wi-Fi).</li>
+<li><code>.\scripts\lan-always.ps1 -Install -Tailscale</code> (deja la tarea de inicio y el modo guardado).</li>
+<li><code>.\scripts\lan-always.ps1 -Tailscale</code> (arranca ya, sin reiniciar).</li>
+<li>Copia la dirección que muestra (<code>http://100.x.y.z:8081</code> o <code>http://nombre MagicDNS del equipo:8081</code>).</li>
+</ol>
+<p>Para que no se caiga: en Windows, <em>Energía</em> → suspensión <strong>Nunca</strong> con el PC enchufado.
+Para volver al modo Wi-Fi de casa: <code>.\scripts\lan-always.ps1 -Install</code> (sin <code>-Tailscale</code>).</p>
+<h2>En cada demo</h2>
+<ol>
+<li>En el iPhone o el Mac: Tailscale <strong>activado</strong>.</li>
+<li>Safari → la dirección del paso 5 (guárdala en Favoritos o en la pantalla de inicio).</li>
+<li>Si no carga: comprueba en la app de Tailscale que el PC sale <em>Connected</em>; si sale <em>Offline</em>, el PC está
+   apagado o suspendido.</li>
+</ol>
+<h2>Qué no hacer</h2>
+<ul>
+<li><strong>No usar Tailscale Funnel</strong> ni abrir puertos en el router: expondría la API a todo internet.</li>
+<li>No enseñar la demo a alguien desde <strong>su</strong> móvil salvo que le compartas el PC desde Tailscale
+  (<em>Share</em> en la consola de Tailscale); sin eso no puede abrir la dirección.</li>
+</ul>
+<h2>Detalles técnicos</h2>
+<ul>
+<li>La API solo escucha en una dirección asignada al PC: loopback, IPv4 privada de la LAN o IPv4 de
+  Tailscale (<code>IP de Tailscale/10</code>). Nunca todas las interfaces ni IPs públicas (<code>apps/api/src/config.ts</code>).</li>
+<li><code>-Tailscale</code> toma la IP con <code>tailscale ip -4</code> y acepta como origen tanto la IP como el nombre MagicDNS.</li>
+<li>El modo se guarda en la variable de usuario <code>CHOISYS_TAILSCALE=1</code>, que también lee <code>lan-watch.ps1</code> al
+  reiniciar tras una actualización de <code>main</code>. <code>-Uninstall</code> la borra.</li>
+<li>No verificado: arranque real en Windows con Tailscale (los scripts se probaron en seco), regla del
+  firewall de Windows para Node en el adaptador de Tailscale (si Safari no conecta pero el PC sale
+  <em>Connected</em>, permite <code>node.exe</code> en redes privadas y públicas).</li>
+</ul><footer>scenarys · documentación pública · teléfono +34 633 693 369</footer></main></body></html>

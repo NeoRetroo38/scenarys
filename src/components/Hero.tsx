@@ -16,7 +16,7 @@ export function Hero() {
           </p>
           <div className="flex flex-wrap gap-3">
             <PillLink href={CHOISYS_URL} arrow>
-              Explorar choisys
+              Abrir choisys
             </PillLink>
             <PillLink href="#contacto" variant="outline">
               Hablar con nosotros

@@ -2,16 +2,6 @@ export const PUBLIC_ORIGIN = 'https://neowebdevsolutions.com';
 
 export const publicPages = [
   {
-    path: '/choisys', title: 'choisys', eyebrow: 'Producto · desarrollo privado',
-    summary: 'Tres fases. Tres elecciones. Un recorrido que puedes observar.',
-    paragraphs: [
-      'choisys es el primer producto de Scenarys. La interfaz recoge elecciones y representa los datos públicos del Cubo de Neo.',
-      'La aplicación sigue en un entorno privado para dispositivos autorizados. Esta landing no permite registrar cuentas ni da acceso a ese entorno.',
-      'La matriz de la portada es una demostración visual local: no se conecta al motor ni guarda un Run.',
-    ],
-    next: 'El acceso público se anunciará aquí cuando exista una versión preparada para ello.',
-  },
-  {
     path: '/daemon', title: 'Daemon', eyebrow: 'Herramienta nativa · en preparación',
     summary: 'Una ventana al estado del ecosistema. Un núcleo compartido.',
     paragraphs: [
@@ -22,15 +12,15 @@ export const publicPages = [
     next: 'Mac: distribución pendiente. iPhone: disponible próximamente mediante un canal permitido por Apple.',
   },
   {
-    path: '/downloads', title: 'Descargas', eyebrow: 'Distribución verificable',
-    summary: 'Descargas reales, con versión, origen e integridad.',
+    path: '/downloads', title: 'Descargas', eyebrow: 'Al alcance de todos',
+    summary: 'Todo lo que se puede descargar de scenarys, con tamaño y huella SHA-256.',
     paragraphs: [
-      'Todavía no hay ejecutables públicos autorizados para descargar.',
-      'Cada artefacto publicado deberá indicar plataforma, arquitectura, tamaño, SHA-256, fecha, versión y commit de origen.',
-      'No ofrecemos archivos .app descargables para iPhone. Su distribución requiere un canal compatible con iOS.',
+      'choisys se usa en el navegador, sin instalar nada. La app de Android será la primera descarga instalable.',
+      'La documentación está en PDF, que se abre en cualquier móvil u ordenador, y en su formato original.',
+      'Cada archivo indica su tamaño y su SHA-256 para comprobar que es el que publicamos.',
     ],
-    next: 'El catálogo se actualizará después de probar y autorizar cada release.',
-    manifest: true,
+    next: 'No ofrecemos archivos para instalar a mano en iPhone: su distribución necesita un canal compatible con iOS.',
+    manifest: true, catalog: 'downloads',
   },
   {
     path: '/releases', title: 'Versiones', eyebrow: 'Historial público',
@@ -43,14 +33,15 @@ export const publicPages = [
     manifest: true,
   },
   {
-    path: '/docs', title: 'Documentación', eyebrow: 'Arquitectura pública',
-    summary: 'La geometría muestra datos. No decide lo que significan.',
+    path: '/docs', title: 'Documentación', eyebrow: 'Arquitectura y proyecto',
+    summary: 'Cómo está hecho scenarys, en documentos que puedes leer y descargar.',
     paragraphs: [
       'choisys: producto, cuentas, sesiones y contratos. Su API es la autoridad de acceso.',
       'neos-cube: motor C++ independiente. neo-cube-web: representación geométrica pública. Los contratos compartidos conectan la interfaz con la API.',
       'Daemon: coordinación y observación operativa. Los estados internos, credenciales, logs y datos de usuarios no forman parte de esta web.',
     ],
     next: 'Una visualización no convierte una duración ni una posición en una inferencia.',
+    catalog: 'docs',
     diagram: true,
   },
   {
@@ -70,7 +61,7 @@ export const publicPages = [
       'Esta versión no incorpora formularios de registro, pagos ni analítica añadida por Scenarys. La demostración de la portada mantiene su estado solo en memoria.',
       'Las fuentes se sirven con el sitio o mediante las tipografías del sistema. No se solicitan fuentes a Google.',
       'El proveedor de alojamiento puede procesar datos técnicos de las solicitudes. Esta nota no sustituye un aviso legal o una política de privacidad revisados.',
-      'La información jurídica de la entidad y el contacto oficial están pendientes de confirmación. No se inventan identificadores, domicilios ni condiciones contractuales.',
+      'El único canal de contacto por ahora es el teléfono de empresa: +34 633 693 369. La información jurídica de la entidad está pendiente de confirmación. No se inventan identificadores, domicilios ni condiciones contractuales.',
     ],
     next: 'La documentación jurídica completa debe revisarse antes de incorporar cuentas, formularios, pagos o analítica.',
   },

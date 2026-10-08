@@ -1,11 +1,14 @@
 import { execFileSync } from 'node:child_process';
-import { mkdirSync, readFileSync, writeFileSync, readdirSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync, statSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PUBLIC_ORIGIN, publicPages } from '../src/publicPages.mjs';
 import { publicHeadersFile } from '../src/publicSecurity.mjs';
 
-export function assertPublicContent(text) {
+/** Hosts that are public on purpose (the choisys API). Everything else from a private network is refused. */
+export function assertPublicContent(text, allowedHosts = []) {
+  for (const host of allowedHosts) text = text.split(host).join('public-host');
   if (/postgres(?:ql)?:\/\/|DATABASE_URL\s*=|PRIVATE KEY|\.ts\.net|\/Users\/|https?:\/\/[^\/\s"'<>]+@/i.test(text)) {
     throw new Error('Public output contains a private configuration marker.');
   }
@@ -21,6 +24,16 @@ export function assertPublicContent(text) {
   }
 }
 
+/** Public documentation shipped under docs/files, with size and SHA-256 so anyone can verify a download. */
+export function listPublicDocuments(directory) {
+  const folder = join(directory, 'docs', 'files');
+  if (!existsSync(folder)) return [];
+  return readdirSync(folder).filter(name => !name.startsWith('.')).sort().map(name => {
+    const bytes = readFileSync(join(folder, name));
+    return { path: `/docs/files/${name}`, size: statSync(join(folder, name)).size, sha256: createHash('sha256').update(bytes).digest('hex') };
+  });
+}
+
 export function preparePublicSite(directory, commit) {
   if (!/^[a-f0-9]{40}$/.test(commit)) throw new Error('A full source commit is required.');
   const index = readFileSync(join(directory, 'index.html'), 'utf8');
@@ -33,7 +46,7 @@ export function preparePublicSite(directory, commit) {
   }
   mkdirSync(join(directory, 'releases'), { recursive: true });
   writeFileSync(join(directory, 'releases', 'manifest.json'), JSON.stringify({
-    schemaVersion: 1, site: PUBLIC_ORIGIN, sourceCommit: commit, artifacts: [],
+    schemaVersion: 1, site: PUBLIC_ORIGIN, sourceCommit: commit, artifacts: [], documents: listPublicDocuments(directory),
   }, null, 2) + '\n');
   const stylesheet = index.match(/<link\b[^>]*rel="stylesheet"[^>]*>/)?.[0] ?? '';
   writeFileSync(join(directory, '404.html'), `<!doctype html>
