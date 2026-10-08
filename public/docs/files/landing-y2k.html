@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>choisys — landing (ejemplo Y2K 3D)</title>
+<style>
+:root{
+  --ink:#0b0d12; --mut:#5b6472;
+  --chrome:linear-gradient(180deg,#ffffff 0%,#dfe6f2 28%,#9aa6bb 52%,#f4f7fc 54%,#c7d1e4 78%,#ffffff 100%);
+  --glass:rgba(255,255,255,.38); --edge:rgba(15,25,45,.55);
+  --neon:#39ff14; --red:#ff2a2a;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:"Helvetica Neue",Arial,system-ui,sans-serif;color:var(--ink);background:#eef2f9;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:-1;background:
+  radial-gradient(60vmax 60vmax at 15% 10%,#ffffff 0,transparent 55%),
+  radial-gradient(50vmax 50vmax at 90% 30%,#cfe2ff 0,transparent 60%),
+  radial-gradient(45vmax 45vmax at 30% 95%,#e6d9ff 0,transparent 60%),#eef2f9}
+.bg::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(20,30,60,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(20,30,60,.06) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(70% 70% at 50% 40%,#000,transparent)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px clamp(18px,4vw,56px);font-size:14px;letter-spacing:.14em;text-transform:lowercase}
+nav b{font-weight:300;font-size:20px;letter-spacing:.04em}
+.pill{display:inline-block;padding:12px 28px;border-radius:999px;color:var(--ink);text-decoration:none;font-size:15px;letter-spacing:.06em;background:var(--chrome);border:1px solid rgba(20,30,60,.35);box-shadow:inset 0 2px 0 #fff,inset 0 -6px 12px rgba(120,140,180,.35),0 10px 24px rgba(40,60,110,.22);transition:transform .2s}
+.pill:hover{transform:translateY(-2px)}
+.hero{min-height:92vh;display:grid;place-items:center;text-align:center;padding:0 16px 40px;position:relative}
+.kicker{font-size:13px;letter-spacing:.32em;text-transform:uppercase;color:var(--mut);margin-bottom:6px}
+h1{font-weight:200;font-size:clamp(64px,17vw,230px);line-height:.9;letter-spacing:-.04em;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 6px 0 rgba(255,255,255,.7)) drop-shadow(0 18px 24px rgba(40,60,110,.22))}
+.sub{font-size:clamp(17px,2.2vw,24px);font-weight:300;color:var(--mut);max-width:30ch;margin:18px auto 28px}
+.stage{perspective:1100px;width:min(70vw,340px);aspect-ratio:1;margin:8px auto 30px;touch-action:none;cursor:grab}
+.stage:active{cursor:grabbing}
+.cube{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateX(-24deg) rotateY(32deg);animation:spin 22s linear infinite}
+.stage.drag .cube{animation:none}
+@keyframes spin{to{transform:rotateX(-24deg) rotateY(392deg)}}
+.f{position:absolute;inset:0;background:var(--glass);border:1px solid var(--edge);backdrop-filter:blur(3px);display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);place-items:center;padding:12%;box-shadow:inset 0 0 40px rgba(255,255,255,.55)}
+.f i{width:70%;aspect-ratio:1;border-radius:50%;border:1px solid rgba(15,25,45,.6);background:radial-gradient(circle at 32% 28%,#fff,rgba(255,255,255,.1) 60%)}
+.f i.on{background:radial-gradient(circle at 32% 28%,#fff,#7fb0ff 55%,#2d5bff);border-color:#1d3fd0;box-shadow:0 0 18px rgba(60,110,255,.55)}
+.f1{transform:translateZ(calc(min(70vw,340px)/2))}
+.f2{transform:rotateY(180deg) translateZ(calc(min(70vw,340px)/2))}
+.f3{transform:rotateY(90deg) translateZ(calc(min(70vw,340px)/2))}
+.f4{transform:rotateY(-90deg) translateZ(calc(min(70vw,340px)/2))}
+.f5{transform:rotateX(90deg) translateZ(calc(min(70vw,340px)/2))}
+.f6{transform:rotateX(-90deg) translateZ(calc(min(70vw,340px)/2))}
+.orb{position:absolute;border-radius:50%;background:radial-gradient(circle at 30% 25%,#fff 0,#dfe9ff 30%,#8fa8d8 62%,#4a5f93 100%);box-shadow:inset -8px -10px 22px rgba(20,35,80,.35),0 24px 40px rgba(40,60,110,.25);animation:float 7s ease-in-out infinite}
+.o1{width:clamp(70px,12vw,150px);aspect-ratio:1;left:8%;top:22%}
+.o2{width:clamp(40px,7vw,90px);aspect-ratio:1;right:11%;top:16%;animation-delay:-2s}
+.o3{width:clamp(56px,9vw,120px);aspect-ratio:1;right:16%;bottom:12%;animation-delay:-4s}
+@keyframes float{50%{transform:translateY(-22px)}}
+section{padding:clamp(56px,10vw,140px) clamp(18px,5vw,72px)}
+.big{font-weight:200;font-size:clamp(40px,8.5vw,120px);line-height:1;letter-spacing:-.03em;max-width:14ch}
+.big em{font-style:normal;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 0 rgba(255,255,255,.7))}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin-top:48px}
+.card{border-radius:28px;padding:28px;background:linear-gradient(160deg,rgba(255,255,255,.85),rgba(210,222,245,.55));border:1px solid rgba(255,255,255,.9);box-shadow:0 20px 50px rgba(40,60,110,.16),inset 0 2px 0 #fff;backdrop-filter:blur(8px)}
+.card .n{font-size:64px;font-weight:200;line-height:1;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 3px 0 rgba(255,255,255,.8))}
+.card h3{font-weight:300;font-size:26px;margin:14px 0 6px}
+.card p{color:var(--mut);font-size:16px;line-height:1.5}
+.dark{background:#05070a;color:#e8eef5;border-radius:44px;margin:0 clamp(10px,2vw,28px);position:relative;overflow:hidden}
+.dark .big{color:#fff}
+.dark p{color:#9aa6b2;font-size:18px;max-width:34ch;margin-top:18px;line-height:1.5}
+.wire{width:min(78vw,360px);aspect-ratio:1;margin-top:34px;perspective:900px}
+.wire .cube{animation-duration:30s}
+.wf{position:absolute;inset:0;border:1px solid var(--neon);box-shadow:0 0 14px rgba(57,255,20,.45)}
+.wf.a{transform:translateZ(calc(min(78vw,360px)/2))}.wf.b{transform:rotateY(180deg) translateZ(calc(min(78vw,360px)/2))}
+.wf.c{transform:rotateY(90deg) translateZ(calc(min(78vw,360px)/2))}.wf.d{transform:rotateY(-90deg) translateZ(calc(min(78vw,360px)/2))}
+.wf.e{transform:rotateX(90deg) translateZ(calc(min(78vw,360px)/2))}.wf.g{transform:rotateX(-90deg) translateZ(calc(min(78vw,360px)/2))}
+.run{position:absolute;left:50%;top:50%;width:8px;height:8px;margin:-4px;border-radius:50%;background:#fff;box-shadow:0 0 14px #fff}
+.run.r{background:var(--red);box-shadow:0 0 12px var(--red);opacity:.5}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:26px;font-size:14px;color:#9aa6b2}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;background:var(--neon)}
+.legend .w::before{background:#fff}.legend .r::before{background:var(--red);opacity:.6}
+.cta{text-align:center}
+.cta .big{margin:0 auto 34px}
+footer{padding:40px 16px 60px;text-align:center;font-size:13px;color:var(--mut);letter-spacing:.06em}
+@media (prefers-reduced-motion:reduce){.cube,.orb{animation:none}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+
+<nav><b>choisys</b><a class="pill" href="#empezar">comenzar</a></nav>
+
+<header class="hero">
+  <div class="orb o1" aria-hidden="true"></div><div class="orb o2" aria-hidden="true"></div><div class="orb o3" aria-hidden="true"></div>
+  <div>
+    <p class="kicker">elige · sin confirmar</p>
+    <h1>choisys</h1>
+    <div class="stage" id="stage" aria-label="Cubo de cristal con cuadrículas 3 por 3. Arrástralo para girarlo.">
+      <div class="cube" id="cube">
+        <div class="f f1"><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i></div>
+        <div class="f f2"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="f f3"><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i></div>
+        <div class="f f4"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="f f5"><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i></div>
+        <div class="f f6"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+    <p class="sub">tres fases. un toque cada una.</p>
+    <a class="pill" href="#empezar">comenzar las tres fases</a>
+  </div>
+</header>
+
+<section>
+  <h2 class="big">cada elección <em>cuenta</em>.</h2>
+  <div class="steps">
+    <div class="card"><div class="n">01</div><h3>mira</h3><p>una cuadrícula de círculos. nada más en pantalla.</p></div>
+    <div class="card"><div class="n">02</div><h3>toca</h3><p>un toque elige y envía. no hay botón confirmar.</p></div>
+    <div class="card"><div class="n">03</div><h3>sigue</h3><p>el círculo se expande y la siguiente fase aparece con fade.</p></div>
+  </div>
+</section>
+
+<section class="dark">
+  <h2 class="big">tu <em>cubo</em>.</h2>
+  <p>al terminar, tus tres fases quedan dibujadas dentro de un cubo. la app solo lo dibuja.</p>
+  <div class="stage wire" id="wire" style="width:min(78vw,360px)">
+    <div class="cube">
+      <div class="wf a"></div><div class="wf b"></div><div class="wf c"></div><div class="wf d"></div><div class="wf e"></div><div class="wf g"></div>
+      <div class="run" style="transform:translate3d(-60px,-30px,40px)"></div>
+      <div class="run" style="transform:translate3d(10px,50px,-20px)"></div>
+      <div class="run" style="transform:translate3d(70px,-40px,30px)"></div>
+      <div class="run r" style="transform:translate3d(-70px,50px,-40px)"></div>
+      <div class="run r" style="transform:translate3d(30px,-60px,-50px)"></div>
+    </div>
+  </div>
+  <div class="legend"><span>ejes</span><span class="w">último run</span><span class="r">runs anteriores</span></div>
+</section>
+
+<section class="cta" id="empezar">
+  <h2 class="big">elige. <em>ya.</em></h2>
+  <a class="pill" href="#">comenzar las tres fases</a>
+</section>
+
+<footer>ejemplo de diseño para una landing de choisys · estética y2k en 3d · no aprobado para publicar</footer>
+
+<script>
+(function(){
+  var stage=document.getElementById('stage'),cube=document.getElementById('cube');
+  if(!stage||!cube)return;
+  var x=32,y=-24,drag=false,px=0,py=0;
+  function apply(){cube.style.transform='rotateX('+y+'deg) rotateY('+x+'deg)'}
+  stage.addEventListener('pointerdown',function(e){drag=true;px=e.clientX;py=e.clientY;stage.classList.add('drag');stage.setPointerCapture(e.pointerId);apply()});
+  stage.addEventListener('pointermove',function(e){if(!drag)return;x+=(e.clientX-px)*.6;y-=(e.clientY-py)*.6;y=Math.max(-80,Math.min(80,y));px=e.clientX;py=e.clientY;apply()});
+  function end(){drag=false}
+  stage.addEventListener('pointerup',end);stage.addEventListener('pointercancel',end);
+  stage.addEventListener('dblclick',function(){stage.classList.remove('drag');cube.style.transform=''});
+})();
+</script>
+</body>
+</html>

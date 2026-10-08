@@ -1,0 +1,72 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Demo remota — scenarys</title><style>body{margin:0;background:#fdfdfd;color:#000;font:16px/1.6 Aptos,'Segoe UI',-apple-system,Helvetica,Arial,sans-serif}
+main{max-width:760px;margin:0 auto;padding:56px 28px 72px}h1{font-weight:400;font-size:40px;letter-spacing:-.03em;line-height:1.1;margin:0 0 28px}
+h2{font-weight:400;font-size:24px;margin:40px 0 12px}h3{font-weight:500;font-size:18px;margin:28px 0 8px}p,li{color:#222}
+code,pre{font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;font-size:13px}pre{background:#f2f2f2;padding:16px;overflow:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{border-bottom:1px solid #e6e6e6;padding:8px 6px;text-align:left;vertical-align:top}
+a{color:#000}footer{margin-top:56px;padding-top:16px;border-top:1px solid #e6e6e6;color:#555;font-size:13px}</style></head><body><main><h1>Demo remota — Scenarys + choisys por Tailscale</h1>
+<p>Actualizado: 8 oct 2026, 03:00. Para enseñar la landing de Scenarys y choisys desde Safari (iPhone o Mac)
+en cualquier sitio de la ciudad. Nada queda abierto a internet: solo entran tus dispositivos de Tailscale.</p>
+<h2>Cómo queda montado</h2>
+<table>
+<thead>
+<tr>
+<th>Equipo</th>
+<th>Qué sirve</th>
+<th>Dirección (Safari, Tailscale activo)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PC <code>el PC</code> (siempre encendido)</td>
+<td>motor C++ (solo interno) + API :3000 + web de choisys :8081</td>
+<td><code>http://&lt;IP-Tailscale-PC&gt;:8081</code></td>
+</tr>
+<tr>
+<td>Mac</td>
+<td>landing de Scenarys :5173, con los botones apuntando a choisys del PC</td>
+<td><code>http://&lt;IP-Tailscale-Mac&gt;:5173</code></td>
+</tr>
+<tr>
+<td>iPhone</td>
+<td>solo Safari</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Las IPs de Tailscale salen en la app de Tailscale (100.x.y.z) y las muestra <code>demo-tailscale.command</code> al arrancar.</p>
+<h2>Una vez</h2>
+<ol>
+<li><strong>PC</strong>, tras fusionar el PR de choisys "demo por Tailscale": cierra las ventanas de motor/API/web y ejecuta
+   <code>.\scripts\lan-always.ps1 -Install -Tailscale</code> y luego <code>.\scripts\lan-always.ps1 -Tailscale</code>.
+   Energía de Windows → suspensión <strong>Nunca</strong> con el PC enchufado.</li>
+<li><strong>Mac</strong>: <code>gh auth login</code> en Terminal y doble clic en <code>~/Desktop/scenarys/publicar-pendientes.command</code>
+   (sube la landing a <code>NeoRetroo38/scenarys</code>, privado, y abre el PR de choisys asignado a ti).</li>
+</ol>
+<h2>En cada demo</h2>
+<ol>
+<li>Tailscale activado en el iPhone y en el Mac.</li>
+<li>Mac: doble clic en <code>~/Desktop/scenarys/demo-tailscale.command</code>. Comprueba el PC, arranca la landing y
+   mantiene el Mac despierto mientras la ventana siga abierta.</li>
+<li>iPhone: Safari → <code>http://&lt;IP-Tailscale-Mac&gt;:5173</code> → "Abrir choisys" lleva a la web del PC.</li>
+</ol>
+<p>Si solo quieres enseñar choisys (sin landing), no hace falta el Mac: <code>http://&lt;IP-Tailscale-PC&gt;:8081</code>.</p>
+<h2>Si falla</h2>
+<ul>
+<li><em>El PC sale Offline en Tailscale</em>: está apagado o suspendido.</li>
+<li><em>El PC sale Connected pero no carga</em>: en el PC, firewall de Windows → permitir <code>node.exe</code> en redes privadas y públicas.</li>
+<li><em>La landing carga pero choisys no</em>: el PC sigue en modo Wi-Fi; repite el paso 1 del PC.</li>
+<li><em>Puerto 5173 ocupado</em>: cierra <code>arrancar-scenarys.command</code> (modo solo-Mac) antes.</li>
+</ul>
+<h2>No hacer</h2>
+<ul>
+<li>No usar <strong>Tailscale Funnel</strong> ni abrir puertos en el router.</li>
+<li>Para enseñarlo en el móvil de otra persona hay que compartirle los equipos desde la consola de Tailscale.</li>
+</ul>
+<h2>Estado (pendiente de ti)</h2>
+<ul>
+<li>Parche de choisys listo, sin publicar: Claude no tiene permiso de escritura en GitHub. Lo sube
+  <code>publicar-pendientes.command</code>. Copia aquí: <code>0001-feat-dev-serve-the-demo-over-Tailscale-for-Safari-an.patch</code>.</li>
+<li>Landing: 2 commits locales sin subir (<code>7fbb22a</code>, <code>0295c3f</code>); el mismo <code>.command</code> los sube.</li>
+<li>No verificado: arranque real en Windows con Tailscale (scripts probados en seco) y las dos demos de punta a punta.</li>
+</ul>
+<p>Guía técnica completa: <code>DEMO-TAILSCALE.md</code> (copia de <code>docs/DEMO-TAILSCALE.md</code> de choisys).</p><footer>scenarys · documentación pública · teléfono +34 633 693 369</footer></main></body></html>

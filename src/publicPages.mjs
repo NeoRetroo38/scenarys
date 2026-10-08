@@ -22,15 +22,15 @@ export const publicPages = [
     next: 'Mac: distribución pendiente. iPhone: disponible próximamente mediante un canal permitido por Apple.',
   },
   {
-    path: '/downloads', title: 'Descargas', eyebrow: 'Distribución verificable',
-    summary: 'Descargas reales, con versión, origen e integridad.',
+    path: '/downloads', title: 'Descargas', eyebrow: 'Al alcance de todos',
+    summary: 'Todo lo que se puede descargar de scenarys, con tamaño y huella SHA-256.',
     paragraphs: [
-      'Todavía no hay ejecutables públicos autorizados para descargar.',
-      'Cada artefacto publicado deberá indicar plataforma, arquitectura, tamaño, SHA-256, fecha, versión y commit de origen.',
-      'No ofrecemos archivos .app descargables para iPhone. Su distribución requiere un canal compatible con iOS.',
+      'choisys se usa en el navegador, sin instalar nada. La app de Android será la primera descarga instalable.',
+      'La documentación está en PDF, que se abre en cualquier móvil u ordenador, y en su formato original.',
+      'Cada archivo indica su tamaño y su SHA-256 para comprobar que es el que publicamos.',
     ],
-    next: 'Android va primero: la app se publicará aquí como APK con su SHA-256. Mientras, choisys se abre en el navegador.',
-    manifest: true,
+    next: 'No ofrecemos archivos para instalar a mano en iPhone: su distribución necesita un canal compatible con iOS.',
+    manifest: true, catalog: 'downloads',
   },
   {
     path: '/releases', title: 'Versiones', eyebrow: 'Historial público',
@@ -43,14 +43,15 @@ export const publicPages = [
     manifest: true,
   },
   {
-    path: '/docs', title: 'Documentación', eyebrow: 'Arquitectura pública',
-    summary: 'La geometría muestra datos. No decide lo que significan.',
+    path: '/docs', title: 'Documentación', eyebrow: 'Arquitectura y proyecto',
+    summary: 'Cómo está hecho scenarys, en documentos que puedes leer y descargar.',
     paragraphs: [
       'choisys: producto, cuentas, sesiones y contratos. Su API es la autoridad de acceso.',
       'neos-cube: motor C++ independiente. neo-cube-web: representación geométrica pública. Los contratos compartidos conectan la interfaz con la API.',
       'Daemon: coordinación y observación operativa. Los estados internos, credenciales, logs y datos de usuarios no forman parte de esta web.',
     ],
     next: 'Una visualización no convierte una duración ni una posición en una inferencia.',
+    catalog: 'docs',
     diagram: true,
   },
   {

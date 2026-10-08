@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>scenarys — board general</title>
+<style>
+:root{--bg:#f6f6f4;--fg:#111;--mut:#666;--line:#d9d9d4;--card:#fff;--ok:#1d5a12;--okb:#d8f5d0;--wb:#fdeacb;--w:#7a4a00;--rb:#fbd6d6;--r:#8a1f1f}
+@media(prefers-color-scheme:dark){:root{--bg:#121212;--fg:#eee;--mut:#9a9a9a;--line:#333;--card:#1b1b1b;--ok:#bdf0b2;--okb:#1e3b19;--wb:#43310f;--w:#f3cf8a;--rb:#4a1d1d;--r:#f4b0b0}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 -apple-system,system-ui,Segoe UI,sans-serif;padding:24px 16px 60px;max-width:1100px;margin-inline:auto}
+h1{font-size:28px;font-weight:300;letter-spacing:.02em}
+.lead{color:var(--mut);margin:4px 0 22px;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.card h2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:500;margin-bottom:10px}
+.card li{list-style:none;padding:6px 0;border-bottom:1px solid var(--line);font-size:15px}
+.card li:last-child{border:0}
+.t{display:inline-block;font-size:11px;border-radius:6px;padding:1px 8px;margin-right:6px;font-weight:500}
+.ok{background:var(--okb);color:var(--ok)}.wa{background:var(--wb);color:var(--w)}.re{background:var(--rb);color:var(--r)}
+a{color:inherit}
+.links a{display:block;padding:7px 0;border-bottom:1px solid var(--line);text-decoration:none;font-size:15px}
+.links a span{color:var(--mut);font-size:13px;float:right}
+.url{font-family:ui-monospace,Menlo,monospace;font-size:14px}
+</style></head><body>
+<h1>scenarys — board general</h1>
+<p class="lead">Foto del 8 oct 2026, 03:35. Se actualiza cuando se pida. Repos: NeoRetroo38/choisys, neos-cube y scenarys (landing, privado).</p>
+
+<div class="grid">
+<div class="card"><h2>Siguiente paso (tú)</h2><ul>
+<li><span class="t wa">Móvil</span>Fusionar PR #42: demo por Tailscale</li>
+<li><span class="t wa">PC</span>Cerrar motor/API/web y ejecutar <span class="url">.\scripts\lan-always.ps1 -Install -Tailscale</span></li>
+<li><span class="t wa">PC</span>Suspensión de Windows: Nunca con el PC enchufado</li>
+<li><span class="t wa">Mac</span>Para cada demo: doble clic en <span class="url">~/Desktop/scenarys/demo-tailscale.command</span></li></ul></div>
+
+<div class="card"><h2>Para ver la app</h2><ul>
+<li><b>Casa (Wi-Fi):</b> <span class="url">http://IP de la red local:8081</span></li>
+<li><b>Fuera (Tailscale, tras #42):</b> <span class="url">http://&lt;IP Tailscale PC&gt;:8081</span></li>
+<li><b>Landing:</b> <span class="url">http://&lt;IP Tailscale Mac&gt;:5173</span></li>
+<li>Guía: <a href="../demo-remota/README.md">demo-remota/README.md</a></li></ul></div>
+
+<div class="card"><h2>Operativo</h2><ul>
+<li><span class="t ok">OK</span>Bienvenida Scenarys → login (#36)</li>
+<li><span class="t ok">OK</span>Registro, login, logout, /auth/me</li>
+<li><span class="t ok">OK</span>Cuentas en Neon (según tablero; no verificado por Claude)</li>
+<li><span class="t ok">OK</span>Run de 3 fases, reintentos idempotentes (#22)</li>
+<li><span class="t ok">OK</span>Motor C++ en el PC, solo loopback y con token</li>
+<li><span class="t ok">OK</span>Cubo 3D con profundidad e inercia (#38)</li>
+<li><span class="t ok">OK</span>Tiempos entre fases en la API (UI aún no los muestra)</li>
+<li><span class="t ok">OK</span>Roles + primer SUPERDEV con auditoría (local)</li>
+<li><span class="t ok">OK</span>Límite de peticiones por usuario (#33)</li>
+<li><span class="t ok">OK</span>Entorno siempre encendido en Wi-Fi (#35)</li></ul></div>
+
+<div class="card"><h2>Hecho hoy</h2><ul>
+<li><span class="t ok">Subido</span>Landing a NeoRetroo38/scenarys (privado)</li>
+<li><span class="t ok">PR</span>#42 demo por Tailscale (API acepta IP 100.x, modo -Tailscale)</li>
+<li><span class="t ok">Mac</span>gh instalado y sesión iniciada; Tailscale en PC, Mac e iPhone</li>
+<li><span class="t ok">Mac</span>demo-tailscale.command y publicar-pendientes.command</li></ul></div>
+
+<div class="card"><h2>Falta</h2><ul>
+<li><span class="t re">P0</span>#8 CI/ESLint en verde: hoy no hay checks en los PR</li>
+<li><span class="t re">P0</span>#9 Despliegue de la API (Docker, TLS)</li>
+<li><span class="t wa">P1</span>#4 Endpoints de usuario (historial, exportar, borrar)</li>
+<li><span class="t wa">P1</span>#5 Endpoints de SUPERDEV</li>
+<li><span class="t wa">P1</span>#13 Legal RGPD · #10 TestFlight · #11 PWA</li>
+<li><span class="t wa">P2</span>#6 avisos React · #14 sonido y accesibilidad</li>
+<li><span class="t wa">Sin spec</span>Inferencia: no se implementa hasta aprobar la matemática</li></ul></div>
+
+<div class="card"><h2>Riesgos</h2><ul>
+<li><span class="t wa">Demo</span>La landing depende de que el Mac esté encendido; moverla al PC la haría más fiable</li>
+<li><span class="t wa">Red</span>No usar Tailscale Funnel ni abrir puertos del router</li>
+<li><span class="t wa">No verificado</span>Arranque real del modo Tailscale en Windows y firewall para node.exe</li></ul></div>
+
+<div class="card"><h2>Agentes</h2><ul>
+<li><b>Claude (esta sesión)</b>: Mac, Tailscale, PR #42, documentación en iCloud. Sin escritura directa en GitHub: publica vía el Mac</li>
+<li><b>Codex</b>: #8, #9–#11, #13, #14, puente de casa</li>
+<li><b>Claude principal</b>: #4/#5 y tablero #24</li>
+<li><b>Claude 2</b>: #6/#7 tras #8</li></ul></div>
+</div>
+
+<div class="card links" style="margin-top:14px"><h2>Boards y bocetos en esta carpeta</h2>
+<a href="board-ecosistema.html">Estado del ecosistema<span>oscuro</span></a>
+<a href="board-flujo-actual.html">Flujo actual de choisys<span>7 pasos</span></a>
+<a href="board-futuro-ui.html">Futuro de la interfaz<span>propuestas</span></a>
+<a href="board-motor.html">Cómo se conecta el motor<span>neo-cube</span></a>
+<a href="ui-sketches.html">Bocetos de pantallas<span>A–K</span></a>
+<a href="landing-y2k-3d.html">Landing Y2K en 3D<span>ejemplo</span></a>
+<a href="../demo-remota/README.md">Demo remota por Tailscale<span>guía</span></a>
+</div>
+</body></html>
