@@ -32,7 +32,7 @@ export function DecisionMatrix() {
         ))}
       </div>
       <figcaption className="font-mono text-[13px] text-ink-muted" aria-live="polite">
-        fase 1 · {selectedCount}/9 seleccionadas
+        demo visual · {selectedCount}/9 seleccionadas · no se guarda
       </figcaption>
     </figure>
   );

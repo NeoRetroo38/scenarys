@@ -11,11 +11,11 @@ const steps = [
   },
   {
     title: 'Ejecuciones',
-    body: 'Cada ejecución genera datos estructurados y trazables, asociados a tu cuenta y nunca sobrescritos.',
+    body: 'Un recorrido completo contiene tres elecciones. La API puede guardar sus observaciones asociadas a la cuenta.',
   },
   {
-    title: 'Matriz resultante',
-    body: 'Las ejecuciones se agregan en matrices de mayor nivel que dan forma a la representación final.',
+    title: 'Representación',
+    body: 'Los puntos y conexiones del cubo muestran fase, fila y columna. Una visualización no convierte esos datos en una inferencia.',
   },
 ];
 

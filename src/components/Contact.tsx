@@ -11,7 +11,7 @@ export function Contact() {
             Hablemos.
           </h2>
           <p className="mt-6 max-w-[560px] text-[clamp(18px,1.6vw,22px)] leading-normal text-ink-soft">
-            Inversión, alianzas, prensa o licencias de choisys. Escríbenos y te respondemos personalmente.
+            Colaboraciones, tecnología y proyectos. El contacto oficial se publicará aquí cuando esté confirmado.
           </p>
         </div>
         <div className="flex flex-col gap-3">
@@ -24,7 +24,7 @@ export function Contact() {
             </span>
           )}
           <PillLink href={CHOISYS_URL} variant="outline">
-            O prueba choisys ahora
+            Conocer choisys
           </PillLink>
         </div>
       </Container>

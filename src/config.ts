@@ -14,7 +14,7 @@ function readAbsoluteUrl(value: string | undefined): string | undefined {
   try {
     // En simulación se admiten rutas relativas (p. ej. choisys.html en la misma carpeta).
     const url = import.meta.env.MODE === 'simulation' ? new URL(raw, window.location.href) : new URL(raw);
-    return allowedProtocols.includes(url.protocol) ? url.href : undefined;
+    return allowedProtocols.includes(url.protocol) && !url.username && !url.password ? url.href : undefined;
   } catch {
     return undefined;
   }
