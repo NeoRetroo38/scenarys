@@ -2,9 +2,10 @@ import { CHOISYS_URL } from '../config';
 import { Container, PillLink } from './ui';
 
 const navLinks = [
-  { href: '#choisys', label: 'choisys' },
-  { href: '#estudio', label: 'Estudio' },
-  { href: '#contacto', label: 'Contacto' },
+  { href: '/#choisys', label: 'choisys' },
+  { href: '/daemon', label: 'Daemon' },
+  { href: '/downloads', label: 'Descargas' },
+  { href: '/docs', label: 'Docs' },
 ];
 
 export function Header() {
@@ -12,7 +13,7 @@ export function Header() {
     <header className="border-b border-line">
       <Container>
         <nav aria-label="Principal" className="flex flex-wrap items-center justify-between gap-4 py-5">
-          <a href="#inicio" className="text-[22px] tracking-[-0.03em] no-underline">
+          <a href="/#inicio" className="text-[22px] tracking-[-0.03em] no-underline">
             scenarys
           </a>
           <div className="flex flex-wrap items-center gap-x-7 gap-y-3 text-[15px]">
@@ -22,7 +23,7 @@ export function Header() {
               </a>
             ))}
             <PillLink href={CHOISYS_URL} className="!px-5 !py-3 text-[15px]">
-              Abrir choisys
+              Conocer choisys
             </PillLink>
           </div>
         </nav>

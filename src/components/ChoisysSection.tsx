@@ -14,12 +14,12 @@ export function ChoisysSection() {
             patrón.
           </p>
           <p className="mt-5 max-w-[520px] text-[17px] leading-relaxed text-ink-soft">
-            choisys convierte elecciones simples en datos estructurados. Las fases se completan pulsando o no
-            pulsando, sin texto ni distracciones, y cada ejecución queda registrada para construir representaciones
-            de mayor nivel.
+            choisys convierte elecciones simples en datos estructurados. En el producto, un toque elige una posición
+            por fase; la API puede conservar los recorridos completos cuando la persistencia está disponible.
+            La matriz de esta página es solo una demostración visual.
           </p>
           <PillLink href={CHOISYS_URL} arrow className="mt-10">
-            Entrar en choisys
+            Conocer choisys
           </PillLink>
         </div>
         <DecisionMatrix />

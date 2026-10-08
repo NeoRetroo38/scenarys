@@ -1,10 +1,9 @@
 import { Container } from './ui';
 
-// Los enlaces legales apuntan a anclas hasta que existan las páginas (aviso legal, privacidad, cookies).
 const legalLinks = [
-  { href: '#aviso-legal', label: 'Aviso legal' },
-  { href: '#privacidad', label: 'Privacidad' },
-  { href: '#cookies', label: 'Cookies' },
+  { href: '/status', label: 'Estado público' },
+  { href: '/releases', label: 'Versiones' },
+  { href: '/legal', label: 'Información del sitio' },
 ];
 
 export function Footer() {

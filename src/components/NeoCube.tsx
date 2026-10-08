@@ -4,8 +4,8 @@ import { Container, Eyebrow } from './ui';
 // Copy pública del Cubo de Neo. Describe su naturaleza (propietario, local, en C++)
 // sin revelar ninguna parte del modelo matemático ni de la inferencia.
 const facts = [
-  'Propiedad intelectual de Scenarys S.L.',
-  'El cálculo no se distribuye en el cliente.',
+  'Motor independiente, desarrollado en C++.',
+  'La interfaz solo representa datos públicos.',
   'La interfaz evoluciona sin tocar el modelo, y el modelo sin tocar la interfaz.',
 ];
 
@@ -23,8 +23,9 @@ export function NeoCube() {
             El Cubo de Neo
           </h2>
           <p className="mt-7 max-w-[620px] text-[clamp(18px,1.6vw,22px)] leading-normal text-line">
-            El motor detrás de choisys. Un sistema matemático y de inferencia propietario, desarrollado por Scenarys y
-            ejecutado de forma local en C++.
+            El motor detrás de choisys, desarrollado en C++ y ejecutado localmente.
+            Representa recorridos de tres fases. La geometría muestra observaciones:
+            no atribuye significado psicológico ni ofrece inferencias.
           </p>
         </div>
         <div className="flex max-w-[440px] flex-[1_1_320px] flex-col gap-8">
