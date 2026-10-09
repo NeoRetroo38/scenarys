@@ -4,6 +4,7 @@ export const DOC_GROUPS = {"scenarys": "scenarys", "choisys": "choisys", "cubo":
 
 export const documents = [
   { group: "scenarys", slug: "lanzamiento", title: "Lanzamiento", description: "Qué hay en la web, cómo se publica y qué falta.", files: ["lanzamiento.pdf", "lanzamiento.html"] },
+  { group: "scenarys", slug: "rutas", title: "Una dirección para todo", description: "scenarys en la raíz y cada app en su ruta, como /choisys.", files: ["rutas.md"] },
   { group: "scenarys", slug: "ecosistema", title: "Estado del ecosistema", description: "Cómo encajan scenarys, choisys, el Cubo de Neo y Daemon.", files: ["ecosistema.pdf", "ecosistema.html"] },
   { group: "scenarys", slug: "tablero", title: "Tablero general", description: "Qué está hecho, qué falta y quién lo lleva.", files: ["tablero.pdf", "tablero.html"] },
   { group: "scenarys", slug: "boceto-web", title: "Boceto de la web", description: "La web de scenarys sección a sección, en escritorio y móvil.", files: ["boceto-web.pdf", "boceto-web.html"] },
