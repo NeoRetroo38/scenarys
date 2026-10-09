@@ -1,9 +1,24 @@
 {
   "schemaVersion": 1,
   "site": "https://neowebdevsolutions.com",
-  "sourceCommit": "9c08b5e214c40d184ae007494e1a4f82d750ab7d",
+  "sourceCommit": "6d708ee06ae3808d247812cb62538ff7b2b9ea2a",
   "artifacts": [],
   "documents": [
+    {
+      "path": "/docs/files/avances-backend.html",
+      "size": 7444,
+      "sha256": "3f7a12378eaa4cbd80c8c4f6373306d62cb3b4b331a218c7f69271e06a42ba61"
+    },
+    {
+      "path": "/docs/files/avances-backend.pdf",
+      "size": 83149,
+      "sha256": "277931ac3fab453353859c054579418283efaa6cc9ae9f020e3fdcb9bca9d361"
+    },
+    {
+      "path": "/docs/files/avances-backend.pptx",
+      "size": 174118,
+      "sha256": "f9d3a799da06ee839150ef537a7278024a1799d2db481831716d85588143ddca"
+    },
     {
       "path": "/docs/files/boceto-web.html",
       "size": 10738,
@@ -115,6 +130,21 @@
       "sha256": "4137b7a63b4074325f705bc5602a7aa1bb7cfa94136324ef58672aa191edef7b"
     },
     {
+      "path": "/docs/files/informe-ejecutivo.html",
+      "size": 26252,
+      "sha256": "581b44035955e31edc7e56181e0d778852e49714ee065d16856a886634fbc9eb"
+    },
+    {
+      "path": "/docs/files/informe-ejecutivo.pdf",
+      "size": 144074,
+      "sha256": "05fedf14608e96ee4fa10752865ddb8f65439d08c78f4c03b268e4e2f6de088c"
+    },
+    {
+      "path": "/docs/files/instalacion.md",
+      "size": 2904,
+      "sha256": "605df91b5b335358ae03cbca3eef9df98b00e60e2cf043f304cb330128c1b5d0"
+    },
+    {
       "path": "/docs/files/landing-y2k.html",
       "size": 10655,
       "sha256": "37acf489ed0bca9640a11cc3bf05d87fb63aa14884f95291e193c8c251d954be"
@@ -148,6 +178,11 @@
       "path": "/docs/files/presentacion-demo.pptx",
       "size": 35059,
       "sha256": "985035d4e67577bd236ae1135020d85fde50e6433fe4d2e138a79fbaf719d71c"
+    },
+    {
+      "path": "/docs/files/roles.md",
+      "size": 6927,
+      "sha256": "44916bd3a9504961935f62099d995bfeb11ad5dc461b89f740cdaac930c3ec2e"
     },
     {
       "path": "/docs/files/tablero.html",
