@@ -24,7 +24,7 @@ Copia `.env.example` a `.env` y rellena las variables:
 
 | Variable | Uso | Por defecto |
 | --- | --- | --- |
-| `VITE_CHOISYS_URL` | Destino de «Abrir choisys» | `/choisys`, donde se publica la app web |
+| `VITE_CHOISYS_URL` | Destino de «Abrir choisys» si se prueba contra otra copia (URL absoluta) | la ruta de choisys en `src/apps.mjs` |
 
 Son valores públicos que se incrustan en el build. No pongas secretos en variables `VITE_*`.
 
@@ -32,7 +32,8 @@ Son valores públicos que se incrustan en el build. No pongas secretos en variab
 
 ```text
 src/
-  config.ts              URL de choisys (del entorno) y teléfono de contacto
+  apps.mjs               registro de apps y su ruta en el dominio
+  config.ts              enlace a choisys (ruta del registro) y teléfono de contacto
   components/
     Header.tsx           navegación y acceso a choisys
     Hero.tsx             presentación de Scenarys
@@ -54,10 +55,18 @@ visual local, no un Run guardado.
 
 ## Publicación
 
-Dominio canónico: `https://neowebdevsolutions.com`.
-Rutas: `/daemon`, `/downloads`, `/releases`, `/docs`, `/status` y `/legal`. `/choisys` es la app web de choisys
-(export de Expo con `EXPO_BASE_URL=/choisys`), que `scripts/deploy-pages.mjs` publica junto a esta web.
-Los archivos de cada ruta se generan durante `build:public`.
+Dominio canónico: `https://neowebdevsolutions.com`. scenarys es siempre la landing en la raíz y cada app
+se sirve en una ruta del dominio ([decisión 0001](docs/decisions/0001-scenarys-en-la-raiz-apps-en-rutas.md)).
+
+- **Apps:** las define `src/apps.mjs`, la única fuente de rutas. Hoy: `/choisys` (export de Expo con `EXPO_BASE_URL=/choisys`).
+- **Páginas de la landing:** `/daemon`, `/downloads`, `/releases`, `/docs`, `/status` y `/legal`. Sus archivos se generan durante `build:public`.
+- **Choques:** `npm test` falla si una página o carpeta de la landing coincide con la ruta de una app.
+
+```bash
+# prepara dist/ con la landing y cada app en su ruta; --push lo sube a gh-pages
+CHOISYS_API_URL=https://… node scripts/deploy-pages.mjs choisys=../choisys [--push]
+```
+
 También se generan `robots.txt`, una página 404 sin JavaScript y `_headers` con la
 política de recursos, permisos mínimos y protección frente a incrustación.
 `_headers` es la configuración de [Cloudflare Pages/Assets](https://developers.cloudflare.com/pages/configuration/headers/);
@@ -69,8 +78,8 @@ El build rechaza mapas de fuentes y marcadores privados también en archivos de 
 El manifiesto `/releases/manifest.json` identifica el commit de la web; `artifacts: []`
 declara que aún no hay ejecutables públicos autorizados. No anuncia un release.
 
-No incrustar direcciones privadas. La única excepción es el host público de la API de choisys,
-que el despliegue declara con `CHOISYS_API_URL`.
+No incrustar direcciones privadas. La única excepción es el host público de la API de cada app, que el despliegue
+declara con su variable (`CHOISYS_API_URL` para choisys) y que solo se admite dentro de la ruta de esa app.
 El chequeo de marcadores del build es una barrera adicional, no una auditoría completa
 de secretos. La publicación debe partir de un commit fusionado y limpio.
 El hosting y el DNS se comprueban por separado: compilar no significa estar online.
