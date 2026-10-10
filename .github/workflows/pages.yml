@@ -1,0 +1,48 @@
+# Publica la landing y choisys en GitHub Pages al fusionar en main de cualquiera de los dos repos.
+# choisys no puede avisar a este repo sin un token entre repos, así que se mira cada 10 min;
+# si ni scenarys ni choisys cambiaron desde el último despliegue, no hace nada.
+name: Publicar en Pages
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: NeoRetroo38/choisys
+          path: choisys-src
+      - name: ¿Hay algo nuevo?
+        id: changed
+        run: |
+          git fetch -q origin gh-pages
+          last="$(git log -1 --format=%s origin/gh-pages)"
+          now="deploy: scenarys $(git rev-parse --short HEAD) + choisys $(git -C choisys-src rev-parse --short HEAD)"
+          echo "último: $last"; echo "ahora:  $now"
+          if [ "$last" = "$now" ] && [ "${{ github.event_name }}" = schedule ]; then echo "skip=true" >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/setup-node@v4
+        if: steps.changed.outputs.skip != 'true'
+        with:
+          node-version: 24
+      - name: Publicar
+        if: steps.changed.outputs.skip != 'true'
+        env:
+          CHOISYS_API_URL: ${{ vars.CHOISYS_API_URL }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          (cd choisys-src && npm ci --no-audit --no-fund --loglevel=error)
+          npm ci --no-audit --no-fund --loglevel=error
+          node scripts/deploy-pages.mjs choisys=choisys-src --push
