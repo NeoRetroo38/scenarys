@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "site": "https://neowebdevsolutions.com",
-  "sourceCommit": "6d708ee06ae3808d247812cb62538ff7b2b9ea2a",
+  "sourceCommit": "b3f82cf5fff0e2acaef2fac4c0539a6b8f973bce",
   "artifacts": [],
   "documents": [
     {
@@ -183,6 +183,11 @@
       "path": "/docs/files/roles.md",
       "size": 6927,
       "sha256": "44916bd3a9504961935f62099d995bfeb11ad5dc461b89f740cdaac930c3ec2e"
+    },
+    {
+      "path": "/docs/files/rutas.md",
+      "size": 1058,
+      "sha256": "d1d3f86fe0e51c5cb664c0ab315bb33275573bc948683b76c3b15e9f2a35ad4b"
     },
     {
       "path": "/docs/files/tablero.html",
