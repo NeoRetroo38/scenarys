@@ -17,19 +17,22 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      # Carpetas hermanas: la build pública exige que el árbol de scenarys esté limpio.
       - uses: actions/checkout@v4
         with:
+          path: scenarys
           fetch-depth: 0
       - uses: actions/checkout@v4
         with:
           repository: NeoRetroo38/choisys
-          path: choisys-src
+          path: choisys
       - name: ¿Hay algo nuevo?
         id: changed
+        working-directory: scenarys
         run: |
           git fetch -q origin gh-pages
           last="$(git log -1 --format=%s origin/gh-pages)"
-          now="deploy: scenarys $(git rev-parse --short HEAD) + choisys $(git -C choisys-src rev-parse --short HEAD)"
+          now="deploy: scenarys $(git rev-parse --short HEAD) + choisys $(git -C ../choisys rev-parse --short HEAD)"
           echo "último: $last"; echo "ahora:  $now"
           if [ "$last" = "$now" ] && [ "${{ github.event_name }}" = schedule ]; then echo "skip=true" >> "$GITHUB_OUTPUT"; fi
       - uses: actions/setup-node@v4
@@ -38,11 +41,12 @@ jobs:
           node-version: 24
       - name: Publicar
         if: steps.changed.outputs.skip != 'true'
+        working-directory: scenarys
         env:
           CHOISYS_API_URL: ${{ vars.CHOISYS_API_URL }}
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          (cd choisys-src && npm ci --no-audit --no-fund --loglevel=error)
+          (cd ../choisys && npm ci --no-audit --no-fund --loglevel=error)
           npm ci --no-audit --no-fund --loglevel=error
-          node scripts/deploy-pages.mjs choisys=choisys-src --push
+          node scripts/deploy-pages.mjs choisys=../choisys --push
