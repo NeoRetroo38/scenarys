@@ -6,6 +6,7 @@ const navLinks = [
   { href: '/daemon', label: 'Daemon' },
   { href: '/downloads', label: 'Descargas' },
   { href: '/docs', label: 'Docs' },
+  { href: '/#escritos', label: 'Escritos' },
 ];
 
 export function Header() {

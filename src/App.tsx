@@ -1,5 +1,6 @@
 import { ChoisysSection } from './components/ChoisysSection';
 import { Contact } from './components/Contact';
+import { Escritos } from './components/Escritos';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -26,6 +27,7 @@ export function App() {
         <HowItWorks />
         <NeoCube />
         <Studio />
+        <Escritos />
         <Contact />
         </> : <PublicPage page={page} />}
       </main>
