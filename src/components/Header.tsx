@@ -3,6 +3,7 @@ import { Container, PillLink } from './ui';
 
 const navLinks = [
   { href: '/#choisys', label: 'choisys' },
+  { href: '/#precios', label: 'Precios' },
   { href: '/#noticias', label: 'Noticias' },
   { href: '/daemon', label: 'Daemon' },
   { href: '/downloads', label: 'Descargas' },
