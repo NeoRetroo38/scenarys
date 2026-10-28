@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export type Media =
   | { type: 'image'; src: string; alt: string }
@@ -16,13 +16,24 @@ function useReducedMotion() {
   return reduce;
 }
 
-/** Miniatura de una obra: portada fija o un bucle corto y mudo del tráiler (sin autoplay si se pide menos movimiento). */
+/** Miniatura de una obra: portada fija o bucle mudo del tráiler que se reproduce al pasar el ratón
+ *  (o al verse en pantalla en móviles). Con «reducir movimiento» se queda en el póster. */
 export function WorkThumb({ media, className = '' }: { media: Media; className?: string }) {
   const reduce = useReducedMotion();
+  const video = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const el = video.current;
+    if (!el || reduce || window.matchMedia('(hover: hover)').matches) return;
+    const io = new IntersectionObserver(([entry]) => { if (entry.intersectionRatio > 0.6) void el.play().catch(() => {}); else el.pause(); }, { threshold: [0, 0.6, 1] });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [reduce]);
   const base = `block w-full bg-ink object-cover ${className}`;
   if (media.type === 'image') return <img src={media.src} alt={media.alt} loading="lazy" className={base} />;
+  const hover = (on: boolean) => { const el = video.current; if (!el || reduce) return; if (on) void el.play().catch(() => {}); else el.pause(); };
   return (
-    <video className={base} poster={media.poster} muted playsInline loop autoPlay={!reduce} preload="none" aria-label={media.alt}>
+    <video ref={video} className={base} poster={media.poster} muted playsInline loop preload="none" aria-label={media.alt}
+      onMouseEnter={() => hover(true)} onMouseLeave={() => hover(false)}>
       <source src={media.loop ?? media.src} type="video/mp4" />
     </video>
   );
