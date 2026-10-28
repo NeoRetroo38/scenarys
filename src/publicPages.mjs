@@ -15,10 +15,12 @@ export const publicPages = [
     path: '/el-chaman', title: 'El chamán', eyebrow: 'Escritos · Libro · Borrador',
     summary: 'Un thriller negro con fondo filosófico, escrito por Neo.', tone: 'dark',
     quote: '«Los sistemas están rotos, solo las mentes nos curarán.»',
+    media: { type: 'image', src: '/media/el-chaman-portada.webp', alt: 'Portada de El chamán: cristal roto y el título en rojo' },
     paragraphs: [
-      'Madrid, una ciudad lúgubre en la que ya nada funciona. Un asesino que firma sus crímenes como si fueran obras y un analista convencido de ser más rápido que él.',
-      'El chamán es el libro que antes se titulaba Los límites: una historia de detectives que también se pregunta por la voluntad, los límites y la mente.',
-      'Es un borrador. El texto puede cambiar antes de su versión definitiva.',
+      'Madrid, una ciudad lúgubre en la que ya nada funciona. Alguien está matando a artistas —un escritor de filosofía, un pintor— y convierte cada escena en una «ilustración» hecha con lo que queda de ellos, con cartas escondidas dentro de pájaros.',
+      'Lucio, un analista al que la policía llama cuando un caso no tiene sentido, empieza a leer al asesino como se lee una obra: le pone nombre, Entrañable, y entra en su juego antes de que llegue el siguiente, quizá un músico.',
+      'Es una novela negra con velocidad, pistas y una pregunta de fondo: quién marca los límites de la voluntad. Escrita en primera persona, con un prólogo que habla con quien lee y un final entre lo kantiano y lo nihilista.',
+      'Antes se titulaba Los límites. Es un borrador: el texto puede cambiar antes de su versión definitiva.',
     ],
     next: 'neo. Sal del cubo.',
     actions: [{ href: '/docs/files/el-chaman-borrador.pdf', label: 'Leer el borrador (PDF)' }],
@@ -26,9 +28,10 @@ export const publicPages = [
   {
     path: '/fight-cube', title: 'Fight Cube', eyebrow: 'Cine · Corto · Próximamente',
     summary: 'El primer corto de Scenarys.', tone: 'dark',
+    media: { type: 'video', src: '/media/fight-cube-trailer.mp4', poster: '/media/fight-cube-poster.jpg', loop: '/media/fight-cube-loop.mp4', alt: 'Tráiler de Fight Cube' },
     paragraphs: [
-      'Fight Cube es un cortometraje de Scenarys que se estrenará dentro de poco.',
-      'El tráiler ya está disponible en Instagram.',
+      'Un hombre a solas, de noche, en una habitación iluminada solo por la luz violeta de una pantalla. Piensa, duda y se levanta. El tráiler termina en una mirada.',
+      'Fight Cube es el primer cortometraje de Scenarys y se estrenará dentro de poco. El tráiler también está en Instagram.',
     ],
     next: 'Corto: próximamente.',
     actions: [{ href: 'https://www.instagram.com/reel/DfBkg5PoASM/', label: 'Ver el tráiler' }],
