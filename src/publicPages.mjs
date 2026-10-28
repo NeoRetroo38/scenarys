@@ -44,8 +44,13 @@ export const publicPages = [
       'La documentación está en PDF, que se abre en cualquier móvil u ordenador, y en su formato original.',
       'Cada archivo indica su tamaño y su SHA-256 para comprobar que es el que publicamos.',
     ],
-    next: 'No ofrecemos archivos para instalar a mano en iPhone: su distribución necesita un canal compatible con iOS.',
+    next: 'choisys 0.1.0 solo funciona por ahora en los dispositivos de la red privada de Scenarys. El APK usa una clave de prueba: al llegar la definitiva habrá que desinstalarlo una vez. iPhone: aún no hay archivo instalable.',
     manifest: true, catalog: 'downloads',
+    actions: [
+      { href: 'https://github.com/NeoRetroo38/choisys/releases/download/v0.1.0/choisys-android.apk', label: 'choisys para Android (APK)' },
+      { href: 'https://github.com/NeoRetroo38/choisys/releases/download/v0.1.0/choisys-windows-setup.exe', label: 'choisys para Windows' },
+      { href: 'https://github.com/NeoRetroo38/choisys/releases/download/v0.1.0/SHA256SUMS.txt', label: 'Huellas SHA-256' },
+    ],
   },
   {
     path: '/releases', title: 'Versiones', eyebrow: 'Historial público',
