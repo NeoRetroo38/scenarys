@@ -41,6 +41,7 @@
   outline-offset: 5px;
 }
 
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 /* Demo de choisys: los círculos aparecen con pop y el recorrido se dibuja. */
 @keyframes pop { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 @keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }

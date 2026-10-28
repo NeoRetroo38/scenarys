@@ -8,6 +8,7 @@ import { NeoCube } from './components/NeoCube';
 import { Studio } from './components/Studio';
 import { News } from './components/News';
 import { Plans } from './components/Plans';
+import { Marquee } from './components/Marquee';
 import { PublicPage } from './components/PublicPage';
 import { findPublicPage } from './publicPages.mjs';
 import { useEffect } from 'react';
@@ -28,6 +29,7 @@ export function App() {
         <HowItWorks />
         <NeoCube />
         <Plans />
+        <Marquee />
         <Studio />
         <News />
         <Contact />
