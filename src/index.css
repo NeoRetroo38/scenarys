@@ -40,3 +40,8 @@
   outline: 2px solid var(--color-signal);
   outline-offset: 5px;
 }
+
+/* Demo de choisys: los círculos aparecen con pop y el recorrido se dibuja. */
+@keyframes pop { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { * { animation-duration: 1ms !important; } }
