@@ -1,17 +1,17 @@
 import { Container, Eyebrow } from './ui';
 
-type Item = { tag: string; date: string; title: string; body: string; status: string; href?: string };
+type Item = { tag: string; date: string; title: string; body: string; status: string; href?: string; link?: string };
 
 const news: Item[] = [
   {
     tag: 'Cine · Corto', date: 'Oct 2026', title: 'Fight Cube — tráiler',
     body: 'Primer tráiler del corto Fight Cube, el primer corto de Scenarys. El corto llegará dentro de poco.',
-    status: 'Próximamente',
+    status: 'Próximamente', href: '/fight-cube', link: 'Ver el corto',
   },
   {
-    tag: 'Escritos · Libro', date: 'Oct 2026', title: 'El chán — borrador',
-    body: 'El libro antes titulado «Los límites» pasa a llamarse El chán. El borrador sigue en marcha; el primer capítulo ya se puede leer.',
-    status: 'En escritura', href: '/docs',
+    tag: 'Escritos · Libro', date: 'Oct 2026', title: 'El chamán — borrador',
+    body: 'El libro antes titulado «Los límites» pasa a llamarse El chamán. El borrador sigue en marcha y ya se puede leer.',
+    status: 'En escritura', href: '/el-chaman', link: 'Leer el borrador',
   },
 ];
 
@@ -37,7 +37,7 @@ export function News() {
                   <span aria-hidden="true" className="size-2 rounded-full bg-signal-deep" />
                   {n.status}
                 </span>
-                {n.href && <a href={n.href} className="underline underline-offset-4 hover:text-ink-muted">Leer capítulo 1</a>}
+                {n.href && <a href={n.href} className="underline underline-offset-4 hover:text-ink-muted">{n.link}</a>}
               </div>
             </li>
           ))}
