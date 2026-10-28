@@ -3,6 +3,20 @@
 Investigación del 28 oct 2026. Fechas y cuantías cambian: comprobar en BOE/CDTI antes de actuar.
 No es asesoría legal ni fiscal; para la solicitud de ayudas conviene un asesor.
 
+## 0. Punto de partida (28 oct 2026)
+
+**Scenarys S.L. aún no está constituida** y el capital disponible es inferior a 3.000 €. Consecuencias:
+
+- **Hoy no se puede pedir NEOTEC ni ENISA**: ambas exigen una sociedad ya constituida.
+- **NEOTEC 2027**: exige más de 6 meses de antigüedad al cierre de la convocatoria. Si cierra a mediados
+  de mayo como la de 2026, hay que **constituir antes de mediados de noviembre de 2026**. Además pide
+  **capital social mínimo de 20.000 €** (comprobar en las bases de 2027 si admite aportaciones no
+  dinerarias, por ejemplo la propiedad intelectual del Cubo valorada).
+- **ENISA Jóvenes Emprendedores**: posible tras constituir; los socios deben aportar al menos el 50 %
+  del préstamo en fondos propios (con 3.000 € de capital, el préstamo rondaría 6.000 €: poco útil al inicio).
+- **Cobrar antes de constituir**: hay que hacerlo como autónomo (alta en Hacienda y RETA), y entonces
+  Verifactu aplica con la fecha de los autónomos (1 jul 2027 en el BOE). Las tablas siguientes asumen la S.L.
+
 ## 1. Qué obliga a Scenarys S.L. (y cuándo)
 
 | Norma | Qué exige | Fecha para Scenarys |
@@ -51,7 +65,8 @@ en ayudas de digitalización/innovación.
 4. **ENISA Jóvenes Emprendedores**: revisar fondos propios y fecha de constitución.
 5. Calendario: Innova-Adelante (verano 2027), NEOTEC (abril 2027).
 
-Pendiente de Neo: fecha de constitución de Scenarys S.L. y capital social (determinan NEOTEC y ENISA).
+Decisión pendiente de Neo: **constituir la S.L. antes de mediados de noviembre de 2026** (para NEOTEC 2027)
+y cómo llegar a 20.000 € de capital, o esperar y apuntar a Innova-Adelante y deducciones más adelante.
 
 ## Fuentes
 
