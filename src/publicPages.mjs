@@ -28,9 +28,10 @@ export const publicPages = [
     summary: 'El primer corto de Scenarys.',
     paragraphs: [
       'Fight Cube es un cortometraje de Scenarys que se estrenará dentro de poco.',
-      'El tráiler será la primera pieza que se publique del corto.',
+      'El tráiler ya está disponible en Instagram.',
     ],
-    next: 'Tráiler: pendiente de publicación.',
+    next: 'Corto: próximamente.',
+    actions: [{ href: 'https://www.instagram.com/reel/DfBkg5PoASM/', label: 'Ver el tráiler' }],
   },
   {
     path: '/downloads', title: 'Descargas', eyebrow: 'Al alcance de todos',

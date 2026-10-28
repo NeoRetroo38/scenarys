@@ -5,8 +5,8 @@ type Item = { tag: string; date: string; title: string; body: string; status: st
 const news: Item[] = [
   {
     tag: 'Cine · Corto', date: 'Oct 2026', title: 'Fight Cube — tráiler',
-    body: 'Primer tráiler del corto Fight Cube, el primer corto de Scenarys. El corto llegará dentro de poco.',
-    status: 'Próximamente', href: '/fight-cube', link: 'Ver el corto',
+    body: 'Ya está aquí el tráiler de Fight Cube, el primer corto de Scenarys. El corto llegará dentro de poco.',
+    status: 'Tráiler disponible', href: '/fight-cube', link: 'Ver el tráiler',
   },
   {
     tag: 'Escritos · Libro', date: 'Oct 2026', title: 'El chamán — borrador',
