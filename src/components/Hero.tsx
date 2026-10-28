@@ -7,8 +7,8 @@ export function Hero() {
     <section id="inicio">
       <Container className="pt-[clamp(72px,12vw,160px)] pb-[clamp(64px,10vw,128px)]">
         <Eyebrow>Scenarys S.L. — Estudio de tecnología</Eyebrow>
-        <div className="flex flex-wrap items-center justify-between gap-10">
-          <h1 className="max-w-[980px] text-[clamp(44px,8vw,112px)] leading-[0.98] font-normal tracking-[-0.045em]">
+        <div className="flex items-center justify-between gap-10">
+          <h1 className="min-w-0 max-w-[900px] text-[clamp(44px,7.4vw,104px)] leading-[0.98] font-normal tracking-[-0.045em]">
             Construimos sistemas para pensar, decidir y crear.
           </h1>
           <CubeMark size={220} className="hidden lg:block" />
