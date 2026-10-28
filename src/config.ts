@@ -26,3 +26,6 @@ export const CHOISYS_URL = readAbsoluteUrl(import.meta.env.VITE_CHOISYS_URL) ?? 
 
 /** Único canal público de contacto por ahora: el teléfono de empresa (decisión del dueño, 8 oct). Se copia, no se llama. */
 export const CONTACT_PHONE = { value: '+34633693369', label: '+34 633 693 369' } as const;
+
+/** Enlaces de pago de Stripe del plan Pro (tarjeta, Apple Pay y Google Pay). Vacíos = aún no hay cuenta de Stripe. */
+export const STRIPE_PRO_LINKS = { monthly: '', once: '' } as const;
