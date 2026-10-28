@@ -1,4 +1,5 @@
 import { DocumentList, DownloadList } from './DocumentList';
+import { CubeMark } from './CubeMark';
 import { Container, Eyebrow, PillLink } from './ui';
 import type { PublicPageData } from '../publicPages.mjs';
 
@@ -8,6 +9,7 @@ export function PublicPage({ page }: { page: PublicPageData | undefined }) {
     <div className={dark ? 'bg-ink text-white' : ''}>
     <Container className="min-h-[70vh] py-[clamp(64px,10vw,128px)]">
       <Eyebrow tone={dark ? 'inverse' : 'muted'}>{page?.eyebrow ?? '404 · Ruta no disponible'}</Eyebrow>
+      {dark && <CubeMark size={260} dark yaw={page?.path === '/fight-cube' ? 1.1 : -0.4} className="float-right ml-8 hidden lg:block" />}
       <h1 className="max-w-[960px] text-[clamp(44px,7vw,96px)] leading-none tracking-[-0.045em]">
         {page?.title ?? 'Página no encontrada'}
       </h1>

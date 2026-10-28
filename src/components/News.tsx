@@ -1,17 +1,18 @@
+import { CubeMark } from './CubeMark';
 import { Container, Eyebrow } from './ui';
 
-type Item = { tag: string; date: string; title: string; body: string; status: string; href?: string; link?: string };
+type Item = { tag: string; date: string; title: string; body: string; status: string; href?: string; link?: string; yaw: number };
 
 const news: Item[] = [
   {
     tag: 'Cine · Corto', date: 'Oct 2026', title: 'Fight Cube — tráiler',
     body: 'Ya está aquí el tráiler de Fight Cube, el primer corto de Scenarys. El corto llegará dentro de poco.',
-    status: 'Tráiler disponible', href: '/fight-cube', link: 'Ver el tráiler',
+    status: 'Tráiler disponible', href: '/fight-cube', link: 'Ver el tráiler', yaw: 1.1,
   },
   {
     tag: 'Escritos · Libro', date: 'Oct 2026', title: 'El chamán — borrador',
     body: 'El libro antes titulado «Los límites» pasa a llamarse El chamán. El borrador sigue en marcha y ya se puede leer.',
-    status: 'En escritura', href: '/el-chaman', link: 'Leer el borrador',
+    status: 'En escritura', href: '/el-chaman', link: 'Leer el borrador', yaw: -0.4,
   },
 ];
 
@@ -30,7 +31,10 @@ export function News() {
                 <span>{n.tag}</span>
                 <span>{n.date}</span>
               </div>
-              <h3 className="mt-5 text-[clamp(24px,2.6vw,32px)] font-normal tracking-[-0.025em]">{n.title}</h3>
+              <div className="mt-5 flex items-center justify-between gap-4">
+                <h3 className="text-[clamp(24px,2.6vw,32px)] font-normal tracking-[-0.025em]">{n.title}</h3>
+                <CubeMark size={64} yaw={n.yaw} />
+              </div>
               <p className="mt-3 flex-1 text-[16px] leading-relaxed text-ink-soft">{n.body}</p>
               <div className="mt-6 flex items-center justify-between gap-3 text-sm">
                 <span className="inline-flex items-center gap-2">
