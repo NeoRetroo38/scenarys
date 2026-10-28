@@ -1,4 +1,5 @@
 import { findPublicPage } from '../publicPages.mjs';
+import { useRef } from 'react';
 import { WorkThumb } from './WorkMedia';
 import { Container, Eyebrow } from './ui';
 
@@ -18,6 +19,8 @@ const news: Item[] = [
 ];
 
 export function News() {
+  const rail = useRef<HTMLUListElement>(null);
+  const move = (dir: number) => rail.current?.scrollBy({ left: dir * Math.min(600, window.innerWidth * 0.86), behavior: 'smooth' });
   return (
     <section id="noticias" aria-labelledby="noticias-h" className="border-b border-line">
       <Container className="py-[clamp(72px,10vw,140px)]">
@@ -25,9 +28,13 @@ export function News() {
         <h2 id="noticias-h" className="mb-[clamp(40px,6vw,72px)] text-[clamp(32px,4vw,52px)] leading-[1.05] font-normal tracking-[-0.035em]">
           Lo último del estudio.
         </h2>
-        <ul className="grid list-none gap-4 p-0 md:grid-cols-2">
+        <div className="-mt-12 mb-6 flex justify-end gap-2">
+          {[-1, 1].map(dir => <button key={dir} type="button" onClick={() => move(dir)} aria-label={dir < 0 ? 'Anterior' : 'Siguiente'}
+            className="size-11 cursor-pointer rounded-full border border-ink bg-transparent text-lg hover:bg-ink hover:text-white">{dir < 0 ? '←' : '→'}</button>)}
+        </div>
+        <ul ref={rail} className="-mx-6 flex list-none snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {news.map((n) => (
-            <li key={n.title} className="flex flex-col overflow-hidden rounded-lg border border-line">
+            <li key={n.title} className="flex w-[min(86vw,580px)] shrink-0 snap-start flex-col overflow-hidden rounded-lg border border-line transition-transform duration-300 hover:-translate-y-1">
               {(() => { const m = n.href ? findPublicPage(n.href)?.media : undefined; return m && <a href={n.href} tabIndex={-1} aria-hidden="true"><WorkThumb media={m} className="aspect-[16/9]" /></a>; })()}
               <div className="flex flex-1 flex-col p-7">
               <div className="flex justify-between gap-3 font-mono text-[12px] uppercase tracking-[0.12em] text-ink-muted">
