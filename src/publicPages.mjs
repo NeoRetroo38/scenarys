@@ -12,6 +12,27 @@ export const publicPages = [
     next: 'Mac: distribución pendiente. iPhone: disponible próximamente mediante un canal permitido por Apple.',
   },
   {
+    path: '/el-chaman', title: 'El chamán', eyebrow: 'Escritos · Libro · Borrador',
+    summary: 'Un libro de Neo, escrito en minúsculas y en primera persona.',
+    quote: '«Los sistemas están rotos, solo las mentes nos curarán.»',
+    paragraphs: [
+      'Madrid, una ciudad lúgubre en la que ya nada funciona. Suenan las sirenas, la pantalla sigue encendida y todo parece lo habitual, pero algo anda mal.',
+      'El chamán es el libro que antes se titulaba Los límites: un texto filosófico e introspectivo que va del prólogo a un final entre lo kantiano y lo nihilista.',
+      'Es un borrador. El texto puede cambiar antes de su versión definitiva.',
+    ],
+    next: 'neo. Sal del cubo.',
+    actions: [{ href: '/docs/files/el-chaman-borrador.pdf', label: 'Leer el borrador (PDF)' }],
+  },
+  {
+    path: '/fight-cube', title: 'Fight Cube', eyebrow: 'Cine · Corto · Próximamente',
+    summary: 'El primer corto de Scenarys.',
+    paragraphs: [
+      'Fight Cube es un cortometraje de Scenarys que se estrenará dentro de poco.',
+      'El tráiler será la primera pieza que se publique del corto.',
+    ],
+    next: 'Tráiler: pendiente de publicación.',
+  },
+  {
     path: '/downloads', title: 'Descargas', eyebrow: 'Al alcance de todos',
     summary: 'Todo lo que se puede descargar de scenarys, con tamaño y huella SHA-256.',
     paragraphs: [

@@ -12,6 +12,11 @@ export function PublicPage({ page }: { page: PublicPageData | undefined }) {
       <p className="mt-8 max-w-[780px] text-[clamp(22px,3vw,36px)] leading-tight">
         {page?.summary ?? 'Esta dirección no corresponde a una página de Scenarys.'}
       </p>
+      {page?.quote && (
+        <blockquote className="mt-10 max-w-[780px] border-l-2 border-signal-deep pl-6 text-[clamp(20px,2.4vw,28px)] leading-snug tracking-[-0.01em]">
+          {page.quote}
+        </blockquote>
+      )}
       <div className="mt-10 max-w-[700px] space-y-5 text-lg leading-relaxed text-ink-soft">
         {page?.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
       </div>
@@ -24,6 +29,7 @@ export function PublicPage({ page }: { page: PublicPageData | undefined }) {
       {page?.catalog === 'downloads' && <DownloadList />}
       {page && <p className="mt-10 max-w-[700px] border-t border-line pt-6 text-ink-muted">{page.next}</p>}
       <div className="mt-10 flex flex-wrap gap-3">
+        {page?.actions?.map(a => <PillLink key={a.href} href={a.href} arrow>{a.label}</PillLink>)}
         {page?.manifest && <PillLink href="/releases/manifest.json" variant="outline">Ver manifiesto</PillLink>}
         <PillLink href="/" variant="outline">Volver a Scenarys</PillLink>
       </div>
