@@ -1,5 +1,6 @@
 import { CHOISYS_URL } from '../config';
 import { DecisionMatrix } from './DecisionMatrix';
+import { ChoisysFlow } from './ChoisysFlow';
 import { Container, Eyebrow, PillLink } from './ui';
 
 export function ChoisysSection() {
@@ -10,8 +11,8 @@ export function ChoisysSection() {
           <Eyebrow>01 — Producto · Beta</Eyebrow>
           <h2 className="text-[clamp(56px,7vw,96px)] leading-none font-normal tracking-[-0.05em]">choisys</h2>
           <p className="mt-7 max-w-[520px] text-[clamp(20px,2vw,26px)] leading-[1.35] tracking-[-0.01em]">
-            Un sistema de decisión interactivo. Cada fase es una matriz de entradas binarias; cada recorrido deja un
-            patrón.
+            Decisiones subjetivas, datos reales. Personas, perfiles y talento a través de matrices, no de respuestas
+            tradicionales.
           </p>
           <p className="mt-5 max-w-[520px] text-[17px] leading-relaxed text-ink-soft">
             choisys convierte elecciones simples en datos estructurados. En el producto, un toque elige una posición
@@ -29,6 +30,7 @@ export function ChoisysSection() {
         </div>
         <DecisionMatrix />
       </Container>
+      <ChoisysFlow />
     </section>
   );
 }

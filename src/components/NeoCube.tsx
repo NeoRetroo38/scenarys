@@ -94,7 +94,7 @@ export function NeoCube() {
                 stroke="white" strokeOpacity="0.65" strokeWidth="1.2" />
             ))}
             {decisionPoints.map(([x, y], index) => (
-              <circle key={index} cx={x} cy={y} r="1.8" fill="#39ff14" />
+              <circle key={index} cx={x} cy={y} r="1.8" fill="var(--color-signal)" />
             ))}
           </svg>
           <p id={helpId} className="mt-3 text-center text-xs leading-relaxed text-[#b3b3b3]">
