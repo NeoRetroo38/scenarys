@@ -17,7 +17,7 @@ export function Header() {
           <a href="/#inicio" className="text-[22px] tracking-[-0.03em] no-underline">
             scenarys
           </a>
-          <div className="flex flex-wrap items-center gap-x-7 gap-y-3 text-[15px]">
+          <div className="flex items-center gap-x-3 text-[15px] sm:flex-wrap sm:gap-x-7 sm:gap-y-3">
             {navLinks.map((link) => (
               <a key={link.href} href={link.href} className="hidden no-underline hover:text-ink-muted sm:inline">
                 {link.label}
@@ -26,6 +26,18 @@ export function Header() {
             <PillLink href={CHOISYS_URL} className="!px-5 !py-3 text-[15px]">
               Abrir choisys
             </PillLink>
+            <details className="relative sm:hidden">
+              <summary className="flex min-h-11 cursor-pointer list-none items-center rounded-full border border-ink px-5 [&::-webkit-details-marker]:hidden">
+                Menú
+              </summary>
+              <div className="absolute right-0 z-10 mt-2 flex w-48 flex-col rounded-lg border border-line bg-paper py-2 shadow-sm">
+                {navLinks.map((link) => (
+                  <a key={link.href} href={link.href} data-menu onClick={(e) => e.currentTarget.closest("details")?.removeAttribute("open")} className="px-5 py-3 no-underline hover:bg-line">
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </details>
           </div>
         </nav>
       </Container>
