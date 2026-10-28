@@ -8,7 +8,7 @@ const disciplines: Discipline[] = [
   { name: 'Hardware', status: 'próximamente' },
   { name: 'Videojuegos', status: 'próximamente' },
   { name: 'Música', status: 'próximamente' },
-  { name: 'Cine', status: 'próximamente' },
+  { name: 'Cine', status: 'Fight Cube · tráiler pronto', active: true },
 ];
 
 export function Studio() {

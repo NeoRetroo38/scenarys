@@ -7,6 +7,9 @@
   --color-ink-soft: #222222;
   --color-ink-muted: #555555;
   --color-line: #e6e6e6;
+  /* Verde único del sistema (tono 110°): neón sobre negro, profundo sobre blanco. */
+  --color-signal: #39ff14;
+  --color-signal-deep: #24a30a;
   --font-sans: Aptos, "Segoe UI Variable Text", "Segoe UI", "Helvetica Neue", Helvetica, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
@@ -34,6 +37,6 @@
 
 /* The dark cube section needs a visible keyboard outline of its own. */
 .cube-interaction:focus-visible {
-  outline: 2px solid #39ff14;
+  outline: 2px solid var(--color-signal);
   outline-offset: 5px;
 }

@@ -7,7 +7,7 @@ export function Contact() {
     <section id="contacto" aria-labelledby="contacto-h">
       <Container className="flex flex-wrap items-end justify-between gap-12 py-[clamp(72px,10vw,140px)]">
         <div className="min-w-0 flex-[1_1_520px]">
-          <Eyebrow>04 — Contacto</Eyebrow>
+          <Eyebrow>05 — Contacto</Eyebrow>
           <h2 id="contacto-h" className="text-[clamp(40px,5.6vw,76px)] leading-none font-normal tracking-[-0.045em]">
             Hablemos.
           </h2>

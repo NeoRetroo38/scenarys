@@ -3,7 +3,7 @@
 export const DOC_GROUPS = {"scenarys": "scenarys", "choisys": "choisys", "cubo": "El Cubo de Neo", "demo": "Demo remota", "backend": "Backend y producto", "escritos": "Escritos"};
 
 export const documents = [
-  { group: "escritos", slug: "los-limites", title: "Los límites · Capítulo 1", description: "Primer capítulo del relato en tres actos de Neo.", files: ["los-limites-capitulo-1.pdf"] },
+  { group: "escritos", slug: "los-limites", title: "El chán · Capítulo 1 (borrador)", description: "Primer capítulo del relato en tres actos de Neo.", files: ["los-limites-capitulo-1.pdf"] },
   { group: "scenarys", slug: "lanzamiento", title: "Lanzamiento", description: "Qué hay en la web, cómo se publica y qué falta.", files: ["lanzamiento.pdf", "lanzamiento.html"] },
   { group: "scenarys", slug: "rutas", title: "Una dirección para todo", description: "scenarys en la raíz y cada app en su ruta, como /choisys.", files: ["rutas.md"] },
   { group: "scenarys", slug: "ecosistema", title: "Estado del ecosistema", description: "Cómo encajan scenarys, choisys, el Cubo de Neo y Daemon.", files: ["ecosistema.pdf", "ecosistema.html"] },
