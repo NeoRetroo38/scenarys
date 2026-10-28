@@ -12,7 +12,7 @@ export function Footer() {
     <footer className="border-t border-line">
       <Container className="flex flex-wrap items-center justify-between gap-x-8 gap-y-4 py-8 text-sm text-[#444444]">
         <span>
-          © {new Date().getFullYear()} Scenarys S.L. · <CopyPhone variant="inline" />
+          © {new Date().getFullYear()} Scenarys S.L. · <CopyPhone variant="inline" /> · <span className="font-mono">neo. Sal del cubo.</span>
         </span>
         <div className="flex flex-wrap gap-6">
           {legalLinks.map((link) => (

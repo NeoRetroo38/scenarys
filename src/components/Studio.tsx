@@ -1,6 +1,6 @@
 import { Container, Eyebrow } from './ui';
 
-type Discipline = { name: string; status: string; active?: boolean };
+type Discipline = { name: string; status: string; active?: boolean; href?: string };
 
 const disciplines: Discipline[] = [
   { name: 'Software', status: 'choisys · en beta', active: true },
@@ -8,7 +8,8 @@ const disciplines: Discipline[] = [
   { name: 'Hardware', status: 'próximamente' },
   { name: 'Videojuegos', status: 'próximamente' },
   { name: 'Música', status: 'próximamente' },
-  { name: 'Cine', status: 'Fight Cube · tráiler pronto', active: true },
+  { name: 'Cine', status: 'Fight Cube · tráiler disponible', active: true, href: '/fight-cube' },
+  { name: 'Escritos', status: 'El chamán · borrador', active: true, href: '/el-chaman' },
 ];
 
 export function Studio() {
@@ -34,7 +35,11 @@ export function Studio() {
               key={d.name}
               className="flex flex-wrap items-baseline justify-between gap-3 border-t border-ink py-[22px] last:border-b"
             >
-              <span className="text-[clamp(24px,2.6vw,34px)] tracking-[-0.025em]">{d.name}</span>
+              {d.href ? (
+                <a href={d.href} className="text-[clamp(24px,2.6vw,34px)] tracking-[-0.025em] no-underline hover:text-ink-muted">{d.name} →</a>
+              ) : (
+                <span className="text-[clamp(24px,2.6vw,34px)] tracking-[-0.025em]">{d.name}</span>
+              )}
               <span className={`font-mono text-[13px] ${d.active ? 'text-ink' : 'text-ink-muted'}`}>{d.status}</span>
             </li>
           ))}

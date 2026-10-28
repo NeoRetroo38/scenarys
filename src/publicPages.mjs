@@ -13,11 +13,11 @@ export const publicPages = [
   },
   {
     path: '/el-chaman', title: 'El chamán', eyebrow: 'Escritos · Libro · Borrador',
-    summary: 'Un libro de Neo, escrito en minúsculas y en primera persona.',
+    summary: 'Un thriller negro con fondo filosófico, escrito por Neo.', tone: 'dark',
     quote: '«Los sistemas están rotos, solo las mentes nos curarán.»',
     paragraphs: [
-      'Madrid, una ciudad lúgubre en la que ya nada funciona. Suenan las sirenas, la pantalla sigue encendida y todo parece lo habitual, pero algo anda mal.',
-      'El chamán es el libro que antes se titulaba Los límites: un texto filosófico e introspectivo que va del prólogo a un final entre lo kantiano y lo nihilista.',
+      'Madrid, una ciudad lúgubre en la que ya nada funciona. Un asesino que firma sus crímenes como si fueran obras y un analista convencido de ser más rápido que él.',
+      'El chamán es el libro que antes se titulaba Los límites: una historia de detectives que también se pregunta por la voluntad, los límites y la mente.',
       'Es un borrador. El texto puede cambiar antes de su versión definitiva.',
     ],
     next: 'neo. Sal del cubo.',
@@ -25,7 +25,7 @@ export const publicPages = [
   },
   {
     path: '/fight-cube', title: 'Fight Cube', eyebrow: 'Cine · Corto · Próximamente',
-    summary: 'El primer corto de Scenarys.',
+    summary: 'El primer corto de Scenarys.', tone: 'dark',
     paragraphs: [
       'Fight Cube es un cortometraje de Scenarys que se estrenará dentro de poco.',
       'El tráiler ya está disponible en Instagram.',
