@@ -7,6 +7,7 @@ const pillVariants = {
   solid: 'bg-ink text-white hover:bg-ink-soft',
   outline: 'border border-ink text-ink hover:bg-ink hover:text-white',
   inverse: 'bg-white text-ink hover:bg-line',
+  outlineInverse: 'border border-white text-white hover:bg-white hover:text-ink',
 } as const;
 
 type PillVariant = keyof typeof pillVariants;
