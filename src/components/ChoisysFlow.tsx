@@ -4,21 +4,21 @@ type Step = { title: string; body: string };
 
 const rows: { id: string; label: string; tag: string; dark?: boolean; steps: Step[] }[] = [
   {
-    id: 'A', label: 'Empresa / Admin', tag: 'Área interna · RRHH',
+    id: 'A', label: 'Quien publica', tag: 'Mis cubos · por ejemplo, RRHH',
     steps: [
-      { title: 'Dashboard RRHH', body: 'Procesos activos, candidatos evaluados y cubos oficiales.' },
-      { title: 'Crear Cubo Oficial', body: 'Define el perfil objetivo del puesto y su umbral de encaje.' },
-      { title: 'Diseño de matrices', body: 'Preguntas subjetivas que se responden en una matriz 3×3.' },
-      { title: 'Publicar', body: 'El cubo de referencia se habilita para candidatos mediante código.' },
+      { title: 'Mis cubos', body: 'Cubos personales y de referencia, con sus enlaces y participantes.' },
+      { title: 'Cubo de referencia', body: 'Responde el cubo del puesto: ese recorrido es el patrón con el que se compara.' },
+      { title: 'Diseño de fases', body: 'Cada fase cruza dos ideas en una matriz con filas y columnas propias.' },
+      { title: 'Publicar enlace', body: 'Un enlace único para candidatos; se puede cerrar sin perder resultados.' },
     ],
   },
   {
-    id: 'B', label: 'Usuario / Candidato', tag: 'Evaluación', dark: true,
+    id: 'B', label: 'Quien responde', tag: 'Sin cuenta · por enlace', dark: true,
     steps: [
-      { title: 'Acceso con código', body: 'El candidato entra con el código que le da la empresa.' },
-      { title: 'Responder', body: 'Elige un símbolo en cada matriz 3×3.' },
+      { title: 'Acceso por enlace', body: 'Entra sin crear cuenta: solo su nombre y, si quiere, su email.' },
+      { title: 'Responder', body: 'Un toque por fase en cada matriz de 3 × 3.' },
       { title: 'Tu Cubo de Neo', body: 'Sus elecciones se representan en tres dimensiones.' },
-      { title: 'Comparativa', body: 'Encaje global y por fase frente al Cubo Oficial.' },
+      { title: 'Privacidad', body: 'Ve solo su cubo y sus runs; la comparación y el ranking son de quien publicó.' },
     ],
   },
 ];
